@@ -12,32 +12,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1032.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
     <!-- Scrollable content in the center -->
     <center>
-        <ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" prefHeight="1069.0" prefWidth="784.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
             <content>
-                <AnchorPane prefHeight="1605.0" prefWidth="775.0" style="-fx-background-color: #F8DC93;">
+                <AnchorPane prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: #F8DC93;">
                     <children>
-                        <Pane layoutY="-18.0" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@AppFoodTruck.css">
-                            <children>
-                                <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="El Pedidos Mexicanos">
-                                    <font>
-                                        <Font name="System Bold" size="42.0" />
-                                    </font>
-                                </Label>
-                                <Button layoutX="632.0" layoutY="41.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="118.0" style="-fx-background-color: transparent;">
-                                    <graphic>
-                                        <ImageView fitHeight="77.0" fitWidth="86.0">
-                                            <image>
-                                                <Image url="@images/basket.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                            </children>
-                        </Pane>
-                        <Pane layoutX="61.0" layoutY="194.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                        <Pane layoutX="56.0" layoutY="37.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
                             <children>
                                 <ImageView fitHeight="283.0" fitWidth="263.0" layoutX="398.0" layoutY="-25.0">
                                     <image>
@@ -51,7 +33,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                        <TableView layoutX="56.0" layoutY="531.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css">
+                        <TableView layoutX="56.0" layoutY="317.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css">
                             <columns>
                                 <TableColumn prefWidth="75.0" text="Order ID" />
                                 <TableColumn prefWidth="75.0" text="C2" />
@@ -61,8 +43,11 @@
                                 <TableColumn prefWidth="130.0" text="Status" />
                             </columns>
                         </TableView>
-                        <Pane layoutX="61.0" layoutY="834.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css" />
-                        <Pane layoutX="61.0" layoutY="1247.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css" />
+                        <Pane layoutX="56.0" layoutY="570.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css" />
+                        <Pane layoutX="56.0" layoutY="927.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css" />
+                  <AnchorPane fx:id="op" prefHeight="1600.0" prefWidth="772.0" style="-fx-background-color: pink;" visible="false" />
+                  <AnchorPane fx:id="fp" prefHeight="1600.0" prefWidth="783.0" style="-fx-background-color: blue;" visible="false" />
+                  <AnchorPane fx:id="mp" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: cyan;" visible="false" />
                     </children>
                 </AnchorPane>
             </content>
@@ -71,9 +56,9 @@
 
     <!-- Footer fixed at the bottom -->
     <bottom>
-        <Pane fx:id="footer" prefHeight="103.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;">
+        <Pane fx:id="footer" prefHeight="103.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;">
             <children>
-                <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
+                <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#toHome" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -85,7 +70,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
+                <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" onAction="#toOrder" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -97,7 +82,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
+                <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -109,7 +94,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
+                <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" onAction="#toMore" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -124,4 +109,24 @@
             </children>
         </Pane>
     </bottom>
+   <top>
+            <Pane prefHeight="144.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@AppFoodTruck.css" BorderPane.alignment="CENTER">
+                <children>
+                    <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="El Pedidos Mexicanos">
+                        <font>
+                            <Font name="System Bold" size="42.0" />
+                        </font>
+                    </Label>
+                    <Button layoutX="632.0" layoutY="41.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="118.0" style="-fx-background-color: transparent;">
+                        <graphic>
+                            <ImageView fitHeight="77.0" fitWidth="86.0">
+                                <image>
+                                    <Image url="@images/basket.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </children>
+            </Pane>
+   </top>
 </BorderPane>
