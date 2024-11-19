@@ -14,7 +14,8 @@ public class HelloApplication extends Application {
         try {
             // Load the FXML file for the RegisterPage
             //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RegisterPage.fxml"));
-            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("AppFoodTruckH.fxml"));
+            //FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("AppFoodTruckH.fxml"));
+            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("FoodCategory.fxml"));
             // Set up the scene using the loaded FXML
             Scene scene = new Scene(fxmlLoader1.load());
 
