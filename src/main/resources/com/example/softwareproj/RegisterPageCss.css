@@ -1,0 +1,34 @@
+.transparent-text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: black; /* Text color */
+    -fx-prompt-text-fill: black; /* Prompt text color */
+    -fx-font-family: "Arial"; /* Replace with your preferred font */
+    -fx-font-size: 16px; /* Adjust font size */
+    -fx-font-weight: bold; /* This affects text, not prompt text */
+}
+
+.transparent-text-field .text {
+    -fx-font-weight: bold; /* Apply bold styling to the prompt text */
+}
+.transparent-check-box {
+    -fx-text-fill: black; /* Makes the text of the CheckBox black */
+}
+
+.transparent-check-box .box {
+    -fx-background-color: transparent; /* Makes the inside of the box transparent */
+    -fx-border-color: black; /* Border color */
+    -fx-border-width: 2; /* Border thickness */
+    -fx-border-radius: 3px; /* Makes the box round */
+    -fx-min-width: 15px; /* Adjusts the size of the checkbox */
+    -fx-min-height: 15px;
+    -fx-pref-width: 15px;
+    -fx-pref-height: 15px;
+}
+
+.transparent-check-box .box:selected {
+    -fx-background-color: black; /* Changes the background to black when selected */
+    -fx-background-radius: 15px; /* Ensures the rounded style is applied when selected */
+}
+
+

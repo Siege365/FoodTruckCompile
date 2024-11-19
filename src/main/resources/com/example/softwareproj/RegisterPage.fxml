@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.softwareproj.RegisterController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="1024.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.RegisterController">
+   <children>
+      <ImageView fx:id="regpng" fitHeight="1036.0" fitWidth="796.0" preserveRatio="true">
+         <image>
+            <Image url="@images/Frame21.png" />
+         </image>
+         <viewport>
+            <Rectangle2D height="1024.0" width="770.0" />
+         </viewport>
+      </ImageView>
+      <AnchorPane prefHeight="1028.0" prefWidth="774.0">
+         <children>
+            <TextField fx:id="emailtf" layoutX="211.0" layoutY="396.0" prefHeight="42.0" prefWidth="342.0" promptText="Email" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="fntf" layoutX="211.0" layoutY="477.0" prefHeight="42.0" prefWidth="342.0" promptText="Full Name" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="usertf" layoutX="211.0" layoutY="552.0" prefHeight="41.0" prefWidth="342.0" promptText="Username" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordtf" layoutX="211.0" layoutY="650.0" prefHeight="42.0" prefWidth="342.0" promptText="Password" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </PasswordField>
+            <CheckBox fx:id="showpass" layoutX="225.0" layoutY="713.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="26.0" prefWidth="171.0" styleClass="transparent-check-box" stylesheets="@RegisterPageCss.css" text="Show Password">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="Createbtn" layoutX="194.0" layoutY="774.0" mnemonicParsing="false" onAction="#toLogin" prefHeight="59.0" prefWidth="152.0" style="-fx-background-radius: 35; -fx-background-color: FFBE28;" text="Create">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="backbtn" layoutX="443.0" layoutY="774.0" mnemonicParsing="false" onAction="#backtologin" prefHeight="59.0" prefWidth="152.0" style="-fx-background-radius: 34; -fx-background-color: FFBE28;" text="Back">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
