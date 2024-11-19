@@ -97,7 +97,7 @@ public class LoginFoodController {
                     showAlert("Login", "Login Successful", Alert.AlertType.INFORMATION);
 
                     // Load the Homepage and pass the username and userID
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AppFoodTruck.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AppFoodTruckH.fxml"));
                     Parent root = loader.load();
 
                     // Pass the user ID and username to the home page controller

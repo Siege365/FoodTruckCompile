@@ -19,7 +19,7 @@
                <children>
                   <Pane layoutY="-18.0" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: EF3A31;">
                      <children>
-                        <Label fx:id="Userlabel1" layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: F8DC93;" text="El Pedidos Mexicanos" textFill="#f8dc93">
+                        <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: F8DC93;" text="El Pedidos Mexicanos" textFill="#f8dc93">
                            <font>
                               <Font name="System Bold" size="42.0" />
                            </font>
@@ -61,9 +61,9 @@
                   </TableView>
                   <Pane layoutX="61.0" layoutY="834.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" />
                   <Pane layoutX="61.0" layoutY="1247.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" />
-                  <Pane layoutY="1695.0" prefHeight="103.0" prefWidth="775.0" style="-fx-background-color: EF3A31;">
+                  <Pane fx:id="footer" layoutY="950.0" prefHeight="103.0" prefWidth="775.0" style="-fx-background-color: EF3A31;" stylesheets="@AppFoodTruck.css">
                      <children>
-                        <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" stylesheets="@AppFoodTruck.css" text="Home" textFill="#f8dc93">
+                        <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="Home" textFill="#f8dc93">
                            <graphic>
                               <ImageView style="-fx-background-color: transparent;">
                                  <image>
@@ -75,7 +75,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" stylesheets="@AppFoodTruck.css" text="Food" textFill="#f8dc93">
+                        <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="Food" textFill="#f8dc93">
                            <graphic>
                               <ImageView>
                                  <image>
@@ -87,7 +87,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" stylesheets="@AppFoodTruck.css" text="More" textFill="#f8dc93">
+                        <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="More" textFill="#f8dc93">
                            <graphic>
                               <ImageView>
                                  <image>
@@ -99,7 +99,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" stylesheets="@AppFoodTruck.css" text="Orders" textFill="#f8dc93">
+                        <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="Orders" textFill="#f8dc93">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

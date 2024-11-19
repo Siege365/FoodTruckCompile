@@ -1,20 +1,44 @@
+
+/* Scrollable Button Style */
+.scroll-button {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F8DC93;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Hover effect for scrollable buttons */
+.scroll-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Drop Shadow Style */
 .drop-shadow {
     -fx-border-radius: 50px;
     -fx-background-color: #FFF;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
 }
-.inner-shadow{
-    -fx-background-color: #FFFFFF; /* White background */
-    -fx-background-insets: 0;      /* Remove additional padding */
-    -fx-background-radius: 0;      /* No rounded corners */
-    -fx-border-color: black;       /* Outer border color */
-    -fx-border-radius: 20px;          /* No rounded corners on border */
-    -fx-border-width: 1px;         /* Thin outer border */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25),4,0,0,4);
-}
-.button {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #F8DC93;
-}
 
+/* Inner Shadow Style */
+.inner-shadow {
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+.scroll-pane {
+    -fx-background: transparent;
+}
+/* Footer style */
+#footer {
+    -fx-background-color: #FF5733;
+    -fx-padding: 15;
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-alignment: center;
+}
