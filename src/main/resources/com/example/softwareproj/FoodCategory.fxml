@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1708.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.FoodCategory">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.FoodCategory">
     <!-- Scrollable content in the center -->
     <center>
-        <ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" prefHeight="1610.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" vbarPolicy="NEVER">
             <content>
                 <AnchorPane prefHeight="1605.0" prefWidth="775.0" style="-fx-background-color: #F8DC93;">
                     <children>
-                        <Pane layoutY="-18.0" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@AppFoodTruck.css">
+                        <Pane layoutY="-18.0" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                             <children>
                                 <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="Food Category">
                                     <font>
@@ -35,41 +35,41 @@
                                 </Button>
                         <ImageView fitHeight="84.0" fitWidth="66.0" layoutX="322.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../java/com/example/softwareproj/Imagesd/Category.png" />
+                              <Image url="@Imagesd/Category.png" />
                            </image>
                         </ImageView>
                             </children>
                         </Pane>
-                        <Pane layoutX="24.0" layoutY="255.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                        <Pane layoutX="24.0" layoutY="150.0" onMouseClicked="#toMD" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="283.0" fitWidth="717.0" layoutX="-2.0" layoutY="-2.0">
                            <image>
-                              <Image url="@../../../../../../../../Downloads/Group%20243.png" />
+                              <Image url="@Imagesd/Group%20243.png" />
                            </image>
                         </ImageView>
                      </children></Pane>
-                  <Pane layoutX="26.0" layoutY="577.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                  <Pane layoutX="26.0" layoutY="480.0" onMouseClicked="#toSD" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="279.0" fitWidth="717.0" layoutX="-2.0" layoutY="-2.0">
                            <image>
-                              <Image url="@../../../../../../../../Downloads/Group%20239.png" />
+                              <Image url="@Imagesd/Group%20239.png" />
                            </image>
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="26.0" layoutY="903.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                  <Pane layoutX="26.0" layoutY="800.0" onMouseClicked="#toDrinks" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="276.0" fitWidth="720.0" layoutX="-1.0">
                            <image>
-                              <Image url="@../../../../../../../../Downloads/Group%20241.png" />
+                              <Image url="@Imagesd/Group%20241.png" />
                            </image>
                         </ImageView>
                      </children></Pane>
-                  <Pane layoutX="27.0" layoutY="1224.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                  <Pane layoutX="27.0" layoutY="1120.0" onMouseClicked="#toDesserts" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="278.0" fitWidth="714.0" layoutX="-1.0">
                            <image>
-                              <Image url="@../../../../../../../../Downloads/Group%20242.png" />
+                              <Image url="@Imagesd/Group%20242.png" />
                            </image>
                         </ImageView>
                      </children></Pane>
@@ -81,9 +81,9 @@
 
     <!-- Footer fixed at the bottom -->
     <bottom>
-        <Pane fx:id="footer" prefHeight="103.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;">
+        <Pane fx:id="footer" prefHeight="103.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
             <children>
-                <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
+                <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#toHome" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -95,7 +95,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
+                <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" onAction="#toOrders" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -107,7 +107,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
+                <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -119,7 +119,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
+                <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" onAction="#toMore" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>

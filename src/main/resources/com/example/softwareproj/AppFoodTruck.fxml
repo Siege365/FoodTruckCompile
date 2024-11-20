@@ -13,9 +13,9 @@
 
 <AnchorPane prefHeight="1032.0" prefWidth="770.0" style="-fx-background-color: EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
    <children>
-      <ScrollPane hbarPolicy="NEVER" layoutY="-5.0" prefHeight="1045.0" prefWidth="770.0" style="-fx-background-color: EF3A31;" stylesheets="@AppFoodTruck.css" vbarPolicy="NEVER">
+      <ScrollPane hbarPolicy="NEVER" layoutY="-5.0" prefHeight="1045.0" prefWidth="770.0" style="-fx-background-color: EF3A31;" stylesheets="@CSS/AppFoodTruck.css" vbarPolicy="NEVER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1795.0" prefWidth="773.0" style="-fx-background-color: F8DC93;" stylesheets="@RegisterPageCss.css">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1795.0" prefWidth="773.0" style="-fx-background-color: F8DC93;" stylesheets="@CSS/RegisterPageCss.css">
                <children>
                   <Pane layoutY="-18.0" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: EF3A31;">
                      <children>
@@ -49,7 +49,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <TableView layoutX="56.0" layoutY="531.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css">
+                  <TableView layoutX="56.0" layoutY="531.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Order ID" />
                       <TableColumn prefWidth="75.0" text="C2" />
@@ -61,9 +61,9 @@
                   </TableView>
                   <Pane layoutX="61.0" layoutY="834.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" />
                   <Pane layoutX="61.0" layoutY="1247.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" />
-                  <Pane fx:id="footer" layoutY="950.0" prefHeight="103.0" prefWidth="775.0" style="-fx-background-color: EF3A31;" stylesheets="@AppFoodTruck.css">
+                  <Pane fx:id="footer" layoutY="950.0" prefHeight="103.0" prefWidth="775.0" style="-fx-background-color: EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                      <children>
-                        <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="Home" textFill="#f8dc93">
+                        <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@CSS/AppFoodTruck.css" text="Home" textFill="#f8dc93">
                            <graphic>
                               <ImageView style="-fx-background-color: transparent;">
                                  <image>
@@ -75,7 +75,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="Food" textFill="#f8dc93">
+                        <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@CSS/AppFoodTruck.css" text="Food" textFill="#f8dc93">
                            <graphic>
                               <ImageView>
                                  <image>
@@ -87,7 +87,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="More" textFill="#f8dc93">
+                        <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@CSS/AppFoodTruck.css" text="More" textFill="#f8dc93">
                            <graphic>
                               <ImageView>
                                  <image>
@@ -99,7 +99,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@AppFoodTruck.css" text="Orders" textFill="#f8dc93">
+                        <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" stylesheets="@CSS/AppFoodTruck.css" text="Orders" textFill="#f8dc93">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

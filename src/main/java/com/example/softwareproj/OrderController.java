@@ -5,17 +5,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class FoodCategory {
+public class OrderController {
+
+    @FXML
+    private Label Userlabel;
 
     @FXML
     private Pane footer;
+
+    @FXML
+    private AnchorPane fp;
+
+    @FXML
+    private AnchorPane mp;
+
+    @FXML
+    private AnchorPane op;
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -24,25 +37,6 @@ public class FoodCategory {
         alert.showAndWait();
     }
 
-    @FXML
-    void toDesserts(MouseEvent event) {
-        System.out.println("Desserts");
-    }
-
-    @FXML
-    void toDrinks(MouseEvent event) {
-        System.out.println("Drinks");
-    }
-
-    @FXML
-    void toMD(MouseEvent event) {
-        System.out.println("MD");
-    }
-
-    @FXML
-    void toSD(MouseEvent event) {
-        System.out.println("SD");
-    }
     @FXML
     void toFood(ActionEvent event) {
         try {
@@ -102,6 +96,7 @@ public class FoodCategory {
         }
 
     }
+
     @FXML
     void toMore(ActionEvent event) {
         try {
@@ -131,7 +126,7 @@ public class FoodCategory {
     }
 
     @FXML
-    void toOrders (ActionEvent event) {
+    void toOrder(ActionEvent event) {
         try {
             // Load the new FXML file
             FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("OrderPage.fxml"));
@@ -157,4 +152,5 @@ public class FoodCategory {
             showAlert("Error", "Could not load the FoodCategory screen: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
 }

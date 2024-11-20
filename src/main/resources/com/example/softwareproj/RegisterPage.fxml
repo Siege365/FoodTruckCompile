@@ -22,27 +22,27 @@
       </ImageView>
       <AnchorPane prefHeight="1028.0" prefWidth="774.0">
          <children>
-            <TextField fx:id="emailtf" layoutX="211.0" layoutY="396.0" prefHeight="42.0" prefWidth="342.0" promptText="Email" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+            <TextField fx:id="emailtf" layoutX="211.0" layoutY="396.0" prefHeight="42.0" prefWidth="342.0" promptText="Email" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="fntf" layoutX="211.0" layoutY="477.0" prefHeight="42.0" prefWidth="342.0" promptText="Full Name" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+            <TextField fx:id="fntf" layoutX="211.0" layoutY="477.0" prefHeight="42.0" prefWidth="342.0" promptText="Full Name" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="usertf" layoutX="211.0" layoutY="552.0" prefHeight="41.0" prefWidth="342.0" promptText="Username" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+            <TextField fx:id="usertf" layoutX="211.0" layoutY="552.0" prefHeight="41.0" prefWidth="342.0" promptText="Username" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordtf" layoutX="211.0" layoutY="650.0" prefHeight="42.0" prefWidth="342.0" promptText="Password" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css">
+            <PasswordField fx:id="passwordtf" layoutX="211.0" layoutY="650.0" prefHeight="42.0" prefWidth="342.0" promptText="Password" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css">
                <font>
                   <Font size="16.0" />
                </font>
             </PasswordField>
-            <CheckBox fx:id="showpass" layoutX="225.0" layoutY="713.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="26.0" prefWidth="171.0" styleClass="transparent-check-box" stylesheets="@RegisterPageCss.css" text="Show Password">
+            <CheckBox fx:id="showpass" layoutX="225.0" layoutY="713.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="26.0" prefWidth="171.0" styleClass="transparent-check-box" stylesheets="@CSS/RegisterPageCss.css" text="Show Password">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

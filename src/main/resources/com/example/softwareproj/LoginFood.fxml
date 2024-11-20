@@ -16,9 +16,9 @@
             <Image url="@images/LoginFood.png" />
          </image>
       </ImageView>
-      <TextField fx:id="usertf" layoutX="219.0" layoutY="493.0" prefHeight="41.0" prefWidth="331.0" promptText="Username" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css" />
-      <PasswordField fx:id="passwordtf" layoutX="219.0" layoutY="615.0" prefHeight="41.0" prefWidth="331.0" promptText="Password" styleClass="transparent-text-field" stylesheets="@RegisterPageCss.css" />
-      <CheckBox fx:id="showpass" layoutX="222.0" layoutY="672.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="26.0" prefWidth="171.0" styleClass="transparent-check-box" stylesheets="@RegisterPageCss.css" text="Show Password">
+      <TextField fx:id="usertf" layoutX="219.0" layoutY="493.0" prefHeight="41.0" prefWidth="331.0" promptText="Username" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css" />
+      <PasswordField fx:id="passwordtf" layoutX="219.0" layoutY="615.0" prefHeight="41.0" prefWidth="331.0" promptText="Password" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css" />
+      <CheckBox fx:id="showpass" layoutX="222.0" layoutY="672.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="26.0" prefWidth="171.0" styleClass="transparent-check-box" stylesheets="@CSS/RegisterPageCss.css" text="Show Password">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
