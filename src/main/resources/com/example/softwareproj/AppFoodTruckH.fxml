@@ -55,19 +55,19 @@
     <bottom>
         <Pane fx:id="footer" prefHeight="103.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;">
             <children>
-                <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#toHome" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
+                <Button layoutX="15.0" layoutY="16.0" mnemonicParsing="false" onAction="#toHome" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
                     <graphic>
-                        <ImageView>
+                        <ImageView fitHeight="64.0" fitWidth="64.0">
                             <image>
                                 <Image url="@images/home.png" />
                             </image>
                         </ImageView>
                     </graphic>
                     <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Button>
-                <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" onAction="#toOrder" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
+                <Button layoutX="212.0" layoutY="17.0" mnemonicParsing="false" onAction="#toOrder" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -76,10 +76,10 @@
                         </ImageView>
                     </graphic>
                     <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Button>
-                <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
+                <Button layoutX="411.0" layoutY="17.0" mnemonicParsing="false" onAction="#toFood" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -88,10 +88,10 @@
                         </ImageView>
                     </graphic>
                     <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Button>
-                <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" onAction="#toMore" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
+                <Button layoutX="593.0" layoutY="57.0" mnemonicParsing="false" onAction="#toMore" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -100,7 +100,7 @@
                         </ImageView>
                     </graphic>
                     <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Button>
             </children>
