@@ -40,18 +40,39 @@
                         </ImageView>
                             </children>
                         </Pane>
-                        <Pane layoutX="24.0" layoutY="255.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css" />
+                        <Pane layoutX="24.0" layoutY="255.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                     <children>
+                        <ImageView fitHeight="283.0" fitWidth="717.0" layoutX="-2.0" layoutY="-2.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/Group%20243.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
                   <Pane layoutX="26.0" layoutY="577.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
                      <children>
-                        <ImageView fitHeight="275.0" fitWidth="713.0">
+                        <ImageView fitHeight="276.0" fitWidth="717.0" layoutX="-2.0" layoutY="1.0">
                            <image>
-                              <Image url="@../../../../java/com/example/softwareproj/Imagesd/Group%20239.png" />
+                              <Image url="@../../../../../../../../Downloads/Group%20239.png" />
                            </image>
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="26.0" layoutY="903.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css" />
-                  <Pane layoutX="27.0" layoutY="1224.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css" />
+                  <Pane layoutX="26.0" layoutY="903.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                     <children>
+                        <ImageView fitHeight="276.0" fitWidth="720.0" layoutX="-1.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/Group%20241.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
+                  <Pane layoutX="27.0" layoutY="1224.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                     <children>
+                        <ImageView fitHeight="278.0" fitWidth="714.0" layoutX="-1.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/Group%20242.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
                     </children>
                 </AnchorPane>
             </content>
