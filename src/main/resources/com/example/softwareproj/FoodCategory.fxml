@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,10 +11,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.FoodCategory">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.FoodCategory">
     <!-- Scrollable content in the center -->
     <center>
-        <ScrollPane hbarPolicy="NEVER" prefHeight="1610.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" prefHeight="1610.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
             <content>
                 <AnchorPane prefHeight="1605.0" prefWidth="775.0" style="-fx-background-color: #F8DC93;">
                     <children>
@@ -40,7 +41,7 @@
                         </ImageView>
                             </children>
                         </Pane>
-                        <Pane layoutX="24.0" layoutY="150.0" onMouseClicked="#toMD" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                        <Pane layoutX="24.0" layoutY="150.0" onMouseClicked="#toMD" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="283.0" fitWidth="717.0" layoutX="-2.0" layoutY="-2.0">
                            <image>
@@ -48,7 +49,7 @@
                            </image>
                         </ImageView>
                      </children></Pane>
-                  <Pane layoutX="26.0" layoutY="480.0" onMouseClicked="#toSD" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                  <Pane layoutX="26.0" layoutY="480.0" onMouseClicked="#toSD" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="279.0" fitWidth="717.0" layoutX="-2.0" layoutY="-2.0">
                            <image>
@@ -57,7 +58,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="26.0" layoutY="800.0" onMouseClicked="#toDrinks" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                  <Pane layoutX="26.0" layoutY="800.0" onMouseClicked="#toDrinks" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="276.0" fitWidth="720.0" layoutX="-1.0">
                            <image>
@@ -65,7 +66,7 @@
                            </image>
                         </ImageView>
                      </children></Pane>
-                  <Pane layoutX="27.0" layoutY="1120.0" onMouseClicked="#toDesserts" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                  <Pane layoutX="27.0" layoutY="1120.0" onMouseClicked="#toDesserts" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                      <children>
                         <ImageView fitHeight="278.0" fitWidth="714.0" layoutX="-1.0">
                            <image>
@@ -76,12 +77,16 @@
                     </children>
                 </AnchorPane>
             </content>
+         <stylesheets>
+            <URL value="@CSS/FoodCategory.css" />
+            <URL value="@CSS/AppFoodTruck.css" />
+         </stylesheets>
         </ScrollPane>
     </center>
 
     <!-- Footer fixed at the bottom -->
     <bottom>
-        <Pane fx:id="footer" prefHeight="103.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
+        <Pane fx:id="footer" prefHeight="103.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;">
             <children>
                 <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#toHome" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
                     <graphic>
@@ -132,6 +137,14 @@
                     </font>
                 </Button>
             </children>
+         <stylesheets>
+            <URL value="@CSS/FoodCategory.css" />
+            <URL value="@CSS/AppFoodTruck.css" />
+         </stylesheets>
         </Pane>
     </bottom>
+   <stylesheets>
+      <URL value="@CSS/FoodCategory.css" />
+      <URL value="@CSS/AppFoodTruck.css" />
+   </stylesheets>
 </BorderPane>

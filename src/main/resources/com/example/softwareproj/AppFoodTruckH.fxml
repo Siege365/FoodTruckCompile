@@ -19,7 +19,7 @@
             <content>
                 <AnchorPane prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: #F8DC93;">
                     <children>
-                        <Pane layoutX="56.0" layoutY="37.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
+                        <Pane layoutX="56.0" layoutY="37.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                             <children>
                                 <ImageView fitHeight="283.0" fitWidth="263.0" layoutX="398.0" layoutY="-25.0">
                                     <image>
@@ -33,7 +33,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                        <TableView layoutX="56.0" layoutY="317.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css">
+                        <TableView layoutX="56.0" layoutY="317.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css">
                             <columns>
                                 <TableColumn prefWidth="75.0" text="Order ID" />
                                 <TableColumn prefWidth="75.0" text="C2" />
@@ -43,8 +43,8 @@
                                 <TableColumn prefWidth="130.0" text="Status" />
                             </columns>
                         </TableView>
-                        <Pane layoutX="56.0" layoutY="570.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css" />
-                        <Pane layoutX="56.0" layoutY="927.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@AppFoodTruck.css" />
+                        <Pane layoutX="56.0" layoutY="570.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css" />
+                        <Pane layoutX="56.0" layoutY="927.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css" />
                     </children>
                 </AnchorPane>
             </content>
@@ -107,7 +107,7 @@
         </Pane>
     </bottom>
    <top>
-            <Pane prefHeight="144.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@AppFoodTruck.css" BorderPane.alignment="CENTER">
+            <Pane prefHeight="144.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" BorderPane.alignment="CENTER">
                 <children>
                     <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="El Pedidos Mexicanos">
                         <font>

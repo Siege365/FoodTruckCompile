@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1704.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AboutUs">
+<BorderPane prefHeight="1704.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AboutUs">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
@@ -41,41 +42,44 @@
                         <Image url="@../../../../java/com/example/softwareproj/Imagesd/Mr_Pedidos.png" />
                      </image>
                   </ImageView>
-                  <Pane layoutY="123.0" opacity="0.38" prefHeight="919.0" prefWidth="404.0" style="-fx-background-color: white;" />
-                  <Pane cache="true" cacheHint="QUALITY" layoutX="-7.0" layoutY="124.0" prefHeight="919.0" prefWidth="407.0">
+                  <Pane layoutY="123.0" opacity="0.62" prefHeight="919.0" prefWidth="770.0" style="-fx-background-color: black;">
+                     <effect>
+                        <BoxBlur />
+                     </effect></Pane>
+                  <Pane cache="true" cacheHint="QUALITY" layoutX="-7.0" layoutY="124.0" prefHeight="919.0" prefWidth="764.0">
                      <children>
-                        <Label layoutX="120.0" layoutY="35.0" style="-fx-opacity: 100%;" text="ABOUT US" textAlignment="CENTER">
+                        <Label layoutX="130.0" layoutY="14.0" style="-fx-opacity: 100%;" text="ABOUT US" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Roboto Bold" size="36.0" />
+                              <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="104.0" prefHeight="211.0" prefWidth="385.0" text="Welcome to the El Pedidos Mexicanos About Us page! We are a dedicated team of aspiring software developers who created a Java-based food truck order management program designed to bring efficiency, organization, and innovation to the fast-paced world of street food." textAlignment="JUSTIFY" wrapText="true">
+                        <Label alignment="TOP_LEFT" layoutX="17.0" layoutY="69.0" prefHeight="211.0" prefWidth="385.0" text="Welcome to the El Pedidos Mexicanos About Us page! We are a dedicated team of aspiring software developers who created a Java-based food truck order management program designed to bring efficiency, organization, and innovation to the fast-paced world of street food." textAlignment="JUSTIFY" textFill="#f8f8f8" wrapText="true">
                            <font>
-                              <Font name="Roboto" size="18.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="84.0" layoutY="279.0" style="-fx-opacity: 100%;" text="The Inspiration" textAlignment="CENTER">
+                        <Label layoutX="64.0" layoutY="280.0" style="-fx-opacity: 100%;" text="THE INSPIRATION" textAlignment="CENTER" textFill="#f5f5f5">
                            <font>
-                              <Font name="Roboto Bold" size="36.0" />
+                              <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="11.0" layoutY="338.0" prefHeight="265.0" prefWidth="385.0" text="The idea behind El Pedidos Mexicanos was inspired by the vibrant culture and flavors of Mexican food trucks. These mobile eateries are beloved worldwide, but we saw an opportunity to improve the way orders are handled using technology. Our program helps food truck operators streamline their operations, reduce errors, and provide faster service." textAlignment="JUSTIFY" wrapText="true">
+                        <Label alignment="TOP_LEFT" layoutX="17.0" layoutY="333.0" prefHeight="265.0" prefWidth="385.0" text="The idea behind El Pedidos Mexicanos was inspired by the vibrant culture and flavors of Mexican food trucks. These mobile eateries are beloved worldwide, but we saw an opportunity to improve the way orders are handled using technology. Our program helps food truck operators streamline their operations, reduce errors, and provide faster service." textAlignment="JUSTIFY" textFill="#ebebeb" wrapText="true">
                            <font>
-                              <Font name="Roboto" size="18.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="104.0" layoutY="546.0" style="-fx-opacity: 100%;" text="Our Journey" textAlignment="CENTER">
+                        <Label layoutX="108.0" layoutY="551.0" style="-fx-opacity: 100%;" text="Our Journey" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Roboto Bold" size="36.0" />
+                              <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="11.0" layoutY="603.0" prefHeight="265.0" prefWidth="385.0" text="Throughout this project, we collaborated closely, learning and growing as a team. From brainstorming initial ideas to debugging complex code, each member contributed unique skills to bring this project to life. It was a challenging yet rewarding experience that showcased our creativity, technical abilities, and passion for problem-solving." textAlignment="JUSTIFY" wrapText="true">
+                        <Label alignment="TOP_LEFT" layoutX="17.0" layoutY="598.0" prefHeight="315.0" prefWidth="390.0" text="Throughout this project, we collaborated closely, learning and growing as a team. From brainstorming initial ideas to debugging complex code, each member contributed unique skills to bring this project to life. It was a challenging yet rewarding experience that showcased our creativity, technical abilities, and passion for problem-solving." textAlignment="JUSTIFY" textFill="#f2f2f2" wrapText="true">
                            <font>
-                              <Font name="Roboto" size="21.0" />
+                              <Font name="Arial Rounded MT Bold" size="21.0" />
                            </font>
                         </Label>
       
-                           </children>
+                                             </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -85,6 +89,11 @@
                         <Font name="Roboto Bold" size="36.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="288.0" layoutY="1042.0">
+                     <image>
+                        <Image url="@../../../../java/com/example/softwareproj/Imagesd/El_pedidos1-removebg-preview.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
             </content>
