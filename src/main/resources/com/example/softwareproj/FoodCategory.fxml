@@ -50,7 +50,7 @@
                      </children></Pane>
                   <Pane layoutX="26.0" layoutY="577.0" onMouseClicked="#click" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@AppFoodTruck.css">
                      <children>
-                        <ImageView fitHeight="276.0" fitWidth="717.0" layoutX="-2.0" layoutY="1.0">
+                        <ImageView fitHeight="279.0" fitWidth="717.0" layoutX="-2.0" layoutY="-2.0">
                            <image>
                               <Image url="@../../../../../../../../Downloads/Group%20239.png" />
                            </image>
