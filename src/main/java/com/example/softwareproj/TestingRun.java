@@ -1,4 +1,4 @@
-package com.example.softwareproj;   
+package com.example.softwareproj;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,13 +13,19 @@ import java.io.IOException;
  *
  * @author Aira
  */
-public class Login extends Application {
+public class TestingRun extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("LoginFood.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("RegisterPage.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("AppFoodTruckH.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("FoodCategory.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("OrderPage.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("MorePage.fxml"));
+
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setResizable(false);
         Image icon = new Image(getClass().getResourceAsStream("images/El_pedidos1-removebg-preview.png"));

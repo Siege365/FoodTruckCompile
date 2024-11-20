@@ -7,15 +7,28 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class FoodCategory {
+    @FXML
+    private AnchorPane desserts;
+
+    @FXML
+    private AnchorPane drinks;
 
     @FXML
     private Pane footer;
+
+    @FXML
+    private AnchorPane md;
+
+    @FXML
+    private AnchorPane sd;
+
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -26,22 +39,35 @@ public class FoodCategory {
 
     @FXML
     void toDesserts(MouseEvent event) {
-        System.out.println("Desserts");
+        desserts.setVisible(true);
+        md.setVisible(false);
+        sd.setVisible(false);
+        drinks.setVisible(false);
     }
 
     @FXML
     void toDrinks(MouseEvent event) {
-        System.out.println("Drinks");
+        drinks.setVisible(true);
+        md.setVisible(false);
+        sd.setVisible(false);
+        desserts.setVisible(false);
+
     }
 
     @FXML
     void toMD(MouseEvent event) {
-        System.out.println("MD");
+        md.setVisible(true);
+        sd.setVisible(false);
+        desserts.setVisible(false);
+        drinks.setVisible(false);
     }
 
     @FXML
     void toSD(MouseEvent event) {
-        System.out.println("SD");
+        sd.setVisible(true);
+        md.setVisible(false);
+        desserts.setVisible(false);
+        drinks.setVisible(false);
     }
     @FXML
     void toFood(ActionEvent event) {
