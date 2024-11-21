@@ -4,26 +4,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.FoodCategory">
     <!-- Scrollable content in the center -->
     <center>
-        <ScrollPane hbarPolicy="NEVER" prefHeight="1610.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" prefHeight="1649.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
             <content>
                 <AnchorPane prefHeight="1392.0" prefWidth="782.0" style="-fx-background-color: #F8DC93;">
                     <children>
                         <Pane layoutY="-18.0" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                             <children>
-                                <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="Food Category">
+                                <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="Side Dish">
                                     <font>
                                         <Font name="System Bold" size="42.0" />
                                     </font>
@@ -37,7 +34,7 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                        <ImageView fitHeight="84.0" fitWidth="66.0" layoutX="322.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="84.0" fitWidth="66.0" layoutX="219.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Imagesd/Category.png" />
                            </image>
@@ -80,49 +77,313 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <AnchorPane fx:id="md" layoutY="123.0" prefHeight="1477.0" prefWidth="772.0" style="-fx-background-color: yellow;" visible="false">
+                  <AnchorPane fx:id="md" layoutY="126.0" prefHeight="1485.0" prefWidth="770.0" style="-fx-background-color: f8dc93;" visible="false">
                      <children>
-                        <Pane layoutX="28.0" layoutY="177.0" prefHeight="358.0" prefWidth="712.0" style="-fx-background-color: white; -fx-background-radius: 20;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="19.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
-                              <VBox prefHeight="360.0" prefWidth="712.0">
-                                 <children>
-                                    <HBox prefHeight="36.0" prefWidth="712.0">
-                                       <children>
-                                          <Label prefHeight="70.0" prefWidth="465.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="         Taco">
-                                             <font>
-                                                <Font size="48.0" />
-                                             </font>
-                                          </Label>
-                                          <Label prefHeight="70.0" prefWidth="226.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="\$9.99">
-                                             <font>
-                                                <Font size="48.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <AnchorPane prefHeight="292.0" prefWidth="719.0">
-                                       <children>
-                                          <ImageView fitHeight="272.0" fitWidth="339.0" layoutX="20.0" layoutY="-1.0">
-                                             <image>
-                                                <Image url="@../../../../../../../../Downloads/al-pastor-3507w.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <Spinner layoutX="390.0" layoutY="216.0" prefHeight="63.0" prefWidth="166.0" />
-                                          <ImageView fitHeight="62.0" fitWidth="104.0" layoutX="572.0" layoutY="214.0">
-                                             <image>
-                                                <Image url="@../../../../../../../../Pictures/Screenshots/Screenshot%202024-11-21%20031451.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Button layoutX="575.0" layoutY="216.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="99.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </VBox>
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="394.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="209.0" fitWidth="290.0" layoutX="27.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_868853708_ibq8RhppoT5wwHkyNm6Hvt3iaBIT9Ouk.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="123.0" layoutY="231.0" prefHeight="53.0" prefWidth="111.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Burrito">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="320.0" prefHeight="58.0" prefWidth="163.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="180 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="250.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="247.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="19.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="214.0" fitWidth="325.0" layoutX="17.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_973269809_2jrpICmsTmD28TePBFYmhwHnzseG5Xl1.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="87.0" layoutY="227.0" prefHeight="53.0" prefWidth="190.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Quesadillas">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="162.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="100 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="394.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_439777236_Ct7IcwFMElwWaHp6QyidGjX1scSZ14I4.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="93.0" layoutY="227.0" prefHeight="53.0" prefWidth="172.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Enchiladas">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="162.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="150 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="19.0" layoutY="837.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20182101.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="124.0" layoutY="227.0" prefHeight="53.0" prefWidth="119.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Nachos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="162.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="150 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="395.0" layoutY="838.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20182659.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="93.0" layoutY="227.0" prefHeight="53.0" prefWidth="172.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Chilaquiles">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="162.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="140 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
                            </children>
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="117.0" prefHeight="1493.0" prefWidth="785.0" style="-fx-background-color: blue;" visible="false" />
+                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="117.0" prefHeight="1493.0" prefWidth="785.0" style="-fx-background-color: blue;" visible="false">
+                     <children>
+                        <Pane layoutX="19.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="395.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="19.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="394.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="19.0" layoutY="837.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="395.0" layoutY="838.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                           </children>
+                        </Pane>
+                     </children></AnchorPane>
                   <AnchorPane fx:id="drinks" layoutX="-5.0" layoutY="122.0" prefHeight="1488.0" prefWidth="787.0" style="-fx-background-color: red;" visible="false" />
                   <AnchorPane fx:id="desserts" layoutX="-1.0" layoutY="122.0" prefHeight="1488.0" prefWidth="783.0" style="-fx-background-color: pink;" visible="false" />
                     </children>
