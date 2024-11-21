@@ -223,4 +223,10 @@ public class MoreController {
         feedback.setVisible(false);
 
     }
+    @FXML
+    void Feedback(ActionEvent  event) {
+        myaccount.setVisible(false);
+        feedback.setVisible(true);
+
+    }
 }
