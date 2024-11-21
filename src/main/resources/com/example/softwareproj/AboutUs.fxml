@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1704.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AboutUs">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AboutUs">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
@@ -39,7 +39,7 @@
                         </Pane>
                   <ImageView fitHeight="917.0" fitWidth="774.0" layoutX="-3.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../java/com/example/softwareproj/Imagesd/Mr_Pedidos.png" />
+                        <Image url="@Imagesd/Mr_Pedidos.png" />
                      </image>
                   </ImageView>
                   <Pane layoutY="123.0" opacity="0.62" prefHeight="919.0" prefWidth="770.0" style="-fx-background-color: black;">
@@ -91,7 +91,7 @@
                   </Label>
                   <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="288.0" layoutY="1042.0">
                      <image>
-                        <Image url="@../../../../java/com/example/softwareproj/Imagesd/El_pedidos1-removebg-preview.png" />
+                        <Image url="@images/El_pedidos1-removebg-preview.png" />
                      </image>
                   </ImageView>
                     </children>
@@ -104,7 +104,7 @@
     <bottom>
         <Pane fx:id="footer" prefHeight="103.0" prefWidth="778.0" style="-fx-background-color: #EF3A31;">
             <children>
-                <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
+                <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#toHome" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -116,7 +116,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
+                <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" onAction="#toOrder" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -128,7 +128,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
+                <Button layoutX="411.0" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
@@ -140,7 +140,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
+                <Button layoutX="583.0" layoutY="15.0" mnemonicParsing="false" onAction="#toMore" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
                     <graphic>
                         <ImageView>
                             <image>
