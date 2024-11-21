@@ -21,7 +21,7 @@
                   <AnchorPane fx:id="op" prefHeight="1600.0" prefWidth="772.0" style="-fx-background-color: pink;" visible="false" />
                   <AnchorPane fx:id="fp" prefHeight="1600.0" prefWidth="783.0" style="-fx-background-color: blue;" visible="false" />
                   <AnchorPane fx:id="mp" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: cyan;" visible="false" />
-                  <Button layoutX="20.0" layoutY="470.0" mnemonicParsing="false" prefHeight="161.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                                                               &gt;" underline="true">
+                  <Button layoutX="20.0" layoutY="470.0" mnemonicParsing="false" onAction="#toLogout" prefHeight="161.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                                                               &gt;" underline="true">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>

@@ -183,4 +183,31 @@ public class MoreController {
             showAlert("Error", "Could not load the AboutUs screen: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+    @FXML
+    void toLogout(ActionEvent event) {
+        try {
+            // Load the new FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("LoginFood.fxml"));
+
+            // Create the new scene
+            Scene scene = new Scene(fxmlLoader.load());
+
+            // Get the current stage (primaryStage)
+            Stage primaryStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+            // Set stage properties
+            primaryStage.setResizable(false);
+            Image icon = new Image(getClass().getResourceAsStream("images/El_pedidos1-removebg-preview.png"));
+            primaryStage.getIcons().add(icon);
+            primaryStage.setTitle("El Pedidos Mexicanos");
+            primaryStage.setScene(scene);
+            primaryStage.centerOnScreen();
+
+            // Close the previous window and show the new one
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Could not load the FoodCategory screen: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 }
