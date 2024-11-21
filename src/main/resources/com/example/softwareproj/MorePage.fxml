@@ -60,6 +60,11 @@
                                     <Image url="@images/photo-camera-interface-symbol-for-button.png" />
                                  </image>
                               </ImageView>
+                              <ImageView fx:id="back" fitHeight="68.0" fitWidth="73.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#toBack">
+                                 <image>
+                                    <Image url="@Imagesd/back.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Pane>
                         <Label layoutX="14.0" layoutY="360.0" style="-fx-text-fill: black;" stylesheets="@CSS/MorePage.css" text="Full Name">

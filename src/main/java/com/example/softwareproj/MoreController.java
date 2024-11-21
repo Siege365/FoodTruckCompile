@@ -217,4 +217,10 @@ public class MoreController {
         feedback.setVisible(false);
 
     }
+    @FXML
+    void toBack(MouseEvent mouseEvent) {
+        myaccount.setVisible(false);
+        feedback.setVisible(false);
+
+    }
 }
