@@ -89,7 +89,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <AnchorPane fx:id="md" layoutX="-1.0" layoutY="122.0" prefHeight="1485.0" prefWidth="770.0" style="-fx-background-color: f8dc93;">
+                  <AnchorPane fx:id="md" layoutX="-3.0" layoutY="120.0" prefHeight="1485.0" prefWidth="770.0" style="-fx-background-color: f8dc93;" visible="false">
                      <children>
                         <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
@@ -108,7 +108,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -136,7 +136,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="247.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="240.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -164,7 +164,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -192,7 +192,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="240.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -220,7 +220,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -248,7 +248,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -270,7 +270,7 @@
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="120.0" prefHeight="1493.0" prefWidth="785.0" style="-fx-background-color: f8dc93;" visible="false">
+                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="120.0" prefHeight="1494.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" visible="false">
                      <children>
                         <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
@@ -284,12 +284,12 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="80 pesos">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="324.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -317,7 +317,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -345,12 +345,12 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="50 pesos">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="240.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -365,20 +365,20 @@
                            <children>
                               <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                    <Image url="@images/Chicharon.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                              <Label layoutX="75.0" layoutY="227.0" prefHeight="53.0" prefWidth="212.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Chicharrones">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="50 pesos">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="240.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -391,22 +391,22 @@
                         </Pane>
                         <Pane layoutX="19.0" layoutY="947.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
-                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="193.0" fitWidth="319.0" layoutX="25.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                    <Image url="@images/Screenshot%202024-11-21%20214447.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                              <Label layoutX="89.0" layoutY="227.0" prefHeight="53.0" prefWidth="176.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Salad">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="168.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="95 pesos">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -419,22 +419,22 @@
                         </Pane>
                         <Pane layoutX="395.0" layoutY="948.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
-                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="216.0" fitWidth="270.0" layoutX="35.0" layoutY="28.0">
                                  <image>
-                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                    <Image url="@images/TortillaSoup.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                              <Label layoutX="72.0" layoutY="227.0" prefHeight="53.0" prefWidth="215.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Tortilla Soup">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="145.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="75 pesos">
+                              <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="163.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="100 pesos">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                              <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                  <graphic>
                                     <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -455,8 +455,36 @@
                            </children>
                         </Pane>
                      </children></AnchorPane>
-                  <AnchorPane fx:id="drinks" layoutX="-5.0" layoutY="122.0" prefHeight="1488.0" prefWidth="787.0" style="-fx-background-color: red;" visible="false" />
+                  <AnchorPane fx:id="drinks" layoutX="-5.0" layoutY="122.0" prefHeight="1488.0" prefWidth="787.0" style="-fx-background-color: pink;" />
                   <AnchorPane fx:id="desserts" layoutX="-1.0" layoutY="122.0" prefHeight="1488.0" prefWidth="783.0" style="-fx-background-color: pink;" visible="false" />
+                  <Pane layoutX="405.0" layoutY="958.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                     <children>
+                        <ImageView fitHeight="216.0" fitWidth="270.0" layoutX="35.0" layoutY="28.0">
+                           <image>
+                              <Image url="@images/TortillaSoup.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="72.0" layoutY="227.0" prefHeight="53.0" prefWidth="215.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Tortilla Soup">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="319.0" prefHeight="58.0" prefWidth="163.0" style="-fx-text-fill: #EF3A31;" stylesheets="@CSS/FoodCategory.css" text="100 pesos">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                           <graphic>
+                              <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
                     </children>
                 </AnchorPane>
             </content>
