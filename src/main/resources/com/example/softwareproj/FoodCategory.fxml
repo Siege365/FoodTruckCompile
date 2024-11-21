@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.FoodCategory">
+<BorderPane prefHeight="1713.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.FoodCategory">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane hbarPolicy="NEVER" prefHeight="1649.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
@@ -20,7 +20,7 @@
                     <children>
                         <Pane layoutY="-18.0" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                             <children>
-                                <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="Side Dish">
+                                <Label fx:id="foodCategorytxt" layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="Food Category">
                                     <font>
                                         <Font name="System Bold" size="42.0" />
                                     </font>
@@ -34,11 +34,23 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                        <ImageView fitHeight="84.0" fitWidth="66.0" layoutX="219.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="foodCategoryLogo" fitHeight="84.0" fitWidth="66.0" layoutX="326.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Imagesd/Category.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="backButton" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="131.0" prefWidth="249.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="69.0" fitWidth="62.0">
+                                 <image>
+                                    <Image url="@images/_.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="48.0" />
+                           </font>
+                        </Button>
                             </children>
                         </Pane>
                         <Pane layoutX="24.0" layoutY="150.0" onMouseClicked="#toMD" prefHeight="275.0" prefWidth="713.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 100;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
@@ -77,9 +89,9 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <AnchorPane fx:id="md" layoutY="126.0" prefHeight="1485.0" prefWidth="770.0" style="-fx-background-color: f8dc93;" visible="false">
+                  <AnchorPane fx:id="md" layoutX="-1.0" layoutY="122.0" prefHeight="1485.0" prefWidth="770.0" style="-fx-background-color: f8dc93;">
                      <children>
-                        <Pane layoutX="19.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -96,15 +108,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="394.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="394.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="209.0" fitWidth="290.0" layoutX="27.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -121,15 +136,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="250.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="247.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="247.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="19.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="19.0" layoutY="535.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="214.0" fitWidth="325.0" layoutX="17.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -146,15 +164,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="394.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="394.0" layoutY="535.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -171,15 +192,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="19.0" layoutY="837.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="19.0" layoutY="947.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -196,15 +220,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="395.0" layoutY="838.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="395.0" layoutY="948.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -221,26 +248,38 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="15.0" layoutY="15.0" prefHeight="84.0" prefWidth="227.0" style="-fx-background-color: white; -fx-background-radius: 75;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <Label layoutX="29.0" layoutY="1.0" prefHeight="78.0" prefWidth="175.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Main Dish">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="36.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="117.0" prefHeight="1493.0" prefWidth="785.0" style="-fx-background-color: blue;" visible="false">
+                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="120.0" prefHeight="1493.0" prefWidth="785.0" style="-fx-background-color: f8dc93;" visible="false">
                      <children>
-                        <Pane layoutX="19.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
-                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="49.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                    <Image url="@images/Screenshot%202024-11-21%20202059.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="224.0" prefHeight="53.0" prefWidth="212.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Tortilla Chips">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -250,22 +289,25 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="395.0" layoutY="15.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="395.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
-                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="200.0" fitWidth="310.0" layoutX="26.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                    <Image url="@images/Screenshot%202024-11-21%20202954.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                              <Label alignment="CENTER" layoutX="137.0" layoutY="227.0" prefHeight="53.0" prefWidth="83.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Elote">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -275,22 +317,30 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Label alignment="CENTER" layoutX="94.0" layoutY="253.0" prefHeight="53.0" prefWidth="178.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="(Mexican Street Corn)">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
-                        <Pane layoutX="19.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="19.0" layoutY="535.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
-                              <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="184.0" fitWidth="298.0" layoutX="39.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                    <Image url="@images/Screenshot%202024-11-21%20203233.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
+                              <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Refried Beans">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -300,15 +350,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="394.0" layoutY="425.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="394.0" layoutY="535.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -325,15 +378,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="19.0" layoutY="837.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="19.0" layoutY="947.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -350,15 +406,18 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </Pane>
-                        <Pane layoutX="395.0" layoutY="838.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                        <Pane layoutX="395.0" layoutY="948.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
                               <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -375,12 +434,24 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="54.0" fitWidth="87.0" layoutX="245.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Screenshot%202024-11-21%20031451.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css" />
+                              <Button layoutX="249.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                 <graphic>
+                                    <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Screenshot%202024-11-21%20031451.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="15.0" layoutY="15.0" prefHeight="84.0" prefWidth="227.0" style="-fx-background-color: white; -fx-background-radius: 75;" stylesheets="@CSS/FoodCategory.css">
+                           <children>
+                              <Label layoutX="29.0" layoutY="1.0" prefHeight="78.0" prefWidth="175.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Side Dish">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="36.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                      </children></AnchorPane>

@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -15,10 +18,19 @@ import java.io.IOException;
 
 public class FoodCategory {
     @FXML
+    private Button backButton;
+
+    @FXML
     private AnchorPane desserts;
 
     @FXML
     private AnchorPane drinks;
+
+    @FXML
+    private ImageView foodCategoryLogo;
+
+    @FXML
+    private Label foodCategorytxt;
 
     @FXML
     private Pane footer;
@@ -43,6 +55,9 @@ public class FoodCategory {
         md.setVisible(false);
         sd.setVisible(false);
         drinks.setVisible(false);
+        backButton.setVisible(true);
+        foodCategoryLogo.setVisible(false);
+        foodCategorytxt.setVisible(false);
     }
 
     @FXML
@@ -51,6 +66,9 @@ public class FoodCategory {
         md.setVisible(false);
         sd.setVisible(false);
         desserts.setVisible(false);
+        backButton.setVisible(true);
+        foodCategoryLogo.setVisible(false);
+        foodCategorytxt.setVisible(false);
 
     }
 
@@ -60,6 +78,9 @@ public class FoodCategory {
         sd.setVisible(false);
         desserts.setVisible(false);
         drinks.setVisible(false);
+        backButton.setVisible(true);
+        foodCategoryLogo.setVisible(false);
+        foodCategorytxt.setVisible(false);
     }
 
     @FXML
@@ -68,6 +89,9 @@ public class FoodCategory {
         md.setVisible(false);
         desserts.setVisible(false);
         drinks.setVisible(false);
+        backButton.setVisible(true);
+        foodCategoryLogo.setVisible(false);
+        foodCategorytxt.setVisible(false);
     }
     @FXML
     void toFood(ActionEvent event) {
