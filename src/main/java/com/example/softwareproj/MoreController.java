@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,14 +22,14 @@ public class MoreController {
     @FXML
     private Pane footer;
 
-    @FXML
-    private AnchorPane fp;
+
 
     @FXML
-    private AnchorPane mp;
+    private AnchorPane feedback;
+
 
     @FXML
-    private AnchorPane op;
+    private AnchorPane myaccount;
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -209,5 +210,11 @@ public class MoreController {
             e.printStackTrace();
             showAlert("Error", "Could not load the FoodCategory screen: " + e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+    @FXML
+    void MyAccount(ActionEvent  event) {
+        myaccount.setVisible(true);
+        feedback.setVisible(false);
+
     }
 }

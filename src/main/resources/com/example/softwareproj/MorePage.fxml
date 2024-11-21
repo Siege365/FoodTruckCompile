@@ -3,23 +3,22 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.MoreController">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.MoreController">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane hbarPolicy="NEVER" prefHeight="1069.0" prefWidth="784.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" vbarPolicy="NEVER">
             <content>
-                <AnchorPane prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: #F8DC93;">
+                <AnchorPane fx:id="more" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: #F8DC93;" stylesheets="@CSS/MorePage.css">
                     <children>
-                  <AnchorPane fx:id="op" prefHeight="1600.0" prefWidth="772.0" style="-fx-background-color: pink;" visible="false" />
-                  <AnchorPane fx:id="fp" prefHeight="1600.0" prefWidth="783.0" style="-fx-background-color: blue;" visible="false" />
-                  <AnchorPane fx:id="mp" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: cyan;" visible="false" />
                   <Button layoutX="20.0" layoutY="630.0" mnemonicParsing="false" onAction="#toLogout" prefHeight="161.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                                                               &gt;" underline="true">
                      <font>
                         <Font name="System Bold" size="23.0" />
@@ -35,7 +34,7 @@
                         <Font name="System Bold" size="23.0" />
                      </font>
                   </Button>
-                  <Button layoutX="20.0" layoutY="-12.0" mnemonicParsing="false" prefHeight="160.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="MY ACCOUNT                                                                                    &gt;" underline="true">
+                  <Button fx:id="MyAccount" layoutX="20.0" layoutY="-12.0" mnemonicParsing="false" onAction="#MyAccount" prefHeight="160.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="MY ACCOUNT                                                                                    &gt;" underline="true">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>
@@ -45,6 +44,50 @@
                         <Font name="System Bold" size="23.0" />
                      </font>
                   </Button>
+                  <AnchorPane fx:id="myaccount" prefHeight="1600.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" stylesheets="@CSS/MorePage.css">
+                     <children>
+                        <Pane prefHeight="308.0" prefWidth="770.0" style="-fx-background-color: f8dc93; ;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="141.0" layoutY="-11.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="My Account">
+                                 <font>
+                                    <Font name="System Bold" size="42.0" />
+                                 </font>
+                              </Label>
+                              <Circle fill="DODGERBLUE" layoutX="386.0" layoutY="180.0" radius="114.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="#f8dc93" layoutX="449.0" layoutY="270.0" mouseTransparent="true" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView fitHeight="35.0" fitWidth="38.0" layoutX="430.0" layoutY="253.0">
+                                 <image>
+                                    <Image url="@images/photo-camera-interface-symbol-for-button.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Label layoutX="14.0" layoutY="360.0" style="-fx-text-fill: black;" stylesheets="@CSS/MorePage.css" text="Full Name">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="460.0" style="-fx-text-fill: black;" text="Email">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="541.0" style="-fx-text-fill: black;" text="Password">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="256.0" layoutY="668.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="261.0" style="-fx-text-fill: black; -fx-background-color: #EF3A31;" text="EDIT INFORMATION">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
+                           </font>
+                        </Button>
+                        <TextArea layoutX="14.0" layoutY="577.0" prefHeight="46.0" prefWidth="732.0" />
+                        <TextArea layoutX="14.0" layoutY="377.0" prefHeight="46.0" prefWidth="732.0" />
+                        <TextArea layoutX="14.0" layoutY="477.0" prefHeight="46.0" prefWidth="732.0" />
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="feedback" prefHeight="1600.0" prefWidth="783.0" style="-fx-background-color: blue;" visible="false" />
+                  <AnchorPane fx:id="mp" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: cyan;" visible="false" />
                     </children>
                 </AnchorPane>
             </content>
