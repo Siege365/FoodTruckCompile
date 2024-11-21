@@ -22,27 +22,27 @@
                     <children>
                   <Button layoutX="20.0" layoutY="630.0" mnemonicParsing="false" onAction="#toLogout" prefHeight="161.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                                                               &gt;" underline="true">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
                   <Button layoutX="20.0" layoutY="470.0" mnemonicParsing="false" prefHeight="162.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="DELETE ACCOUNT                                                                              &gt;" underline="true">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
                   <Button layoutX="20.0" layoutY="148.0" mnemonicParsing="false" onAction="#toAboutUs" prefHeight="160.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="ABOUT US                                                                                           &gt;" underline="true">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
                   <Button fx:id="MyAccount" layoutX="20.0" layoutY="-12.0" mnemonicParsing="false" onAction="#MyAccount" prefHeight="160.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="MY ACCOUNT                                                                                    &gt;" underline="true">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
                   <Button fx:id="Feedback" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" onAction="#Feedback" prefHeight="162.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="FEEDBACK                                                                                         &gt;" underline="true">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
                   <AnchorPane fx:id="myaccount" prefHeight="1600.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" stylesheets="@CSS/MorePage.css" visible="false">
