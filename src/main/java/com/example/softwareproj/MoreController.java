@@ -31,6 +31,10 @@ public class MoreController {
     @FXML
     private AnchorPane myaccount;
 
+
+    @FXML
+    private AnchorPane transactionhistory;
+
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -221,12 +225,23 @@ public class MoreController {
     void toBack(MouseEvent mouseEvent) {
         myaccount.setVisible(false);
         feedback.setVisible(false);
+        transactionhistory.setVisible(false);
 
     }
     @FXML
     void Feedback(ActionEvent  event) {
         myaccount.setVisible(false);
         feedback.setVisible(true);
+        transactionhistory.setVisible(false);
+
+
+    }
+    @FXML
+    void TransactionHistory(ActionEvent  event) {
+        myaccount.setVisible(false);
+        feedback.setVisible(false);
+        transactionhistory.setVisible(true);
+
 
     }
 }

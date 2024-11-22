@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,17 +22,17 @@
             <content>
                 <AnchorPane fx:id="more" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: #F8DC93;" stylesheets="@CSS/MorePage.css">
                     <children>
-                  <Button layoutX="20.0" layoutY="630.0" mnemonicParsing="false" onAction="#toLogout" prefHeight="161.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                                                               &gt;" underline="true">
+                  <Button layoutX="20.0" layoutY="790.0" mnemonicParsing="false" onAction="#toLogout" prefHeight="161.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                                                               &gt;" underline="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
-                  <Button layoutX="20.0" layoutY="470.0" mnemonicParsing="false" prefHeight="162.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="DELETE ACCOUNT                                                                              &gt;" underline="true">
+                  <Button layoutX="25.0" layoutY="630.0" mnemonicParsing="false" prefHeight="162.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="DELETE ACCOUNT                                                                              &gt;" underline="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
-                  <Button layoutX="20.0" layoutY="148.0" mnemonicParsing="false" onAction="#toAboutUs" prefHeight="160.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="ABOUT US                                                                                           &gt;" underline="true">
+                  <Button layoutX="20.0" layoutY="310.0" mnemonicParsing="false" onAction="#toAboutUs" prefHeight="160.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="ABOUT US                                                                                           &gt;" underline="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
@@ -40,7 +42,12 @@
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Feedback" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" onAction="#Feedback" prefHeight="162.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="FEEDBACK                                                                                         &gt;" underline="true">
+                  <Button fx:id="Feedback" layoutX="20.0" layoutY="470.0" mnemonicParsing="false" onAction="#Feedback" prefHeight="162.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="FEEDBACK                                                                                         &gt;" underline="true">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="TransactionHistory" layoutX="20.0" layoutY="148.0" mnemonicParsing="false" onAction="#TransactionHistory" prefHeight="161.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="TRANSACTION HISTORY                                                                  &gt;" underline="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
@@ -131,7 +138,25 @@
                            </image>
                         </ImageView>
                      </children></AnchorPane>
-                  <AnchorPane fx:id="mp" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: cyan;" visible="false" />
+                  <AnchorPane fx:id="transactionhistory" prefHeight="1600.0" prefWidth="794.0" style="-fx-background-color: #F8DC93;" visible="false">
+                     <children>
+                        <ImageView fx:id="back11" fitHeight="57.0" fitWidth="62.0" layoutX="35.0" layoutY="24.0" onMouseClicked="#toBack">
+                           <image>
+                              <Image url="@Imagesd/back.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="151.0" layoutY="24.0" prefHeight="70.0" prefWidth="493.0" style="-fx-text-fill: #EF3A31;" text="TRANSACTION HISTORY">
+                           <font>
+                              <Font name="System Bold" size="42.0" />
+                           </font>
+                        </Label>
+                        <TableView layoutX="35.0" layoutY="110.0" prefHeight="637.0" prefWidth="696.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
                     </children>
                 </AnchorPane>
             </content>
