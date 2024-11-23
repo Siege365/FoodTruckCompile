@@ -48,6 +48,16 @@ public class FoodCategory {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    @FXML
+    void toBack(ActionEvent event) {
+        desserts.setVisible(false);
+        md.setVisible(false);
+        sd.setVisible(false);
+        drinks.setVisible(false);
+        backButton.setVisible(false);
+        foodCategoryLogo.setVisible(true);
+        foodCategorytxt.setVisible(true);
+    }
 
     @FXML
     void toDesserts(MouseEvent event) {

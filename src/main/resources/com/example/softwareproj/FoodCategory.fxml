@@ -25,6 +25,11 @@
                                         <Font name="System Bold" size="42.0" />
                                     </font>
                                 </Label>
+                        <ImageView fx:id="foodCategoryLogo" fitHeight="84.0" fitWidth="66.0" layoutX="326.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Imagesd/Category.png" />
+                           </image>
+                        </ImageView>
                                 <Button layoutX="632.0" layoutY="41.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="118.0" style="-fx-background-color: transparent;">
                                     <graphic>
                                         <ImageView fitHeight="77.0" fitWidth="86.0">
@@ -34,21 +39,16 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                        <ImageView fx:id="foodCategoryLogo" fitHeight="84.0" fitWidth="66.0" layoutX="326.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Imagesd/Category.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="backButton" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="131.0" prefWidth="242.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back" visible="false">
+                        <Button fx:id="backButton" layoutX="-15.0" layoutY="44.0" mnemonicParsing="false" onAction="#toBack" prefHeight="79.0" prefWidth="182.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back" visible="false">
                            <graphic>
-                              <ImageView fitHeight="69.0" fitWidth="62.0">
+                              <ImageView fitHeight="48.0" fitWidth="45.0">
                                  <image>
                                     <Image url="@images/_.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="36.0" />
+                              <Font name="Arial Rounded MT Bold" size="30.0" />
                            </font>
                         </Button>
                             </children>
@@ -89,7 +89,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <AnchorPane fx:id="md" layoutX="-3.0" layoutY="120.0" prefHeight="1485.0" prefWidth="770.0" style="-fx-background-color: f8dc93;" visible="false">
+                  <AnchorPane fx:id="md" layoutX="-3.0" layoutY="127.0" prefHeight="1478.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" visible="false">
                      <children>
                         <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
@@ -270,7 +270,7 @@
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="120.0" prefHeight="1494.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" visible="false">
+                  <AnchorPane fx:id="sd" layoutX="-3.0" layoutY="127.0" prefHeight="1489.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" visible="false">
                      <children>
                         <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                            <children>
