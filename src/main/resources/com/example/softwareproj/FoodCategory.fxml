@@ -39,7 +39,7 @@
                               <Image url="@Imagesd/Category.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="backButton" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="131.0" prefWidth="249.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back" visible="false">
+                        <Button fx:id="backButton" layoutY="15.0" mnemonicParsing="false" onAction="#toFood" prefHeight="131.0" prefWidth="242.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back" visible="false">
                            <graphic>
                               <ImageView fitHeight="69.0" fitWidth="62.0">
                                  <image>
@@ -48,7 +48,7 @@
                               </ImageView>
                            </graphic>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="48.0" />
+                              <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
                         </Button>
                             </children>
