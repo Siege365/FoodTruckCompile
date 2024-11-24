@@ -22,9 +22,9 @@
 <BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.MoreController">
     <!-- Scrollable content in the center -->
     <center>
-        <ScrollPane hbarPolicy="NEVER" prefHeight="1069.0" prefWidth="784.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" prefHeight="1100.0" prefWidth="784.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" vbarPolicy="NEVER">
             <content>
-                <AnchorPane fx:id="more" prefHeight="1100.0" prefWidth="773.0" style="-fx-background-color: #F8DC93;" stylesheets="@CSS/MorePage.css">
+                <AnchorPane fx:id="more" prefHeight="1200.0" prefWidth="774.0" style="-fx-background-color: #F8DC93;" stylesheets="@CSS/MorePage.css">
                     <children>
                   <Button fx:id="MyAccount" layoutX="14.0" layoutY="-12.0" mnemonicParsing="false" onAction="#MyAccount" prefHeight="160.0" prefWidth="743.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="MY ACCOUNT                                                                                    &gt;" underline="true">
                      <font>
@@ -56,7 +56,7 @@
                         <Font name="Arial Rounded MT Bold" size="23.0" />
                      </font>
                   </Button>
-                  <AnchorPane fx:id="myaccount" prefHeight="1100.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" stylesheets="@CSS/MorePage.css">
+                  <AnchorPane fx:id="myaccount" prefHeight="1100.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" stylesheets="@CSS/MorePage.css" visible="false">
                      <children>
                         <Pane prefHeight="308.0" prefWidth="770.0" style="-fx-background-color: f8dc93; ;">
                            <children>
@@ -79,61 +79,66 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <Label layoutX="14.0" layoutY="352.0" style="-fx-text-fill: black;" stylesheets="@CSS/MorePage.css" text="Full Name">
+                        <Label layoutX="14.0" layoutY="374.0" style="-fx-text-fill: black;" stylesheets="@CSS/MorePage.css" text="Full Name">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="452.0" style="-fx-text-fill: black;" text="Email">
+                        <Label layoutX="14.0" layoutY="474.0" style="-fx-text-fill: black;" text="Email">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="549.0" style="-fx-text-fill: black;" text="Password">
+                        <Label layoutX="14.0" layoutY="571.0" style="-fx-text-fill: black;" text="Password">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="EditInfobtn" layoutX="256.0" layoutY="1019.0" mnemonicParsing="false" onAction="#AccEditInfo" prefHeight="58.0" prefWidth="261.0" style="-fx-text-fill: black; -fx-background-color: #EF3A31;" text="Edit Information">
+                        <Button fx:id="EditInfobtn" layoutX="256.0" layoutY="1041.0" mnemonicParsing="false" onAction="#handleEditInformationButton" prefHeight="58.0" prefWidth="261.0" style="-fx-text-fill: black; -fx-background-color: #EF3A31;" text="Edit Information">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="23.0" />
                            </font>
                         </Button>
-                        <Label layoutX="15.0" layoutY="651.0" style="-fx-text-fill: black;" stylesheets="@CSS/MorePage.css" text="Mobile Number">
+                        <Label layoutX="15.0" layoutY="673.0" style="-fx-text-fill: black;" stylesheets="@CSS/MorePage.css" text="Mobile Number">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="15.0" layoutY="740.0" style="-fx-text-fill: black;" text="Gender">
+                        <Label layoutX="15.0" layoutY="762.0" style="-fx-text-fill: black;" text="Gender">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="15.0" layoutY="828.0" style="-fx-text-fill: black;" text="Address">
+                        <Label layoutX="15.0" layoutY="850.0" style="-fx-text-fill: black;" text="Address">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="AccAddress" layoutX="14.0" layoutY="856.0" prefHeight="107.0" prefWidth="732.0" />
-                        <RadioButton fx:id="AccGenderM" layoutX="15.0" layoutY="757.0" mnemonicParsing="false" prefHeight="46.0" style="-fx-text-fill: Black;" text="Male">
+                        <TextArea fx:id="AccAddress" layoutX="14.0" layoutY="878.0" prefHeight="107.0" prefWidth="732.0" />
+                        <RadioButton fx:id="AccGenderM" layoutX="15.0" layoutY="779.0" mnemonicParsing="false" onAction="#RadioButtons" prefHeight="46.0" style="-fx-text-fill: Black;" text="Male">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="AccGenderF" layoutX="135.0" layoutY="757.0" mnemonicParsing="false" prefHeight="46.0" style="-fx-text-fill: Black;" text="Female">
+                        <RadioButton fx:id="AccGenderF" layoutX="135.0" layoutY="779.0" mnemonicParsing="false" onAction="#RadioButtons" prefHeight="46.0" style="-fx-text-fill: Black;" text="Female">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="AccGenderO" layoutX="275.0" layoutY="757.0" mnemonicParsing="false" prefHeight="46.0" style="-fx-text-fill: Black;" text="Other">
+                        <RadioButton fx:id="AccGenderO" layoutX="275.0" layoutY="779.0" mnemonicParsing="false" onAction="#RadioButtons" prefHeight="46.0" style="-fx-text-fill: Black;" text="Other">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </RadioButton>
-                        <TextField fx:id="AccMobileNumber" layoutX="15.0" layoutY="677.0" prefHeight="46.0" prefWidth="732.0" />
-                        <TextField fx:id="AccPassword" layoutX="14.0" layoutY="579.0" prefHeight="46.0" prefWidth="732.0" />
-                        <TextField fx:id="AccEmail" layoutX="14.0" layoutY="480.0" prefHeight="46.0" prefWidth="732.0" />
-                        <TextField fx:id="AccFullName" layoutX="14.0" layoutY="381.0" prefHeight="46.0" prefWidth="732.0" />
+                        <TextField fx:id="AccMobileNumber" layoutX="15.0" layoutY="699.0" prefHeight="46.0" prefWidth="732.0" />
+                        <TextField fx:id="AccPassword" layoutX="14.0" layoutY="601.0" prefHeight="46.0" prefWidth="732.0" />
+                        <TextField fx:id="AccEmail" layoutX="14.0" layoutY="502.0" prefHeight="46.0" prefWidth="732.0" />
+                        <TextField fx:id="AccFullName" layoutX="14.0" layoutY="403.0" prefHeight="46.0" prefWidth="732.0" />
+                        <Label fx:id="AccUsername" layoutX="282.0" layoutY="308.0" prefHeight="56.0" prefWidth="220.0" style="-fx-text-fill: black;" stylesheets="@CSS/MorePage.css" text="&lt;Username&gt;" textFill="#d32121">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
                   <AnchorPane fx:id="transactionhistory" prefHeight="1100.0" prefWidth="770.0" style="-fx-background-color: #F8DC93;" visible="false">
                      <children>
@@ -227,13 +232,13 @@
                               <Font name="System Bold" size="22.0" />
                            </font>
                         </Label>
-                        <TextArea layoutX="42.0" layoutY="241.0" prefHeight="322.0" prefWidth="691.0" />
-                        <RadioButton layoutX="62.0" layoutY="138.0" mnemonicParsing="false" style="-fx-text-fill: BLAck;" text="Suggestion" textFill="#464646">
+                        <TextArea fx:id="feedbacktxtArea" layoutX="42.0" layoutY="241.0" prefHeight="322.0" prefWidth="691.0" />
+                        <RadioButton fx:id="suggestionradioBtn" layoutX="62.0" layoutY="138.0" mnemonicParsing="false" style="-fx-text-fill: BLAck;" text="Suggestion" textFill="#464646">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton layoutX="212.0" layoutY="138.0" mnemonicParsing="false" style="-fx-text-fill: BLAck;" text="Question" textFill="#464646">
+                        <RadioButton fx:id="questionradionBtn" layoutX="212.0" layoutY="138.0" mnemonicParsing="false" style="-fx-text-fill: BLAck;" text="Question" textFill="#464646">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font>
@@ -243,7 +248,7 @@
                               <Font name="System Bold" size="22.0" />
                            </font>
                         </Label>
-                        <Button layoutX="303.0" layoutY="609.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: ef3a31; -fx-text-fill: WHITE;" text="Submit">
+                        <Button fx:id="submitFBbtn" layoutX="303.0" layoutY="609.0" mnemonicParsing="false" onAction="#handleSubmitFeedback" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: ef3a31; -fx-text-fill: WHITE;" text="Submit">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>

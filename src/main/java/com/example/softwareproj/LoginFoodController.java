@@ -103,6 +103,7 @@ public class LoginFoodController {
                     // Pass the user ID and username to the home page controller
                     AppController app = loader.getController();
                     app.getUserData(username);
+
                    //app.checkAndPopulateAccountDetails(username);
                     loadNewScene(event, root);
                 } else {

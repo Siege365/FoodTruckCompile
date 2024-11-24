@@ -1,8 +1,10 @@
 package com.example.softwareproj;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
+
+
+import static java.sql.DriverManager.getConnection;
 
 public class DBconnectionFood {
     private static Connection con = null; // Changed to private static
@@ -13,7 +15,7 @@ public class DBconnectionFood {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Connect to the MySQL database
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/foodtruck", "Admin", "Putbol");
+            con = getConnection("jdbc:mysql://localhost:3306/foodtruck", "Admin", "Putbol");
             System.out.println("Connection Succeeded");
             return con;
         } catch (Exception e) {
@@ -22,6 +24,8 @@ public class DBconnectionFood {
             System.out.println("Connection Failed: " + e.getMessage());
             return null;
         }
+
+
     } public static void main(String []args){
         Connection con = ConnectionDB();
     }

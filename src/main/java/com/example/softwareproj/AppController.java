@@ -16,10 +16,16 @@ import java.io.IOException;
 public class AppController {
 
     @FXML
-    private Label Userlabel;
+    public Label Userlabel;
+    @FXML
+    public Label getUserLabel() {
+        return Userlabel;
+    }
 
     @FXML
     private Pane footer;
+
+
 
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
@@ -32,7 +38,6 @@ public class AppController {
     @FXML
     public void getUserData(String username) {
         Userlabel.setText("Hello, " + username + "!");
-        //usertf.setText(username);
     }
     @FXML
     void toFood(ActionEvent event) {

@@ -20,8 +20,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
+
 
 public class MoreController {
     @FXML
@@ -54,6 +56,9 @@ public class MoreController {
     private TextField AccPassword;
 
     @FXML
+    private Label AccUsername;
+
+    @FXML
     private Button EditInfobtn;
 
     @FXML
@@ -84,11 +89,130 @@ public class MoreController {
     private AnchorPane transactionhistory;
     @FXML
     private ImageView avatar;
+    @FXML
+    private RadioButton questionradionBtn;
 
     @FXML
-    void AccEditInfo(ActionEvent event) {
+    private Button submitFBbtn;
 
+    @FXML
+    private RadioButton suggestionradioBtn;
+
+    @FXML
+    private TextArea feedbacktxtArea;
+
+    @FXML
+    private void handleSubmitFeedback() {
+        // Retrieve the selected feedback type
+        String feedbackType = "";
+        if (questionradionBtn.isSelected()) {
+            feedbackType = "Question";
+        } else if (suggestionradioBtn.isSelected()) {
+            feedbackType = "Suggestion";
+        }
+
+        // Retrieve the feedback description from the TextArea
+        String feedbackDescription = feedbacktxtArea.getText();
+
+        // Validate that feedback description is not empty
+        if (feedbackDescription.isEmpty() || feedbackType.isEmpty()) {
+            showAlert("Validation Error", "Please select a feedback type and provide a description.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // SQL query to insert feedback into the database
+        String query = "INSERT INTO feedback (feedback_type, feedback_description) VALUES (?, ?)";
+
+        try (Connection connection = DBconnectionFood.ConnectionDB();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            // Set the parameters for the query
+            statement.setString(1, feedbackType);
+            statement.setString(2, feedbackDescription);
+
+            // Execute the query
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                showAlert("Success", "Feedback submitted successfully.", Alert.AlertType.INFORMATION);
+            } else {
+                showAlert("Error", "Failed to submit feedback.", Alert.AlertType.ERROR);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Error", "An error occurred while submitting feedback.", Alert.AlertType.ERROR);
+        }
     }
+
+    @FXML
+    private void handleEditInformationButton() {
+        String username = AccUsername.getText();  // Get the current username
+        String fullName = AccFullName.getText();
+        String email = AccEmail.getText();
+        String password = AccPassword.getText();
+        String mobileNumber = AccMobileNumber.getText();
+        String gender = getSelectedGender();  // Get the selected gender
+        String address = AccAddress.getText();
+
+        saveOrUpdateUserInfo(username, fullName, email, password, mobileNumber, gender, address);
+    }
+
+    // Get the selected gender from the RadioButtons
+    private String getSelectedGender() {
+        if (AccGenderM.isSelected()) {
+            return "Male";
+        } else if (AccGenderF.isSelected()) {
+            return "Female";
+        } else if (AccGenderO.isSelected()) {
+            return "Other";
+        }
+        return null;
+    }
+
+    private void saveOrUpdateUserInfo(String username, String fullName, String email, String password, String mobileNumber, String gender, String address) {
+        // Validate that required fields are not empty
+        if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || mobileNumber.isEmpty() || gender.isEmpty() || address.isEmpty()) {
+            showAlert("Validation Error", "Please fill in all the required fields.", Alert.AlertType.WARNING);
+            return; // Stop execution if fields are empty
+        }
+
+        String query = "INSERT INTO foodtruck (Username, FullName, Email, Password, MobileNumber, Gender, Address) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) " +
+                "ON DUPLICATE KEY UPDATE " +
+                "FullName = VALUES(FullName), " +
+                "Email = VALUES(Email), " +
+                "Password = VALUES(Password), " +
+                "MobileNumber = VALUES(MobileNumber), " +
+                "Gender = VALUES(Gender), " +
+                "Address = VALUES(Address);";
+
+        try (Connection connection = DBconnectionFood.ConnectionDB();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            // Set parameters for the query
+            statement.setString(1, username);
+            statement.setString(2, fullName);
+            statement.setString(3, email);
+            statement.setString(4, password);
+            statement.setString(5, mobileNumber);
+            statement.setString(6, gender);
+            statement.setString(7, address);
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                // Show success alert if the information is saved/updated successfully
+                showAlert("Success", "Information saved/updated successfully.", Alert.AlertType.INFORMATION);
+            } else {
+                // Show error alert if the information wasn't saved
+                showAlert("Error", "Error: Information not saved.", Alert.AlertType.ERROR);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Show error alert if there's an exception
+            showAlert("Error", "An error occurred while saving/updating information.", Alert.AlertType.ERROR);
+        }
+    }
+
+
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -402,7 +526,48 @@ public class MoreController {
             alert.showAndWait();
         }
     }
+    @FXML
+    void RadioButtons(ActionEvent event) {
+        // Create a ToggleGroup
+        ToggleGroup genderGroup = new ToggleGroup();
 
+        // Assign the ToggleGroup to all RadioButtons
+        AccGenderM.setToggleGroup(genderGroup);
+        AccGenderF.setToggleGroup(genderGroup);
+        AccGenderO.setToggleGroup(genderGroup);
+
+        // Add listeners to detect when a RadioButton is selected or deselected
+        genderGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // When a RadioButton is selected, disable the others
+                disableAccGenderOButtons(newValue);
+            } else {
+                // If no selection, enable all RadioButtons
+                enableAllRadioButtons();
+            }
+        });
+    }
+
+    // Disable RadioButtons based on the selected one
+    private void disableAccGenderOButtons(Toggle selectedToggle) {
+        if (selectedToggle == AccGenderM) {
+            AccGenderF.setDisable(true);
+            AccGenderO.setDisable(true);
+        } else if (selectedToggle == AccGenderF) {
+            AccGenderM.setDisable(true);
+            AccGenderO.setDisable(true);
+        } else if (selectedToggle == AccGenderO) {
+            AccGenderM.setDisable(true);
+            AccGenderF.setDisable(true);
+        }
+    }
+
+    // Enable all RadioButtons
+    private void enableAllRadioButtons() {
+        AccGenderM.setDisable(false);
+        AccGenderF.setDisable(false);
+        AccGenderO.setDisable(false);
+    }
 
 }
 
