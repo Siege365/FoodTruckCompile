@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.MoreController">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.MoreController">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane hbarPolicy="NEVER" prefHeight="1100.0" prefWidth="784.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" vbarPolicy="NEVER">
@@ -220,7 +220,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="feedback" prefHeight="1100.0" prefWidth="770.0" style="-fx-background-color: #F8DC93;" visible="false">
+                  <AnchorPane fx:id="feedback" prefHeight="1100.0" prefWidth="770.0" style="-fx-background-color: #F8DC93;">
                      <children>
                         <Label layoutX="289.0" layoutY="6.0" prefHeight="70.0" prefWidth="198.0" style="-fx-text-fill: BLAck;" text="FEEDBACK" textFill="#464646">
                            <font>
@@ -253,6 +253,11 @@
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
                         </Button>
+                        <RadioButton fx:id="Complaint" layoutX="334.0" layoutY="138.0" mnemonicParsing="false" style="-fx-text-fill: BLAck;" text="Complaint" textFill="#464646">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </RadioButton>
                      </children></AnchorPane>
                   <ImageView fx:id="back" fitHeight="68.0" fitWidth="73.0" layoutX="10.0" onMouseClicked="#toBack" visible="false">
                      <image>
