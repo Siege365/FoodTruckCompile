@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane hbarPolicy="NEVER" prefHeight="1069.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
@@ -38,7 +38,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                  <AnchorPane fx:id="mainPage" prefHeight="1600.0" prefWidth="768.0">
+                  <AnchorPane fx:id="mainPage" prefHeight="1600.0" prefWidth="768.0" visible="false">
                      <children>
                               <Pane fx:id="mainfirstPane" layoutX="56.0" layoutY="180.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                                   <children>
@@ -68,7 +68,104 @@
                               <Pane fx:id="mainAds" layoutX="56.0" layoutY="1070.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="orderPage" prefHeight="1600.0" prefWidth="768.0" visible="false" />
+                  <AnchorPane fx:id="orderPage" layoutY="138.0" prefHeight="1740.0" prefWidth="768.0">
+                     <children>
+                        <Pane layoutX="66.0" layoutY="37.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/CSS/AppFoodTruck.css">
+                           <children>
+                              <ImageView fitHeight="283.0" fitWidth="263.0" layoutX="398.0" layoutY="-25.0">
+                                 <image>
+                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/images/driver.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="Userlabel2" layoutX="22.0" layoutY="11.0" prefHeight="70.0" prefWidth="489.0" text="YAWA MO TANAN">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="Userlabel1" layoutX="22.0" layoutY="90.0" prefHeight="70.0" prefWidth="489.0" text="YAWA MO TANAN">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="62.0" layoutY="800.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/CSS/AppFoodTruck.css">
+                           <children>
+                              <Label layoutX="93.0" layoutY="37.0" prefHeight="36.0" prefWidth="185.0" style="-fx-text-fill: black;" text="SHIPPING OPTION:">
+                                 <font>
+                                    <Font name="Impact" size="26.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton layoutX="72.0" layoutY="98.0" mnemonicParsing="false" style="-fx-text-fill: black;" text="Delivery">
+                                 <font>
+                                    <Font name="Impact" size="20.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton layoutX="366.0" layoutY="98.0" mnemonicParsing="false" style="-fx-text-fill: black;" text="Pick up">
+                                 <font>
+                                    <Font name="Impact" size="20.0" />
+                                 </font>
+                              </RadioButton>
+                              <Label layoutX="93.0" layoutY="163.0" prefHeight="36.0" prefWidth="191.0" style="-fx-text-fill: black;" text="PAYMENT METHOD:">
+                                 <font>
+                                    <Font name="Impact" size="26.0" />
+                                 </font>
+                              </Label>
+                              <ImageView layoutX="185.0" layoutY="79.0">
+                                 <image>
+                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/fast-delivery%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView layoutX="495.0" layoutY="79.0">
+                                 <image>
+                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/food-delivery.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView layoutX="14.0" layoutY="23.0">
+                                 <image>
+                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/shipped.png" />
+                                 </image>
+                              </ImageView>
+                              <RadioButton layoutX="72.0" layoutY="232.0" mnemonicParsing="false" style="-fx-text-fill: black;" text="Cash On Delivery">
+                                 <font>
+                                    <Font name="Impact" size="20.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton layoutX="366.0" layoutY="232.0" mnemonicParsing="false" style="-fx-text-fill: black;" text="Pay Online">
+                                 <font>
+                                    <Font name="Impact" size="20.0" />
+                                 </font>
+                              </RadioButton>
+                              <ImageView layoutX="14.0" layoutY="149.0">
+                                 <image>
+                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/money.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView layoutX="495.0" layoutY="213.0">
+                                 <image>
+                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/online-payment.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView layoutX="252.0" layoutY="213.0">
+                                 <image>
+                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/payment-method%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <TableView layoutX="66.0" layoutY="308.0" prefHeight="453.0" prefWidth="662.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" stylesheets="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/CSS/OrderPage.css">
+                           <columns>
+                              <TableColumn prefWidth="301.0" text="PRODUCT NAME" />
+                              <TableColumn prefWidth="190.0" text="QUANTITY" />
+                              <TableColumn prefWidth="168.0" text="PRICE ₱" />
+                           </columns>
+                        </TableView>
+                        <TextArea layoutX="56.0" layoutY="1143.0" prefHeight="411.0" prefWidth="676.0" style="-fx-background-radius: 50;" styleClass="inner-shadow">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextArea>
+                     </children></AnchorPane>
                   <AnchorPane fx:id="foodPage" layoutX="-3.0" layoutY="-3.0" prefHeight="1613.0" prefWidth="768.0" visible="false">
                      <children>
                         <Pane fx:id="fpHeader" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
