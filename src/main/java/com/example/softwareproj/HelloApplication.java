@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("AppFoodTruckH.fxml"));
+            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("AppFoodTruckCompile.fxml"));
             // Set up the scene using the loaded FXML
             Scene scene = new Scene(fxmlLoader1.load());
 

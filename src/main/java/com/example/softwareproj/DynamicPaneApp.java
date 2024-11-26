@@ -101,8 +101,8 @@ public class DynamicPaneApp extends Application {
                 // Find the Label inside the pane and update its text
                 for (javafx.scene.Node child : pane.getChildren()) {
                     if (child instanceof Label) {
-                        ((Label) child).setText("Pane " + index);
-                        break;
+                       ((Label) child).setText("Pane " + index);
+                       break;
                     }
                 }
                 index++;
