@@ -1380,7 +1380,7 @@
                       </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="CheckouFooter" prefHeight="130.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" visible="false">
+            <AnchorPane fx:id="CheckouFooter" prefHeight="131.0" prefWidth="781.0" style="-fx-background-color: #EF3A31;" visible="false">
                <children>
                   <CheckBox layoutX="14.0" layoutY="48.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="85.0" text="All">
                      <font>
@@ -1397,6 +1397,25 @@
                      </graphic>
                      <font>
                         <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="-5.0" prefHeight="133.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" visible="false">
+               <children>
+                  <Label layoutX="456.0" layoutY="34.0" prefHeight="35.0" prefWidth="110.0" style="-fx-text-fill: black;" text="Total:">
+                     <font>
+                        <Font name="Impact" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="466.0" layoutY="64.0" prefHeight="35.0" prefWidth="110.0" style="-fx-text-fill: black;" text="Saved:">
+                     <font>
+                        <Font name="Impact" size="17.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="579.0" layoutY="34.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="166.0" style="-fx-background-color: #F8DC93; -fx-text-fill: black; -fx-background-radius: 50;" text="Place Order">
+                     <font>
+                        <Font name="Impact" size="23.0" />
                      </font>
                   </Button>
                </children>
