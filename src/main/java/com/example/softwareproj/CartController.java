@@ -35,7 +35,7 @@ public class CartController {
 
     @FXML
     void toDeleteItem(ActionEvent event) {
-//skibidi
+//skibidid
     }
 
 
