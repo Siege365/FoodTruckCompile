@@ -28,6 +28,7 @@ import java.util.Optional;
 
 public class AppController {
 
+
     @FXML
     private AnchorPane AboutUs;
 
@@ -36,6 +37,7 @@ public class AppController {
 
     @FXML
     private TextField AccEmail;
+
     @FXML
     private Label AccEmail1;
 
@@ -59,13 +61,18 @@ public class AppController {
 
     @FXML
     private Label AccUsername;
+
     @FXML
     private Label AccUsername1;
-    @FXML
-    private ImageView avatarimg;
 
     @FXML
     private AnchorPane Cart;
+
+    @FXML
+    private Pane CartHeader;
+
+    @FXML
+    private AnchorPane CheckouFooter;
 
     @FXML
     private Pane Dessertspane;
@@ -83,13 +90,10 @@ public class AppController {
     private Button MyAccount;
 
     @FXML
+    private AnchorPane Navigator;
+
+    @FXML
     private Button TransactionHistory;
-
-    @FXML
-    private Button cart;
-
-    @FXML
-    private Label itemCounter;
 
     @FXML
     private Label Userlabel;
@@ -98,10 +102,19 @@ public class AppController {
     private ImageView avatar;
 
     @FXML
+    private ImageView avatarimg;
+
+    @FXML
     private ImageView back;
 
     @FXML
     private Button backButton;
+
+    @FXML
+    private Button backButton1;
+
+    @FXML
+    private Button cart;
 
     @FXML
     private AnchorPane desserts;
@@ -131,6 +144,9 @@ public class AppController {
     private Pane fpHeader;
 
     @FXML
+    private Label itemCounter;
+
+    @FXML
     private Button logoutbutton;
 
     @FXML
@@ -149,10 +165,6 @@ public class AppController {
     private TableView<?> mainOrderStatus;
 
     @FXML
-    private Group morepageMain;
-
-
-    @FXML
     private AnchorPane mainPage;
 
     @FXML
@@ -163,6 +175,9 @@ public class AppController {
 
     @FXML
     private AnchorPane morePage;
+
+    @FXML
+    private Group morepageMain;
 
     @FXML
     private AnchorPane myaccount;
@@ -199,6 +214,10 @@ public class AppController {
     private SpinnerValueFactory<Integer> spin;
     private int items = 0;
 
+    @FXML
+    void toBackMain(ActionEvent event) {
+
+    }
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
