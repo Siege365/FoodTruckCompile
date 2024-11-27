@@ -107,7 +107,7 @@
                                        <children>
                                           <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                                <Image url="@images/TacoPastor.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
@@ -135,7 +135,7 @@
                                        <children>
                                           <ImageView fitHeight="209.0" fitWidth="290.0" layoutX="27.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_868853708_ibq8RhppoT5wwHkyNm6Hvt3iaBIT9Ouk.jpg" />
+                                                <Image url="@images/Burrito.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="123.0" layoutY="231.0" prefHeight="53.0" prefWidth="111.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Burrito">
@@ -163,7 +163,7 @@
                                        <children>
                                           <ImageView fitHeight="214.0" fitWidth="325.0" layoutX="17.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_973269809_2jrpICmsTmD28TePBFYmhwHnzseG5Xl1.jpg" />
+                                                <Image url="@images/Quesa.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="87.0" layoutY="227.0" prefHeight="53.0" prefWidth="190.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Quesadillas">
@@ -191,7 +191,7 @@
                                        <children>
                                           <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_439777236_Ct7IcwFMElwWaHp6QyidGjX1scSZ14I4.jpg" />
+                                                <Image url="@images/Enchiladas.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="93.0" layoutY="227.0" prefHeight="53.0" prefWidth="172.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Enchiladas">

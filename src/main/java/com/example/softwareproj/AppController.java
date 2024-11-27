@@ -12,23 +12,28 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class AppController {
-
-
     @FXML
     private AnchorPane AboutUs;
 
@@ -66,6 +71,9 @@ public class AppController {
     private Label AccUsername1;
 
     @FXML
+    private Button Burrito;
+
+    @FXML
     private AnchorPane Cart;
 
     @FXML
@@ -73,6 +81,9 @@ public class AppController {
 
     @FXML
     private AnchorPane CheckouFooter;
+
+    @FXML
+    private Button Chilaquiles;
 
     @FXML
     private Pane Dessertspane;
@@ -84,19 +95,40 @@ public class AppController {
     private Button EditInfobtn;
 
     @FXML
+    private Button Enchiladas;
+
+    @FXML
     private Button Feedback;
+
+    @FXML
+    private Label ItemCounter1;
 
     @FXML
     private Button MyAccount;
 
     @FXML
+    private Button Nachos;
+
+    @FXML
     private AnchorPane Navigator;
+
+    @FXML
+    private Button Quesadillas;
+
+    @FXML
+    private Button TacoAlPastor;
 
     @FXML
     private Button TransactionHistory;
 
     @FXML
     private Label Userlabel;
+
+    @FXML
+    private Label Userlabel1;
+
+    @FXML
+    private Label Userlabel2;
 
     @FXML
     private ImageView avatar;
@@ -136,7 +168,6 @@ public class AppController {
 
     @FXML
     private AnchorPane foodPage;
-
     @FXML
     private Pane footer;
 
@@ -186,6 +217,9 @@ public class AppController {
     private AnchorPane orderPage;
 
     @FXML
+    private VBox paneContainer;
+
+    @FXML
     private RadioButton questionradionBtn;
 
     @FXML
@@ -196,7 +230,8 @@ public class AppController {
 
     @FXML
     private Button submitFBbtn;
-
+    @FXML
+    private Label totalPriceLabel, totalPriceLabel1;
     @FXML
     private RadioButton suggestionradioBtn;
 
@@ -210,13 +245,22 @@ public class AppController {
             food_spinner17, food_spinner18, food_spinner19, food_spinner20,
             food_spinner21, food_spinner22, food_spinner23, food_spinner24;
 
-
+    @FXML
+    private CartController cartController; // Ensure CartController is injected (using @FXML or constructor injection)
     private SpinnerValueFactory<Integer> spin;
     private int items = 0;
 
     @FXML
     void toBackMain(ActionEvent event) {
-
+            Cart.setVisible(false);
+            mainPage.setVisible(true);
+            orderPage.setVisible(false);
+            foodPage.setVisible(false);
+            morePage.setVisible(false);
+            itemCounter.setVisible(true);
+            cart.setVisible(true);
+            Navigator.setVisible(true);
+            CheckouFooter.setVisible(false);
     }
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -298,22 +342,176 @@ public class AppController {
         cart.setVisible(true);
 
     }
-//start sa cart
     @FXML
     void toCart(ActionEvent event) {
+        mainPage.setVisible(false);
+        orderPage.setVisible(false);
+        foodPage.setVisible(false);
+        morePage.setVisible(false);
+        itemCounter.setVisible(false);
+        cart.setVisible(false);
+        Navigator.setVisible(true);
         Cart.setVisible(true);
+        CheckouFooter.setVisible(true);
     }
+//start sa cart
+private ObservableList<FoodItem> cartItems = FXCollections.observableArrayList(); // List to store items in the cart
+private List<FoodItem> availableItems = new ArrayList<>(); // Your list of food items
+
+    // Method to add an item to the cart (called from CartController)
+    public void addItemToCart(FoodItem item) {
+        // Check if the item is already in the cart
+        for (FoodItem cartItem : cartItems) {
+            if (cartItem.getName().equals(item.getName())) {
+                // If found, update the quantity
+                cartItem.setQuantity(cartItem.getQuantity() + item.getQuantity());
+                updateCartDisplay();
+                return;
+            }
+        }
+
+        // If not found, add the new item to the cart
+        cartItems.add(item);
+        updateCartDisplay(); // Update the cart UI
+    }
+
+    // Method to update the display of the cart in the VBox
+    private void updateCartDisplay() {
+        // Clear the current cart display
+        paneContainer.getChildren().clear();
+
+        // Recreate the UI elements for each item in the cart
+        for (FoodItem cartItem : cartItems) {
+            Pane itemPane = createItemPane(cartItem);
+            paneContainer.getChildren().add(itemPane);
+        }
+
+        // Optionally, update the total price of the cart
+        updateTotalPrice();
+    }
+
+    // Method to create a pane for a food item in the cart
+    private Pane createItemPane(FoodItem item) {
+        // Create the AnchorPane as the root of the item pane
+        AnchorPane itemPane = new AnchorPane();
+        itemPane.setPrefSize(713, 200); // Adjusted height to match the design
+        itemPane.setStyle("-fx-background-color: white; -fx-background-radius: 15;");
+
+        // CheckBox
+        CheckBox itemCheckbox = new CheckBox();
+        itemCheckbox.setLayoutX(15);
+        itemCheckbox.setLayoutY(20);
+        itemCheckbox.setPrefSize(20, 20); // Smaller size to match the design
+        itemCheckbox.setStyle("-fx-scale-x: 1.8; -fx-scale-y: 1.8;");
+
+        // Delete Button
+        Button deleteButton = new Button("Delete");
+        deleteButton.setLayoutX(600); // Position at the top right
+        deleteButton.setLayoutY(20);
+        deleteButton.setPrefSize(94, 47);
+        deleteButton.setStyle("-fx-background-color: #EF3A31; -fx-background-radius: 15;");
+        deleteButton.setTextFill(javafx.scene.paint.Color.web("#f8dc93"));
+        deleteButton.setFont(new Font("System Bold", 13));
+        deleteButton.setOnAction(e -> {
+            cartItems.remove(item);
+            updateCartDisplay();
+            int currentCount = Integer.parseInt(ItemCounter1.getText());
+            if (currentCount > 0) {
+                int decrement = currentCount - 1;
+                ItemCounter1.setText(String.valueOf(decrement));
+            }
+
+        });
+
+        // Image Pane
+        Pane imagePane = new Pane();
+        imagePane.setLayoutX(45); // Adjusted position
+        imagePane.setLayoutY(50); // Slightly below the checkbox
+        imagePane.setPrefSize(120, 120); // Smaller image size
+        imagePane.setStyle("-fx-background-radius: 15; -fx-border-color: gray; -fx-border-width: 1;");
+
+        ImageView itemImage = new ImageView();
+        try {
+            URL imageUrl = getClass().getResource("/" + item.getImagePath());
+            if (imageUrl != null) {
+                itemImage.setImage(new Image(imageUrl.toExternalForm()));
+            } else {
+                System.err.println("Image not found: " + item.getImagePath());
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading image: " + e.getMessage());
+        }
+        itemImage.setFitWidth(120); // Match the pane size
+        itemImage.setFitHeight(120);
+        itemImage.setPreserveRatio(true);
+        itemImage.setPickOnBounds(true);
+        imagePane.getChildren().add(itemImage);
+
+        // Item Name Label
+        Label itemNameLabel = new Label(item.getName());
+        itemNameLabel.setLayoutX(180); // Next to the image
+        itemNameLabel.setLayoutY(50); // Align with the image top
+        itemNameLabel.setFont(new Font("System Bold", 18));
+        itemNameLabel.setPrefWidth(300); // Provide enough space for names
+
+        // Item Price Label
+        Label itemPriceLabel = new Label("₱" + item.getPrice());
+        itemPriceLabel.setLayoutX(180); // Align with name
+        itemPriceLabel.setLayoutY(90); // Slightly below the name
+        itemPriceLabel.setFont(new Font("System Bold", 16));
+
+        // Quantity Spinner
+        Spinner<Integer> quantitySpinner = new Spinner<>();
+        quantitySpinner.setLayoutX(550); // Align right
+        quantitySpinner.setLayoutY(140); // Bottom-right corner
+        quantitySpinner.setPrefSize(120, 30);
+        quantitySpinner.setStyle("-fx-scale-x: 1.5; -fx-scale-y: 1.5;");
+
+        SpinnerValueFactory<Integer> valueFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, item.getQuantity());
+        quantitySpinner.setValueFactory(valueFactory);
+
+        // Add all components to the AnchorPane
+        itemPane.getChildren().addAll(
+                itemCheckbox, deleteButton, imagePane,
+                itemNameLabel, itemPriceLabel, quantitySpinner
+        );
+
+        return itemPane;
+    }
+
+
+    // Method to update the total price of the cart
+    private void updateTotalPrice() {
+        double totalPrice = cartItems.stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .sum();
+        totalPriceLabel.setText("Total: ₱" + totalPrice);
+    }
+
+    // Method to handle the button click to add to cart
     @FXML
-    void Add2Cart(ActionEvent event) {
-        //get text sa food name
-        //get text sa price
-        //get value sa multiplier/quantity
-        //get image
-        //if same ra ang food name gi order + lang siya sa quantity niya
-        items = Integer.parseInt(itemCounter.getText());
-        items +=1;
-        itemCounter.setText(String.valueOf(items));
+    private void Add2Cart(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        String itemId = clickedButton.getId();
+
+
+        // Find the food item that corresponds to the clicked button
+        FoodItem selectedItem = availableItems.stream()
+                .filter(item -> item.getName().replace(" ", "").equalsIgnoreCase(itemId.replace(" ", ""))) // Ignore spaces and case
+                .findFirst()
+                .orElse(null);
+
+        if (selectedItem != null) {
+            addItemToCart(selectedItem); // Add the item to the cart
+        } else {
+            System.out.println("Item not found for ID: " + itemId);
+        }
     }
+
+
+
+
     //end of navigation
     @FXML
     public void initialize(){
@@ -330,10 +528,18 @@ public class AppController {
         for (Spinner<Integer> spinner : spinners) {
             setQuantity(spinner);
         }
+        availableItems.add(new FoodItem("Taco Al Pastor", 75.0, 1, "images/TacoPastor.jpg"));
+        availableItems.add(new FoodItem("Burrito", 180.0, 1, "images/Burrito.jpg"));
+        availableItems.add(new FoodItem("Quesadillas", 100.0, 1, "images/Quesa.jpg"));
+        availableItems.add(new FoodItem("Enchiladas", 150.0, 1, "images/Enchiladas.jpg"));
+        availableItems.add(new FoodItem("Nachos", 150.0, 1, "images/Nachos.png"));
+        availableItems.add(new FoodItem("Chilaquiles", 140.0, 1, "images/Chila.png"));
     }
+
+
     //start sa food category
     public void setQuantity(Spinner<Integer> spinner){
-        spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
+        spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 0));
 
     }
     @FXML
