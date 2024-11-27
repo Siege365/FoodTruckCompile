@@ -19,15 +19,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
     <!-- Scrollable content in the center -->
     <center>
-        <ScrollPane hbarPolicy="NEVER" prefHeight="1069.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
             <content>
-                <AnchorPane prefHeight="1610.0" prefWidth="768.0" style="-fx-background-color: #F8DC93;">
+                <AnchorPane prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #F8DC93;">
                     <children>
                         <Pane fx:id="mainHeader" prefHeight="144.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                             <children>
@@ -38,7 +39,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                  <AnchorPane fx:id="mainPage" prefHeight="1600.0" prefWidth="768.0" visible="false">
+                  <AnchorPane fx:id="mainPage" prefHeight="1600.0" prefWidth="768.0">
                      <children>
                               <Pane fx:id="mainfirstPane" layoutX="56.0" layoutY="180.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                                   <children>
@@ -68,7 +69,7 @@
                               <Pane fx:id="mainAds" layoutX="56.0" layoutY="1070.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="orderPage" layoutY="138.0" prefHeight="1740.0" prefWidth="768.0">
+                  <AnchorPane fx:id="orderPage" layoutY="138.0" prefHeight="1600.0" prefWidth="768.0" visible="false">
                      <children>
                         <Pane layoutX="66.0" layoutY="37.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/CSS/AppFoodTruck.css">
                            <children>
@@ -113,7 +114,7 @@
                               </Label>
                               <ImageView layoutX="185.0" layoutY="79.0">
                                  <image>
-                                    <Image url="@../../../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/fast-delivery%20(1).png" />
+                                    <Image url="@../../../../../SOFTWAREPROJ/src/main/resources/com/example/softwareproj/Imagesd/fast-delivery%20(1).png" />
                                  </image>
                               </ImageView>
                               <ImageView layoutX="495.0" layoutY="79.0">
@@ -203,11 +204,11 @@
                               </ImageView>
                               <AnchorPane fx:id="md" layoutX="-39.0" layoutY="-15.0" prefHeight="1478.0" prefWidth="775.0" style="-fx-background-color: f8dc93;" visible="false">
                                  <children>
-                                    <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                                    <Pane layoutX="26.0" layoutY="127.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
                                           <ImageView fitHeight="226.0" fitWidth="346.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_576371338_FhHg1OgkSLrN4jLZci3fDB7gzFYydUtc.jpg" />
+                                                <Image url="@images/TacoPastor.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="68.0" layoutY="227.0" prefHeight="53.0" prefWidth="228.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Taco Al Pastor">
@@ -220,7 +221,7 @@
                                                 <Font size="36.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" onAction="#Add2Cart" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                          <Button fx:id="TacoAlPastor" layoutX="239.0" layoutY="326.0" mnemonicParsing="false" onAction="#Add2Cart" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                              <graphic>
                                                 <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -232,11 +233,11 @@
                                           <Spinner fx:id="food_spinner" layoutX="125.0" layoutY="334.0" prefHeight="43.0" prefWidth="115.0" />
                                        </children>
                                     </Pane>
-                                    <Pane layoutX="394.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                                    <Pane layoutX="401.0" layoutY="127.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
                                           <ImageView fitHeight="209.0" fitWidth="290.0" layoutX="27.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_868853708_ibq8RhppoT5wwHkyNm6Hvt3iaBIT9Ouk.jpg" />
+                                                <Image url="@images/Burrito.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="123.0" layoutY="231.0" prefHeight="53.0" prefWidth="111.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Burrito">
@@ -249,7 +250,7 @@
                                                 <Font size="36.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="240.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                          <Button fx:id="Burrito" layoutX="240.0" layoutY="326.0" mnemonicParsing="false" onAction="#Add2Cart" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                              <graphic>
                                                 <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -261,11 +262,11 @@
                                           <Spinner fx:id="food_spinner2" layoutX="127.0" layoutY="334.0" prefHeight="43.0" prefWidth="115.0" />
                                        </children>
                                     </Pane>
-                                    <Pane layoutX="19.0" layoutY="535.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                                    <Pane layoutX="26.0" layoutY="537.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
                                           <ImageView fitHeight="214.0" fitWidth="325.0" layoutX="17.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_973269809_2jrpICmsTmD28TePBFYmhwHnzseG5Xl1.jpg" />
+                                                <Image url="@images/Quesa.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="87.0" layoutY="227.0" prefHeight="53.0" prefWidth="190.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Quesadillas">
@@ -278,7 +279,7 @@
                                                 <Font size="36.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                          <Button fx:id="Quesadillas" layoutX="239.0" layoutY="326.0" mnemonicParsing="false" onAction="#Add2Cart" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                              <graphic>
                                                 <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -290,11 +291,11 @@
                                           <Spinner fx:id="food_spinner3" layoutX="125.0" layoutY="334.0" prefHeight="43.0" prefWidth="115.0" />
                                        </children>
                                     </Pane>
-                                    <Pane layoutX="394.0" layoutY="535.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                                    <Pane layoutX="401.0" layoutY="537.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
                                           <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/360_F_439777236_Ct7IcwFMElwWaHp6QyidGjX1scSZ14I4.jpg" />
+                                                <Image url="@images/Enchiladas.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="93.0" layoutY="227.0" prefHeight="53.0" prefWidth="172.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Enchiladas">
@@ -307,7 +308,7 @@
                                                 <Font size="36.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="240.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                          <Button fx:id="Enchiladas" layoutX="240.0" layoutY="326.0" mnemonicParsing="false" onAction="#Add2Cart" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                              <graphic>
                                                 <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -319,11 +320,11 @@
                                           <Spinner fx:id="food_spinner4" layoutX="127.0" layoutY="334.0" prefHeight="43.0" prefWidth="115.0" />
                                        </children>
                                     </Pane>
-                                    <Pane layoutX="19.0" layoutY="947.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                                    <Pane layoutX="26.0" layoutY="949.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
                                           <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/Screenshot%202024-11-21%20182101.png" />
+                                                <Image url="@images/Nachos.png" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="124.0" layoutY="227.0" prefHeight="53.0" prefWidth="119.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Nachos">
@@ -336,7 +337,7 @@
                                                 <Font size="36.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                          <Button fx:id="Nachos" layoutX="239.0" layoutY="326.0" mnemonicParsing="false" onAction="#Add2Cart" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                              <graphic>
                                                 <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -348,11 +349,11 @@
                                           <Spinner fx:id="food_spinner5" layoutX="125.0" layoutY="334.0" prefHeight="43.0" prefWidth="115.0" />
                                        </children>
                                     </Pane>
-                                    <Pane layoutX="395.0" layoutY="948.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
+                                    <Pane layoutX="402.0" layoutY="950.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
                                           <ImageView fitHeight="230.0" fitWidth="332.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@images/Screenshot%202024-11-21%20182659.png" />
+                                                <Image url="@images/Chila.png" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="93.0" layoutY="227.0" prefHeight="53.0" prefWidth="172.0" style="-fx-text-fill: black;" stylesheets="@CSS/FoodCategory.css" text="Chilaquiles">
@@ -365,7 +366,7 @@
                                                 <Font size="36.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="239.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
+                                          <Button fx:id="Chilaquiles" layoutX="239.0" layoutY="326.0" mnemonicParsing="false" onAction="#Add2Cart" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: transparent;" stylesheets="@CSS/FoodCategory.css">
                                              <graphic>
                                                 <ImageView fitHeight="54.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1289,7 +1290,7 @@
                         <Font name="Gill Sans Ultra Bold Condensed" size="24.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="Cart" prefHeight="1024.0" prefWidth="768.0" visible="false">
+                  <AnchorPane fx:id="Cart" prefHeight="1500.0" prefWidth="768.0" visible="false">
                      <children>
                         <Pane fx:id="CartHeader" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                            <children>
@@ -1298,7 +1299,7 @@
                                     <Font name="System Bold" size="42.0" />
                                  </font>
                               </Label>
-                              <Label contentDisplay="RIGHT" layoutX="469.0" layoutY="39.0" prefHeight="70.0" prefWidth="41.0" style="-fx-text-fill: #F8DC93;" text="0">
+                              <Label fx:id="ItemCounter1" contentDisplay="RIGHT" layoutX="469.0" layoutY="39.0" prefHeight="70.0" prefWidth="41.0" style="-fx-text-fill: #F8DC93;" text="0">
                                  <font>
                                     <Font name="System Bold" size="42.0" />
                                  </font>
@@ -1317,6 +1318,7 @@
                               </Button>
                            </children>
                         </Pane>
+                        <VBox fx:id="paneContainer" layoutX="28.0" layoutY="174.0" prefHeight="1500.0" prefWidth="713.0" spacing="50.0" />
                      </children></AnchorPane>
                     </children>
                 </AnchorPane>
@@ -1382,42 +1384,35 @@
             </AnchorPane>
             <AnchorPane fx:id="CheckouFooter" prefHeight="131.0" prefWidth="781.0" style="-fx-background-color: #EF3A31;" visible="false">
                <children>
-                  <CheckBox layoutX="14.0" layoutY="48.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="85.0" text="All">
+                  <CheckBox layoutX="15.0" layoutY="48.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="85.0" text="All">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </CheckBox>
-                  <Button contentDisplay="TOP" layoutX="78.0" layoutY="12.0" mnemonicParsing="false" onAction="#toHome" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
-                     <graphic>
-                        <ImageView fitHeight="64.0" fitWidth="64.0">
-                           <image>
-                              <Image url="@images/home.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button contentDisplay="TOP" layoutX="577.0" layoutY="25.0" mnemonicParsing="false" onAction="#toHome" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: #f8dc93; -fx-background-radius: 15;" styleClass="scroll-button" text="Check Out" textFill="#ef3a31">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
+                  <Label fx:id="totalPriceLabel" layoutX="403.0" layoutY="38.0" prefHeight="58.0" prefWidth="151.0" style="-fx-text-fill: black;" text="Total:">
+                     <font>
+                        <Font name="Impact" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="-5.0" prefHeight="133.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" visible="false">
+            <AnchorPane fx:id="OrderFooter" layoutY="-5.0" prefHeight="133.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" visible="false">
                <children>
-                  <Label layoutX="456.0" layoutY="34.0" prefHeight="35.0" prefWidth="110.0" style="-fx-text-fill: black;" text="Total:">
-                     <font>
-                        <Font name="Impact" size="17.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="466.0" layoutY="64.0" prefHeight="35.0" prefWidth="110.0" style="-fx-text-fill: black;" text="Saved:">
-                     <font>
-                        <Font name="Impact" size="17.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="579.0" layoutY="34.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="166.0" style="-fx-background-color: #F8DC93; -fx-text-fill: black; -fx-background-radius: 50;" text="Place Order">
+                  <Button layoutX="567.0" layoutY="28.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: #F8DC93; -fx-text-fill: black; -fx-background-radius: 15;" text="Place Order">
                      <font>
                         <Font name="Impact" size="23.0" />
                      </font>
                   </Button>
+                  <Label fx:id="totalPriceLabel" layoutX="413.0" layoutY="38.0" prefHeight="58.0" prefWidth="151.0" style="-fx-text-fill: black;" text="Total:">
+                     <font>
+                        <Font name="Impact" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             </children>
