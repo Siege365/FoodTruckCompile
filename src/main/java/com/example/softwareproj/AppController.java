@@ -365,15 +365,21 @@ private List<FoodItem> availableItems = new ArrayList<>(); // Your list of food 
             if (cartItem.getName().equals(item.getName())) {
                 // If found, update the quantity
                 cartItem.setQuantity(cartItem.getQuantity() + item.getQuantity());
-                updateCartDisplay();
-                return;
+                updateCartDisplay(); // Update the cart UI
+                return; // Exit the method since the item was already in the cart
             }
         }
 
         // If not found, add the new item to the cart
         cartItems.add(item);
-        updateCartDisplay(); // Update the cart UI
+        // Increment the item counter
+        int increment = Integer.parseInt(itemCounter.getText()) + 1;
+        itemCounter.setText(String.valueOf(increment));
+
+        // Update the cart UI
+        updateCartDisplay();
     }
+
 
     // Method to update the display of the cart in the VBox
     private void updateCartDisplay() {

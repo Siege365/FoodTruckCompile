@@ -1,12 +1,20 @@
 package com.example.softwareproj;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -125,9 +133,52 @@ public class AdminPageController implements Initializable{
         dashboard_form.setVisible(false);
     }
 
+    @FXML
+    void toSignout(ActionEvent event) {
+        // Create and display the confirmation dialog
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout Confirmation");
+        alert.setHeaderText("You are about to log out.");
+        alert.setContentText("Are you sure you want to log out?");
+
+        // Show the alert and wait for user response
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // If the user confirms, proceed with logout
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Close the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+
+            // Load and display the login page
+            try {
+                // Load the FXML file for the login page
+                Parent root = FXMLLoader.load(getClass().getResource("LoginFood.fxml"));
+
+                // Create a new stage for the login page
+                Stage loginStage = new Stage();
+                loginStage.setScene(new Scene(root));
+                loginStage.setResizable(false);
+
+                // Set the application icon
+                Image icon = new Image(getClass().getResourceAsStream("images/El_pedidos1-removebg-preview.png"));
+                loginStage.getIcons().add(icon);
+
+                // Set the title and show the login stage
+                loginStage.setTitle("El Pedidos Mexicanos");
+                loginStage.show();
+            } catch (IOException e) {
+                // Handle potential IOExceptions
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 }
+
