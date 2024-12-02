@@ -46,4 +46,7 @@ public class FoodItem {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+    public double getTotal() {
+        return price * quantity;
+    }
 }
