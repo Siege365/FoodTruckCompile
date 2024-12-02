@@ -80,6 +80,9 @@ public class AppController {
     private Button Buñuelos;
 
     @FXML
+    private RadioButton CODPayment;
+
+    @FXML
     private Button Capirotada;
 
     @FXML
@@ -107,6 +110,9 @@ public class AppController {
     private Button CucumberLime;
 
     @FXML
+    private RadioButton DeliveryShippingOption;
+
+    @FXML
     private Pane Dessertspane;
 
     @FXML
@@ -123,6 +129,12 @@ public class AppController {
 
     @FXML
     private Button Feedback;
+
+    @FXML
+    private Label FoodItemsSubtotalPaymentDetails;
+
+    @FXML
+    private Label HandlingFeePaymentDetails;
 
     @FXML
     private Button HotChocoBrownies;
@@ -146,6 +158,12 @@ public class AppController {
     private AnchorPane Navigator;
 
     @FXML
+    private Label OrderDetailsUserContactNumber;
+
+    @FXML
+    private Label OrderDetailsUserFullname;
+
+    @FXML
     private AnchorPane OrderFooter;
 
     @FXML
@@ -164,7 +182,16 @@ public class AppController {
     private TableColumn<FoodItem, Double> Order_Total;
 
     @FXML
+    private RadioButton PayOnlinePayment;
+
+    @FXML
+    private RadioButton PickUpShippingOption;
+
+    @FXML
     private Button PinaColada;
+
+    @FXML
+    private Button PlaceOrder;
 
     @FXML
     private Button Quesadillas;
@@ -174,6 +201,9 @@ public class AppController {
 
     @FXML
     private Button RefriedBeans;
+
+    @FXML
+    private Label ShippingSubtotalPaymentDetails;
 
     @FXML
     private Button StrawberryLime;
@@ -191,10 +221,19 @@ public class AppController {
     private Button TortillaSoup;
 
     @FXML
+    private Label TotalPaymentDetails;
+
+
+
+    @FXML
     private Button TransactionHistory;
 
     @FXML
     private Label Userlabel;
+
+    @FXML
+    private TextArea UserAddress;
+
 
     @FXML
     private Label Userlabel1;
@@ -1184,6 +1223,79 @@ public class AppController {
         AccGenderO.setDisable(false);
     }
     //end sa more page
+    @FXML
+    private void handleOrderPage(ActionEvent event) {
+        // 1. Display user details
+        String UserFullName = AccFullName.getText();
+        String userContactNumber = AccMobileNumber.getText();
+        OrderDetailsUserFullname.setText(UserFullName);
+        OrderDetailsUserContactNumber.setText(userContactNumber);
+
+        // 2. Display ordered food items in the order table
+        OrderTable.setItems(checkoutItems); // assuming checkoutItems are already populated
+        OrderTable.refresh();
+
+        // 3. Calculate and display the Food Items Subtotal
+        double foodItemsSubtotal = checkoutItems.stream()
+                .mapToDouble(FoodItem::getTotal)
+                .sum();
+        FoodItemsSubtotalPaymentDetails.setText("₱" + String.format("%.2f", foodItemsSubtotal));
+
+        // 4. Add shipping and handling fees
+        double shippingCost = (DeliveryShippingOption.isSelected()) ? 80.0 : (PickUpShippingOption.isSelected()) ? 20.0 : 0.0;
+        double handlingFee = 40.0;
+
+        ShippingSubtotalPaymentDetails.setText("₱" + String.format("%.2f", shippingCost));
+        HandlingFeePaymentDetails.setText("₱" + String.format("%.2f", handlingFee));
+
+        // 5. Total price calculation
+        double totalPrice = foodItemsSubtotal + shippingCost + handlingFee;
+        totalPriceLabel.setText("Total: ₱" + String.format("%.2f", totalPrice));
+
+        // 6. Handle payment methods
+        if (CODPayment.isSelected()) {
+            handleCODPayment(shippingCost);
+        } else if (PayOnlinePayment.isSelected()) {
+            handlePayOnlinePayment(totalPrice);
+        }
+
+        // 7. Save the transaction to the database
+        saveTransaction(UserFullName, userContactNumber, checkoutItems, totalPrice, shippingCost, handlingFee);
+    }
+
+    private void handleCODPayment(double shippingCost) {
+        // If COD is selected, show the appropriate confirmation message based on the shipping option
+        if (DeliveryShippingOption.isSelected()) {
+            showAlert("Thank You!", "Thank you for purchasing, your order will arrive shortly.", Alert.AlertType.INFORMATION);
+        } else if (PickUpShippingOption.isSelected()) {
+            showAlert("Thank You!", "Thank you for purchasing, you can pick up your order at our Food Truck.", Alert.AlertType.INFORMATION);
+        }
+    }
+
+    private void handlePayOnlinePayment(double totalPrice) {
+        // If Pay Online is selected, prompt the user to enter the payment amount
+        TextInputDialog paymentDialog = new TextInputDialog();
+        paymentDialog.setTitle("Payment");
+        paymentDialog.setHeaderText("Enter payment amount:");
+        paymentDialog.showAndWait().ifPresent(paymentAmount -> {
+            double payment = Double.parseDouble(paymentAmount);
+
+            if (payment < totalPrice) {
+                showAlert("Insufficient Balance", "The payment amount is insufficient. Please enter a valid amount.", Alert.AlertType.ERROR);
+            } else {
+                double change = payment - totalPrice;
+                String message = (change > 0) ? "Your change is: ₱" + String.format("%.2f", change) :
+                        "Thank you for purchasing, your order will arrive shortly.";
+                showAlert("Thank You!", message, Alert.AlertType.INFORMATION);
+            }
+        });
+    }
+
+    private void saveTransaction(String userFullName, String userContactNumber, List<FoodItem> orderedItems, double totalPrice, double shippingCost, double handlingFee) {
+        // Save the order to the transaction history table in the database
+        String query = "INSERT INTO transaction_history (userFullName, userContactNumber, orderedItems, totalPrice, shippingCost, handlingFee) VALUES (?,?,?,?,?,?)";
+        // Execute the query with appropriate parameters
+    }
 
  //sql queries
 

@@ -15,7 +15,7 @@ public class DBconnectionFood {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Connect to the MySQL database
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/foodtruck", "Admin", "putbol");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/foodtruck", "Admin", "Putbol");
             System.out.println("Connection Succeeded");
             return con; // Return the connection object
         } catch (Exception e) {

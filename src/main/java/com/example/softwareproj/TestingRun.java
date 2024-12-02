@@ -21,8 +21,8 @@ public class TestingRun extends Application {
 
         //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("LoginFood.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("RegisterPage.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("AppFoodTruckCompile.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("AdminPage.fxml"));
+      // FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("AppFoodTruckCompile.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("AdminPage.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setResizable(false);

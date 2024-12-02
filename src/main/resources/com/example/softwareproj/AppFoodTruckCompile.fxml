@@ -24,7 +24,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
+<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane hbarPolicy="NEVER" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
@@ -1496,7 +1496,7 @@
             </AnchorPane>
             <AnchorPane fx:id="OrderFooter" prefHeight="133.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" visible="false">
                <children>
-                  <Button layoutX="567.0" layoutY="28.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: #F8DC93; -fx-text-fill: black; -fx-background-radius: 15;" text="Place Order">
+                  <Button layoutX="567.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleOrderPage" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: #F8DC93; -fx-text-fill: black; -fx-background-radius: 15;" text="Place Order">
                      <font>
                         <Font name="Impact" size="23.0" />
                      </font>
