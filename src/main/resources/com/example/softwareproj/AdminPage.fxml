@@ -30,7 +30,7 @@
                            <children>
                               <AnchorPane layoutX="11.0" prefHeight="87.0" prefWidth="222.0" styleClass="header" stylesheets="@CSS/AdminPageCSS.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label layoutX="4.0" layoutY="18.0" prefHeight="37.0" prefWidth="209.0" text="Food Truck Administration">
+                                    <Label layoutX="13.0" layoutY="20.0" prefHeight="37.0" prefWidth="194.0" text="Food Truck Administration">
                                        <font>
                                           <Font name="Impact" size="18.0" />
                                        </font>
@@ -42,7 +42,7 @@
                                     <Font name="Impact" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="username" layoutX="87.0" layoutY="97.0" text="El Maestro">
+                              <Label fx:id="username" layoutX="87.0" layoutY="98.0" text="El Maestro">
                                  <font>
                                     <Font name="Impact" size="18.0" />
                                  </font>
@@ -81,7 +81,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Pane layoutX="437.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" styleClass="nav-form" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="437.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -93,52 +93,64 @@
                                                 <Font name="Impact" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="₱ 0.0">
+                                          <Label fx:id="todaysIncomeLabel" alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="₱ 0.0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="nav-form" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
                                     </Pane>
-                                    <Pane layoutX="437.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" styleClass="nav-form" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="437.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@images/philippine-peso.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="245.0" layoutY="170.0" prefHeight="36.0" prefWidth="123.0" text="Total Income">
+                                          <Label layoutX="252.0" layoutY="165.0" prefHeight="36.0" prefWidth="123.0" text="Total Income">
                                              <font>
                                                 <Font name="Impact" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="₱ 0.0">
+                                          <Label fx:id="totalIncomeLabel" alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="₱ 0.0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="nav-form" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
                                     </Pane>
-                                    <Pane layoutX="14.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" styleClass="nav-form" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="14.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@images/grocery-store.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="174.0" layoutY="177.0" prefHeight="39.0" prefWidth="190.0" text="Number Of Sold Products">
+                                          <Label layoutX="174.0" layoutY="170.0" prefHeight="39.0" prefWidth="190.0" text="Number Of Sold Products">
                                              <font>
                                                 <Font name="Impact" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="0">
+                                          <Label fx:id="soldProductsLabel" alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="nav-form" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
                                     </Pane>
-                                    <Pane layoutX="14.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" styleClass="nav-form" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="14.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -150,12 +162,16 @@
                                                 <Font name="Impact" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="0">
+                                          <Label fx:id="totalCustomersLabel" alignment="CENTER_RIGHT" layoutX="252.0" layoutY="37.0" prefHeight="20.0" prefWidth="134.0" text="0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="nav-form" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
                                     </Pane>
                                  </children>
                               </AnchorPane>

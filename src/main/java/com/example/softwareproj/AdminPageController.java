@@ -1,4 +1,7 @@
 package com.example.softwareproj;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -14,11 +18,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-
-public class AdminPageController implements Initializable{
+public class AdminPageController implements Initializable {
 
     @FXML
     private AnchorPane customer_form;
@@ -81,7 +87,7 @@ public class AdminPageController implements Initializable{
     private TableColumn<?, ?> inventory_stock;
 
     @FXML
-    private TableView<?> inventory_tableView;
+    private TableView<Product> inventory_tableView;
 
     @FXML
     private Button inventory_updateBtn;
@@ -93,6 +99,18 @@ public class AdminPageController implements Initializable{
     private AnchorPane main_form;
 
     @FXML
+    private Label soldProductsLabel;
+
+    @FXML
+    private Label todaysIncomeLabel;
+
+    @FXML
+    private Label totalCustomersLabel;
+
+    @FXML
+    private Label totalIncomeLabel;
+
+    @FXML
     private Label username;
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
@@ -101,6 +119,7 @@ public class AdminPageController implements Initializable{
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     @FXML
     void toCustomer(ActionEvent event) {
         inventory_form.setVisible(false);
@@ -174,11 +193,59 @@ public class AdminPageController implements Initializable{
         }
     }
 
+    public void loadDashboardData() {
+        // Fetch values from the database using DBconnectionFood methods
+        int totalCustomers = DBconnectionFood.getTotalCustomers();
+        double todaysIncome = DBconnectionFood.getTodaysIncome();
+        double totalIncome = DBconnectionFood.getTotalIncome();
+        int soldProducts = DBconnectionFood.getSoldProducts();
+
+        // Set the values to the corresponding labels
+        totalCustomersLabel.setText(String.valueOf(totalCustomers));
+        todaysIncomeLabel.setText("₱" + String.format("%.2f", todaysIncome)); // Format for currency
+        totalIncomeLabel.setText("₱" + String.format("%.2f", totalIncome));   // Format for currency
+        soldProductsLabel.setText(String.valueOf(soldProducts));
+    }
+
+    public void loadInventoryData() {
+        ObservableList<Product> productList = FXCollections.observableArrayList();
+
+        // Get database connection
+        Connection con = DBconnectionFood.ConnectionDB();
+
+        // Query to fetch product details
+        String query = "SELECT ProductName, Price, Stock, Category, 'Active' AS Status FROM products";
+        try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            // Loop through the result set and add products to the list
+            while (rs.next()) {
+                String productName = rs.getString("ProductName");
+                double price = rs.getDouble("Price");
+                int stock = rs.getInt("Stock");
+                String category = rs.getString("Category");
+                String status = "Active"; // You can modify this if you want dynamic status
+
+                productList.add(new Product(productName, price, stock, category, status));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Set data to the TableView
+        inventory_productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        inventory_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        inventory_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        inventory_category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        inventory_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        // Add the list to the TableView
+        inventory_tableView.setItems(productList);
+    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        DBconnectionFood.ConnectionDB(); // Ensure DB connection is established
+        loadDashboardData(); // Load initial data into the dashboard
+        loadInventoryData();
     }
 }
-
