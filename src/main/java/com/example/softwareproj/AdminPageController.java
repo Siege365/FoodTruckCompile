@@ -195,7 +195,7 @@ public class AdminPageController implements Initializable {
 
     public void loadDashboardData() {
         // Fetch values from the database using DBconnectionFood methods
-        int totalCustomers = DBconnectionFood.getTotalCustomers();
+        /*int totalCustomers = DBconnectionFood.getTotalCustomers();
         double todaysIncome = DBconnectionFood.getTodaysIncome();
         double totalIncome = DBconnectionFood.getTotalIncome();
         int soldProducts = DBconnectionFood.getSoldProducts();
@@ -204,7 +204,7 @@ public class AdminPageController implements Initializable {
         totalCustomersLabel.setText(String.valueOf(totalCustomers));
         todaysIncomeLabel.setText("₱" + String.format("%.2f", todaysIncome)); // Format for currency
         totalIncomeLabel.setText("₱" + String.format("%.2f", totalIncome));   // Format for currency
-        soldProductsLabel.setText(String.valueOf(soldProducts));
+        soldProductsLabel.setText(String.valueOf(soldProducts));*/
     }
 
     public void loadInventoryData() {

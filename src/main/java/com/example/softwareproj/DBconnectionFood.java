@@ -15,7 +15,7 @@ public class DBconnectionFood {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Connect to the MySQL database
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/foodtruck", "Admin", "Putbol");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/foodtruck1", "Admin", "Putbol");
             System.out.println("Connection Succeeded");
             return con; // Return the connection object
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class DBconnectionFood {
         return 0; // Return 0 if no data or an error occurs
     }
 
-    // Get today's income
+    /* Get today's income
     public static double getTodaysIncome() {
         String query = "SELECT SUM(TotalAmount) FROM orders WHERE DATE(OrderDate) = CURDATE()";
         try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
@@ -65,7 +65,7 @@ public class DBconnectionFood {
             e.printStackTrace();
         }
         return 0.0; // Return 0.0 if no data or an error occurs
-    }
+    }/
 
     // Get the total number of sold products
     public static int getSoldProducts() {
@@ -78,7 +78,7 @@ public class DBconnectionFood {
             e.printStackTrace();
         }
         return 0; // Return 0 if no data or an error occurs
-    }
+    }*/
 
     public static void main(String[] args) {
         // Test the connection and getters

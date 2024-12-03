@@ -18,20 +18,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1024.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
+<BorderPane maxWidth="768.0" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
     <!-- Scrollable content in the center -->
     <center>
-        <ScrollPane hbarPolicy="NEVER" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxWidth="768.0" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">
             <content>
-                <AnchorPane maxHeight="1700.0" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #F8DC93;">
+                <AnchorPane maxHeight="1700.0" maxWidth="768.0" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #F8DC93;">
                     <children>
-                        <Pane fx:id="mainHeader" prefHeight="144.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
+                        <Pane fx:id="mainHeader" maxWidth="768.0" prefHeight="144.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                             <children>
                                 <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="El Pedidos Mexicanos">
                                     <font>
@@ -40,7 +41,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                  <Pane fx:id="orderheader" prefHeight="144.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" visible="false">
+                  <Pane fx:id="orderheader" maxWidth="768.0" prefHeight="144.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css" visible="false">
                      <children>
                         <Label layoutX="37.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="Order Details">
                            <font>
@@ -49,7 +50,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <AnchorPane fx:id="mainPage" maxHeight="1700.0" prefHeight="1024.0" prefWidth="768.0">
+                  <AnchorPane fx:id="mainPage" maxHeight="1700.0" maxWidth="768.0" prefHeight="1373.0" prefWidth="768.0">
                      <children>
                               <Pane fx:id="mainfirstPane" layoutX="56.0" layoutY="180.0" prefHeight="233.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                                   <children>
@@ -101,7 +102,7 @@
                         </Button>
                         <Pane layoutX="56.0" layoutY="83.0" prefHeight="249.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                            <children>
-                              <TextArea fx:id="UserAddress" editable="false" layoutX="46.0" layoutY="82.0" prefHeight="142.0" prefWidth="561.0" />
+                              <TextArea fx:id="OrderDetailsUserAddress" editable="false" layoutX="46.0" layoutY="82.0" prefHeight="142.0" prefWidth="561.0" stylesheets="@CSS/AppFoodTruck.css" />
                               <Label fx:id="OrderDetailsUserFullname" contentDisplay="RIGHT" layoutX="46.0" layoutY="23.0" prefHeight="35.0" prefWidth="284.0" text="&lt;User Full Name&gt;">
                                  <font>
                                     <Font name="System Bold" size="21.0" />
@@ -139,7 +140,7 @@
                               </Label>
                               <Group layoutX="72.0" layoutY="69.0">
                                  <children>
-                                    <RadioButton fx:id="PickUpShippingOption" contentDisplay="RIGHT" layoutX="320.0" mnemonicParsing="false" style="-fx-text-fill: black;" text="Pick up">
+                                    <RadioButton fx:id="PickUpShippingOption" contentDisplay="RIGHT" layoutX="320.0" mnemonicParsing="false" onAction="#RadioButtonsOrderDetails" style="-fx-text-fill: black;" text="Pick up">
                                        <font>
                                           <Font name="Impact" size="20.0" />
                                        </font>
@@ -151,7 +152,7 @@
                                           </ImageView>
                                        </graphic>
                                     </RadioButton>
-                                    <RadioButton fx:id="DeliveryShippingOption" contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-text-fill: black;" text="Delivery">
+                                    <RadioButton fx:id="DeliveryShippingOption" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#RadioButtonsOrderDetails" style="-fx-text-fill: black;" text="Delivery">
                                        <font>
                                           <Font name="Impact" size="20.0" />
                                        </font>
@@ -167,7 +168,7 @@
                               </Group>
                               <Group layoutX="72.0" layoutY="212.0">
                                  <children>
-                                    <RadioButton fx:id="CODPayment" contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-text-fill: black;" text="Cash On Delivery">
+                                    <RadioButton fx:id="CODPayment" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#RadioButtonsOrderDetails" style="-fx-text-fill: black;" text="Cash On Delivery">
                                        <font>
                                           <Font name="Impact" size="20.0" />
                                        </font>
@@ -179,7 +180,7 @@
                                           </ImageView>
                                        </graphic>
                                     </RadioButton>
-                                    <RadioButton fx:id="PayOnlinePayment" contentDisplay="RIGHT" layoutX="320.0" mnemonicParsing="false" style="-fx-text-fill: black;" text="Pay Online">
+                                    <RadioButton fx:id="PayOnlinePayment" contentDisplay="RIGHT" layoutX="320.0" mnemonicParsing="false" onAction="#RadioButtonsOrderDetails" style="-fx-text-fill: black;" text="Pay Online">
                                        <font>
                                           <Font name="Impact" size="20.0" />
                                        </font>
@@ -259,9 +260,9 @@
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="foodPage" layoutX="-7.0" layoutY="-3.0" maxHeight="1700.0" prefHeight="1487.0" prefWidth="780.0" visible="false">
+                  <AnchorPane fx:id="foodPage" layoutX="-7.0" layoutY="-3.0" maxHeight="1700.0" maxWidth="768.0" prefHeight="1487.0" prefWidth="768.0" visible="false">
                      <children>
-                        <Pane fx:id="fpHeader" layoutX="6.0" prefHeight="144.0" prefWidth="779.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
+                        <Pane fx:id="fpHeader" layoutX="6.0" maxWidth="768.0" prefHeight="144.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                            <children>
                               <Label fx:id="foodCategorytxt" layoutX="37.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="Food Category">
                                  <font>
@@ -273,7 +274,7 @@
                                     <Image url="@Imagesd/Category.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="backButton" layoutX="3.0" layoutY="44.0" mnemonicParsing="false" onAction="#toBack" prefHeight="79.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back" visible="false">
+                              <Button fx:id="backButton" layoutX="4.0" layoutY="44.0" mnemonicParsing="false" onAction="#toBack" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back" visible="false">
                                  <graphic>
                                     <ImageView fitHeight="48.0" fitWidth="45.0">
                                        <image>
@@ -294,7 +295,7 @@
                                     <Image url="@Imagesd/Group%20243.png" />
                                  </image>
                               </ImageView>
-                              <AnchorPane fx:id="md" layoutX="-27.0" layoutY="-15.0" prefHeight="1500.0" prefWidth="770.0" style="-fx-background-color: f8dc93;" visible="false">
+                              <AnchorPane fx:id="md" layoutX="-30.0" layoutY="-15.0" maxWidth="768.0" prefHeight="1500.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" visible="false">
                                  <children>
                                     <Pane layoutX="16.0" layoutY="124.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
@@ -490,7 +491,7 @@
                                     <Image url="@Imagesd/Group%20239.png" />
                                  </image>
                               </ImageView>
-                              <AnchorPane fx:id="sd" layoutX="-21.0" layoutY="-340.0" prefHeight="1489.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" visible="false">
+                              <AnchorPane fx:id="sd" layoutX="-30.0" layoutY="-340.0" prefHeight="1489.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" visible="false">
                                  <children>
                                     <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
@@ -691,7 +692,7 @@
                                     <Image url="@Imagesd/Group%20241.png" />
                                  </image>
                               </ImageView>
-                              <AnchorPane fx:id="drinks" layoutX="-20.0" layoutY="-665.0" prefHeight="1488.0" prefWidth="771.0" style="-fx-background-color: f8dc93;" visible="false">
+                              <AnchorPane fx:id="drinks" layoutX="-30.0" layoutY="-665.0" maxWidth="768.0" prefHeight="1488.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" visible="false">
                                  <children>
                                     <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
@@ -887,7 +888,7 @@
                                     <Image url="@Imagesd/Group%20242.png" />
                                  </image>
                               </ImageView>
-                              <AnchorPane fx:id="desserts" layoutX="-24.0" layoutY="-980.0" prefHeight="1488.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" visible="false">
+                              <AnchorPane fx:id="desserts" layoutX="-30.0" layoutY="-980.0" maxWidth="768.0" prefHeight="1488.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" visible="false">
                                  <children>
                                     <Pane layoutX="19.0" layoutY="125.0" prefHeight="385.0" prefWidth="355.0" style="-fx-background-color: white; -fx-background-radius: 30;" stylesheets="@CSS/FoodCategory.css">
                                        <children>
@@ -1078,9 +1079,9 @@
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="morePage" layoutX="-1.0" layoutY="-4.0" maxHeight="1700.0" prefHeight="1024.0" prefWidth="768.0" visible="false">
+                  <AnchorPane fx:id="morePage" layoutX="-1.0" layoutY="-4.0" maxHeight="1700.0" maxWidth="768.0" prefHeight="1508.0" prefWidth="768.0" visible="false">
                      <children>
-                        <Pane layoutY="8.0" prefHeight="144.0" prefWidth="776.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
+                        <Pane layoutY="3.0" maxWidth="768.0" prefHeight="144.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                            <children>
                               <Label layoutX="28.0" layoutY="48.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: #F8DC93;" text="MORE">
                                  <font>
@@ -1095,9 +1096,9 @@
                               </ImageView>
                            </children>
                         </Pane>
-                        <AnchorPane fx:id="myaccount" layoutY="148.0" prefHeight="1100.0" prefWidth="772.0" style="-fx-background-color: f8dc93;" stylesheets="@CSS/MorePage.css" visible="false">
+                        <AnchorPane fx:id="myaccount" layoutY="148.0" maxWidth="768.0" prefHeight="1100.0" prefWidth="768.0" style="-fx-background-color: f8dc93;" stylesheets="@CSS/MorePage.css" visible="false">
                            <children>
-                              <Pane prefHeight="308.0" prefWidth="770.0" style="-fx-background-color: f8dc93; ;">
+                              <Pane prefHeight="308.0" prefWidth="768.0" style="-fx-background-color: f8dc93; ;">
                                  <children>
                                     <Label alignment="CENTER" layoutX="142.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: bLACK;" text="My Account">
                                        <font>
@@ -1183,7 +1184,7 @@
                               <Insets />
                            </opaqueInsets>
                         </AnchorPane>
-                        <AnchorPane fx:id="transactionhistory" layoutY="148.0" prefHeight="1100.0" prefWidth="770.0" style="-fx-background-color: #F8DC93;" visible="false">
+                        <AnchorPane fx:id="transactionhistory" layoutY="148.0" maxWidth="768.0" prefHeight="1100.0" prefWidth="768.0" style="-fx-background-color: #F8DC93;" visible="false">
                            <children>
                               <Label layoutX="151.0" layoutY="24.0" prefHeight="70.0" prefWidth="493.0" style="-fx-text-fill: BLACK;" text="TRANSACTION HISTORY">
                                  <font>
@@ -1208,14 +1209,14 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="AboutUs" layoutY="148.0" prefHeight="1100.0" prefWidth="770.0" visible="false">
+                        <AnchorPane fx:id="AboutUs" layoutY="148.0" maxWidth="768.0" prefHeight="1100.0" prefWidth="768.0" visible="false">
                            <children>
-                              <ImageView fitHeight="917.0" fitWidth="774.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="917.0" fitWidth="768.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Imagesd/Mr_Pedidos.png" />
                                  </image>
                               </ImageView>
-                              <Pane opacity="0.62" prefHeight="919.0" prefWidth="770.0" style="-fx-background-color: black;">
+                              <Pane maxWidth="768.0" opacity="0.62" prefHeight="919.0" prefWidth="768.0" style="-fx-background-color: black;">
                                  <effect>
                                     <BoxBlur />
                                  </effect>
@@ -1264,7 +1265,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="feedback" layoutY="148.0" prefHeight="1100.0" prefWidth="770.0" style="-fx-background-color: #F8DC93;" visible="false">
+                        <AnchorPane fx:id="feedback" layoutY="148.0" maxWidth="768.0" prefHeight="1100.0" prefWidth="768.0" style="-fx-background-color: #F8DC93;" visible="false">
                            <children>
                               <Label layoutX="289.0" layoutY="6.0" prefHeight="70.0" prefWidth="198.0" style="-fx-text-fill: BLAck;" text="FEEDBACK" textFill="#464646">
                                  <font>
@@ -1310,10 +1311,10 @@
                         </Button>
                         <Group fx:id="morepageMain" layoutX="6.0" layoutY="154.0">
                            <children>
-                              <StackPane layoutX="258.0" onMouseClicked="#ImportAvatar" prefHeight="243.0" prefWidth="256.0">
+                              <StackPane layoutX="258.0" prefHeight="243.0" prefWidth="256.0">
                                  <children>
                                     <Circle fill="DODGERBLUE" radius="114.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <ImageView fitHeight="250.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="AvatarMore" fitHeight="250.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
                               <Label fx:id="AccUsername1" layoutX="250.0" layoutY="247.0" prefHeight="56.0" prefWidth="280.0" style="-fx-text-fill: black; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="&lt;Username&gt;" textAlignment="CENTER" textFill="#d32121">
@@ -1321,47 +1322,47 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="AccEmail1" layoutX="252.0" layoutY="292.0" prefHeight="56.0" prefWidth="280.0" style="-fx-text-fill: black; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="&lt;Email&gt;" textAlignment="CENTER" textFill="#d32121">
+                              <Label fx:id="AccID" layoutX="252.0" layoutY="292.0" prefHeight="56.0" prefWidth="280.0" style="-fx-text-fill: black; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="&lt;UserID&gt;" textAlignment="CENTER" textFill="#d32121">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <AnchorPane layoutY="443.0" prefHeight="1020.0" prefWidth="753.0" style="-fx-background-color: white;">
+                              <AnchorPane layoutX="24.0" layoutY="369.0" maxWidth="709.0" prefHeight="977.0" prefWidth="709.0" style="-fx-background-color: white; -fx-background-radius: 20;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                                  <children>
-                                    <Button layoutY="130.0" mnemonicParsing="false" onAction="#toAboutUs" prefHeight="160.0" prefWidth="745.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="ABOUT US                                                              &gt;" underline="true">
-                                       <font>
-                                          <Font name="Arial Rounded MT Bold" size="23.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="Feedback" layoutY="300.0" mnemonicParsing="false" onAction="#Feedback" prefHeight="162.0" prefWidth="745.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="FEEDBACK                                                           &gt;" underline="true">
-                                       <font>
-                                          <Font name="Arial Rounded MT Bold" size="23.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="13.0" layoutY="459.0" mnemonicParsing="false" onAction="#toDeleteAccount" prefHeight="162.0" prefWidth="745.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="DELETE ACCOUNT                                              &gt;" underline="true">
-                                       <font>
-                                          <Font name="Arial Rounded MT Bold" size="23.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="logoutbutton" layoutX="13.0" layoutY="596.0" mnemonicParsing="false" onAction="#toLogout" prefHeight="161.0" prefWidth="745.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                           &gt;" underline="true">
-                                       <font>
-                                          <Font name="Arial Rounded MT Bold" size="23.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="41.0" layoutY="378.0" prefHeight="157.0" prefWidth="678.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
-                                 <children>
-                                    <Button fx:id="MyAccount" layoutY="5.0" mnemonicParsing="false" onAction="#MyAccount" prefHeight="160.0" prefWidth="222.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="MY ACCOUNT">
-                                       <font>
-                                          <Font name="Arial Rounded MT Bold" size="23.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="TransactionHistory" layoutX="229.0" layoutY="4.0" mnemonicParsing="false" onAction="#TransactionHistory" prefHeight="160.0" prefWidth="222.0" style="-fx-background-color: transparent; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="Transaction&#10; History" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Rounded MT Bold" size="23.0" />
-                                       </font>
-                                    </Button>
+                                    <VBox layoutX="-1.0" layoutY="2.0" maxWidth="710.0" prefHeight="980.0" prefWidth="710.0">
+                                       <children>
+                                          <Button fx:id="MyAccount" mnemonicParsing="false" onAction="#MyAccount" prefHeight="160.0" prefWidth="411.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="My Account                                         &gt;" underline="true">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="23.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="TransactionHistory" mnemonicParsing="false" onAction="#TransactionHistory" prefHeight="160.0" prefWidth="526.0" style="-fx-background-color: transparent; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="Transaction History                                             &gt;" textAlignment="CENTER" underline="true">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="23.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#toAboutUs" prefHeight="160.0" prefWidth="522.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="ABOUT US                                                              &gt;" underline="true">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="23.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="Feedback" mnemonicParsing="false" onAction="#Feedback" prefHeight="162.0" prefWidth="518.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="FEEDBACK                                                           &gt;" underline="true">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="23.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#toDeleteAccount" prefHeight="162.0" prefWidth="528.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="DELETE ACCOUNT                                              &gt;" underline="true">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="23.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="logoutbutton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#toLogout" prefHeight="161.0" prefWidth="488.0" style="-fx-background-color: transparent;" stylesheets="@CSS/MorePage.css" text="LOGOUT                                                           &gt;" underline="true">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="23.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </AnchorPane>
                            </children>
@@ -1384,7 +1385,7 @@
                   </Label>
                   <AnchorPane fx:id="Cart" prefHeight="1198.0" prefWidth="748.0" visible="false">
                      <children>
-                        <Pane fx:id="CartHeader" prefHeight="144.0" prefWidth="775.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
+                        <Pane fx:id="CartHeader" maxWidth="768.0" prefHeight="144.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" stylesheets="@CSS/AppFoodTruck.css">
                            <children>
                               <Label fx:id="CartTitle" contentDisplay="RIGHT" layoutX="257.0" layoutY="37.0" prefHeight="70.0" prefWidth="323.0" style="-fx-text-fill: #F8DC93;" text="Food Cart(  )">
                                  <font>
@@ -1396,7 +1397,7 @@
                                     <Font name="System Bold" size="36.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="backButton1" layoutX="-15.0" layoutY="37.0" mnemonicParsing="false" onAction="#toBackMain" prefHeight="70.0" prefWidth="182.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back">
+                              <Button fx:id="backButton1" layoutY="37.0" mnemonicParsing="false" onAction="#toBackMain" prefHeight="70.0" prefWidth="167.0" style="-fx-background-color: transparent; -fx-text-fill: white;" stylesheets="@CSS/FoodCategory.css" text="Back">
                                  <graphic>
                                     <ImageView fitHeight="48.0" fitWidth="45.0">
                                        <image>
@@ -1421,61 +1422,65 @@
 
     <!-- Footer fixed at the bottom -->
     <bottom>
-        <Pane fx:id="footer" prefHeight="131.0" prefWidth="770.0" style="-fx-background-color: #EF3A31;">
+        <Pane fx:id="footer" maxWidth="768.0" prefHeight="131.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;">
             <children>
-            <AnchorPane fx:id="Navigator" prefHeight="133.0" prefWidth="768.0">
+            <AnchorPane fx:id="Navigator" maxWidth="768.0" prefHeight="133.0" prefWidth="768.0">
                <children>
-                      <Button contentDisplay="TOP" layoutY="14.0" mnemonicParsing="false" onAction="#toHome" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
-                          <graphic>
-                              <ImageView fitHeight="64.0" fitWidth="64.0">
-                                  <image>
-                                      <Image url="@images/home.png" />
-                                  </image>
-                              </ImageView>
-                          </graphic>
-                          <font>
-                              <Font name="System Bold" size="24.0" />
-                          </font>
-                      </Button>
-                      <Button contentDisplay="TOP" layoutX="213.0" layoutY="14.0" mnemonicParsing="false" onAction="#toOrder" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
-                          <graphic>
-                              <ImageView>
-                                  <image>
-                                      <Image url="@images/list.png" />
-                                  </image>
-                              </ImageView>
-                          </graphic>
-                          <font>
-                              <Font name="System Bold" size="24.0" />
-                          </font>
-                      </Button>
-                      <Button contentDisplay="TOP" layoutX="416.0" layoutY="14.0" mnemonicParsing="false" onAction="#toFood" prefHeight="50.0" prefWidth="161.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
-                          <graphic>
-                              <ImageView>
-                                  <image>
-                                      <Image url="@images/tacos.png" />
-                                  </image>
-                              </ImageView>
-                          </graphic>
-                          <font>
-                              <Font name="System Bold" size="24.0" />
-                          </font>
-                      </Button>
-                      <Button contentDisplay="TOP" layoutX="601.0" layoutY="14.0" mnemonicParsing="false" onAction="#toMore" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
-                          <graphic>
-                              <ImageView>
-                                  <image>
-                                      <Image url="@images/circle.png" />
-                                  </image>
-                              </ImageView>
-                          </graphic>
-                          <font>
-                              <Font name="System Bold" size="24.0" />
-                          </font>
-                      </Button>
+                  <HBox layoutY="13.0" prefHeight="91.0" prefWidth="768.0" spacing="25.0">
+                     <children>
+                            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#toHome" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Home" textFill="#f8dc93">
+                                <graphic>
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image>
+                                            <Image url="@images/home.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Button>
+                            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#toOrder" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Orders" textFill="#f8dc93">
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@images/list.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Button>
+                            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#toFood" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="Food" textFill="#f8dc93">
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@images/tacos.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Button>
+                            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#toMore" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: transparent;" styleClass="scroll-button" text="More" textFill="#f8dc93">
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@images/circle.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Button>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="CheckouFooter" prefHeight="131.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" visible="false">
+            <AnchorPane fx:id="CheckouFooter" maxWidth="768.0" prefHeight="131.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" visible="false">
                <children>
                   <Button contentDisplay="TOP" layoutX="566.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: #f8dc93; -fx-background-radius: 15;" styleClass="scroll-button" text="Check Out" textFill="#ef3a31">
                      <font>
@@ -1494,7 +1499,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="OrderFooter" prefHeight="133.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" visible="false">
+            <AnchorPane fx:id="OrderFooter" maxWidth="768.0" prefHeight="133.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" visible="false">
                <children>
                   <Button layoutX="567.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleOrderPage" prefHeight="82.0" prefWidth="190.0" style="-fx-background-color: #F8DC93; -fx-text-fill: black; -fx-background-radius: 15;" text="Place Order">
                      <font>

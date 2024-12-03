@@ -15,10 +15,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +34,8 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class AppController {
@@ -44,7 +50,7 @@ public class AppController {
     private TextField AccEmail;
 
     @FXML
-    private Label AccEmail1;
+    private Label AccID;
 
     @FXML
     private TextField AccFullName;
@@ -72,6 +78,10 @@ public class AppController {
 
     @FXML
     private Button ArrozConLeche;
+
+    @FXML
+    private ImageView AvatarMore;
+
 
     @FXML
     private Button Burrito;
@@ -232,7 +242,7 @@ public class AppController {
     private Label Userlabel;
 
     @FXML
-    private TextArea UserAddress;
+    private TextArea OrderDetailsUserAddress;
 
 
     @FXML
@@ -437,6 +447,34 @@ public class AppController {
                 new SimpleDoubleProperty(cellData.getValue().getTotal()).asObject()
         );
 
+        // Create ToggleGroups
+        ToggleGroup ShippingOption = new ToggleGroup();
+        ToggleGroup PaymentMethods = new ToggleGroup();
+
+        // Assign groups to RadioButtons
+        PickUpShippingOption.setToggleGroup(ShippingOption);
+        DeliveryShippingOption.setToggleGroup(ShippingOption);
+
+        CODPayment.setToggleGroup(PaymentMethods);
+        PayOnlinePayment.setToggleGroup(PaymentMethods);
+
+        // Add listener for the ShippingOption group
+        ShippingOption.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Disable all radio buttons in the ShippingOption group after selection
+                PickUpShippingOption.setDisable(true);
+                DeliveryShippingOption.setDisable(true);
+            }
+        });
+
+        // Add listener for the PaymentMethods group
+        PaymentMethods.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Disable all radio buttons in the PaymentMethods group after selection
+                CODPayment.setDisable(true);
+                PayOnlinePayment.setDisable(true);
+            }
+        });
     }
 //start sa mga table shits
         private void updateOrderTable() { // Method to update the OrderTable when cart data changes
@@ -457,14 +495,15 @@ public class AppController {
         AccUsername.setText(username);
         AccUsername1.setText(username);
         Connection con = DBconnectionFood.ConnectionDB();
-        String sql = "SELECT Email, FullName FROM register WHERE username = ?";
+        String sql = "SELECT Email, FullName, UserID FROM register WHERE username = ?";
         try (PreparedStatement pst = con.prepareStatement(sql)) {
             pst.setString(1, username);
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
+                    AccID.setText(rs.getString("UserID"));
                     AccFullName.setText(rs.getString("FullName"));
                     AccEmail.setText(rs.getString("Email"));
-                    AccEmail1.setText(rs.getString("Email"));
+                    OrderDetailsUserFullname.setText(rs.getString("FullName"));
                 } else {
                     showAlert("No Data", "No record found for the given username.", Alert.AlertType.INFORMATION);
                 }
@@ -801,7 +840,7 @@ public class AppController {
 
         // Proceed to the order page
         toOrder(event);
-
+        FoodItemsSubtotalPaymentDetails.setText("₱"+totalPrice);
         // Hide the cart and footer
         Cart.setVisible(false);
         CheckouFooter.setVisible(false);
@@ -809,8 +848,6 @@ public class AppController {
 
 
 //end of cart
-
-
 
 
     //start sa food category
@@ -993,6 +1030,9 @@ public class AppController {
             // Show error alert if there's an exception
             showAlert("Error", "An error occurred while saving/updating information.", Alert.AlertType.ERROR);
         }
+        OrderDetailsUserContactNumber.setText(mobileNumber);
+        OrderDetailsUserAddress.setText(address);
+        //AvatarMore.
     }
 
 
@@ -1223,46 +1263,190 @@ public class AppController {
         AccGenderO.setDisable(false);
     }
     //end sa more page
+
+    //start sa orderpage
     @FXML
-    private void handleOrderPage(ActionEvent event) {
-        // 1. Display user details
-        String UserFullName = AccFullName.getText();
-        String userContactNumber = AccMobileNumber.getText();
-        OrderDetailsUserFullname.setText(UserFullName);
-        OrderDetailsUserContactNumber.setText(userContactNumber);
-
-        // 2. Display ordered food items in the order table
-        OrderTable.setItems(checkoutItems); // assuming checkoutItems are already populated
-        OrderTable.refresh();
-
-        // 3. Calculate and display the Food Items Subtotal
-        double foodItemsSubtotal = checkoutItems.stream()
-                .mapToDouble(FoodItem::getTotal)
-                .sum();
-        FoodItemsSubtotalPaymentDetails.setText("₱" + String.format("%.2f", foodItemsSubtotal));
-
-        // 4. Add shipping and handling fees
-        double shippingCost = (DeliveryShippingOption.isSelected()) ? 80.0 : (PickUpShippingOption.isSelected()) ? 20.0 : 0.0;
-        double handlingFee = 40.0;
-
-        ShippingSubtotalPaymentDetails.setText("₱" + String.format("%.2f", shippingCost));
-        HandlingFeePaymentDetails.setText("₱" + String.format("%.2f", handlingFee));
-
-        // 5. Total price calculation
-        double totalPrice = foodItemsSubtotal + shippingCost + handlingFee;
-        totalPriceLabel.setText("Total: ₱" + String.format("%.2f", totalPrice));
-
-        // 6. Handle payment methods
-        if (CODPayment.isSelected()) {
-            handleCODPayment(shippingCost);
-        } else if (PayOnlinePayment.isSelected()) {
-            handlePayOnlinePayment(totalPrice);
-        }
-
-        // 7. Save the transaction to the database
-        saveTransaction(UserFullName, userContactNumber, checkoutItems, totalPrice, shippingCost, handlingFee);
+    void RadioButtonsOrderDetails(ActionEvent event) {
+        // Enable all radio buttons
+        enableRadioButtons(true);
+        // Recalculate payment details based on current selection
+        calculateOrderDetails();
     }
 
+    private void calculateOrderDetails() {
+        // Get the food items subtotal text, remove the currency symbol and parse the value
+        String foodItemsSubtotalText = FoodItemsSubtotalPaymentDetails.getText();
+        double foodItemsSubtotal = 0.0;
+
+        // Check if the text contains the ₱ symbol and remove it before parsing
+        if (foodItemsSubtotalText.contains("₱")) {
+            foodItemsSubtotalText = foodItemsSubtotalText.replace("₱", "").trim();
+        }
+        // Parse the numeric value into a double
+        try {
+            foodItemsSubtotal = Double.parseDouble(foodItemsSubtotalText);
+        } catch (NumberFormatException e) {
+            // Handle invalid input gracefully (e.g., show an error message)
+            System.out.println("Invalid number format: " + e.getMessage());
+            return;
+        }
+
+        // Calculate the shipping cost
+        double shippingCost = getShippingCost();
+        ShippingSubtotalPaymentDetails.setText("₱" + String.format("%.2f", shippingCost));
+
+        // Calculate the handling fee based on the selected payment method
+        double handlingFee = getHandlingFee();
+        HandlingFeePaymentDetails.setText("₱" + String.format("%.2f", handlingFee));
+
+        // Recalculate the total payment
+        double totalPayment = foodItemsSubtotal + shippingCost + handlingFee;
+        TotalPaymentDetails.setText("₱" + String.format("%.2f", totalPayment));
+        totalPriceLabel.setText("Total: ₱" + totalPayment);
+    }
+
+
+    private double getShippingCost() {
+        // Calculate shipping cost based on the selected shipping option
+        if (DeliveryShippingOption.isSelected()) {
+            return 80.0;
+        } else if (PickUpShippingOption.isSelected()) {
+            return 20.0;
+        } else {
+            return 0.0;
+        }
+    }
+
+    private double getHandlingFee() {
+        // Calculate handling fee based on the selected payment method
+        if (CODPayment.isSelected()) {
+            return 0.0;
+        } else if (PayOnlinePayment.isSelected()) {
+            return 40.0;
+        } else {
+            return 0.0;
+        }
+    }
+
+    private void enableRadioButtons(boolean isEnabled) {
+        // Enable or disable radio buttons based on the passed flag
+        PickUpShippingOption.setDisable(!isEnabled);
+        DeliveryShippingOption.setDisable(!isEnabled);
+        CODPayment.setDisable(!isEnabled);
+        PayOnlinePayment.setDisable(!isEnabled);
+    }
+
+    @FXML
+    private void handleOrderPage(ActionEvent event) {
+        try {
+            String userFullName = OrderDetailsUserFullname.getText().trim();
+            String userContactNumber = OrderDetailsUserContactNumber.getText().trim();
+
+            if (userFullName.isEmpty() || userContactNumber.isEmpty()) {
+                throw new IllegalArgumentException("User details are incomplete.");
+            }
+
+            double foodItemsSubtotal = checkoutItems.stream()
+                    .mapToDouble(FoodItem::getTotal)
+                    .sum();
+
+            double shippingCost = getShippingCost();
+            double handlingFee = getHandlingFee();
+            double totalPrice = foodItemsSubtotal + shippingCost + handlingFee;
+
+            // Print the receipt in the console
+            System.out.println("****************************** RECEIPT ******************************");
+            System.out.println("Customer Name: " + userFullName);
+            System.out.println("Contact Number: " + userContactNumber);
+            System.out.println("Date: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            System.out.println("-----------------------------------------------------------------------");
+
+            // List Food Items
+            System.out.println("Food Items:");
+            for (FoodItem item : checkoutItems) {
+                System.out.println(item.getName() + " x" + item.getQuantity() + " - ₱" + String.format("%.2f", item.getTotal()));
+            }
+            if (CODPayment.isSelected()) {
+                handleCODPayment(shippingCost);
+            } else if (PayOnlinePayment.isSelected()) {
+                handlePayOnlinePayment(totalPrice);
+            }
+
+
+            System.out.println("-----------------------------------------------------------------------");
+// Payment Summary
+            System.out.println("Payment Summary:");
+            System.out.println("Food Items Subtotal: ₱" + String.format("%.2f", foodItemsSubtotal));
+            System.out.println("Shipping Cost: ₱" + String.format("%.2f", shippingCost));
+            System.out.println("Handling Fee: ₱" + String.format("%.2f", handlingFee));
+            System.out.println("Total Price: ₱" + String.format("%.2f", totalPrice));
+            if (PayOnlinePayment.isSelected()) {
+                TextInputDialog paymentDialog = new TextInputDialog();
+                paymentDialog.setTitle("Payment");
+                paymentDialog.setHeaderText("Enter payment amount:");
+                paymentDialog.showAndWait().ifPresent(paymentAmount -> {
+                    try {
+                        double payment = Double.parseDouble(paymentAmount);
+                        if (payment >= totalPrice) {
+                            double change = payment - totalPrice;
+
+                            // Generate Receipt
+                            System.out.println("****************************** RECEIPT ******************************");
+                            System.out.println("Customer Name: " + userFullName);
+                            System.out.println("Contact Number: " + userContactNumber);
+                            System.out.println("Date: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                            System.out.println("-----------------------------------------------------------------------");
+
+                            // List Food Items
+                            System.out.println("Food Items:");
+                            for (FoodItem item : checkoutItems) {
+                                System.out.println(item.getName() + " x" + item.getQuantity() + " - ₱" + String.format("%.2f", item.getTotal()));
+                            }
+
+                            // Payment Summary
+                            System.out.println("-----------------------------------------------------------------------");
+                            System.out.println("Payment Summary:");
+                            System.out.println("Food Items Subtotal: ₱" + String.format("%.2f", foodItemsSubtotal));
+                            System.out.println("Shipping Cost: ₱" + String.format("%.2f", shippingCost));
+                            System.out.println("Handling Fee: ₱" + String.format("%.2f", handlingFee));
+                            System.out.println("Total Price: ₱" + String.format("%.2f", totalPrice));
+                            System.out.println("Payment Amount: ₱" + String.format("%.2f", payment));
+                            System.out.println("Change: ₱" + String.format("%.2f", change));
+                            System.out.println("-----------------------------------------------------------------------");
+                            System.out.println("Thank you for your purchase!");
+                            System.out.println("***********************************************************************");
+
+                            // Alert for successful payment
+                            String message = (change > 0) ? "Your change is: ₱" + String.format("%.2f", change) :
+                                    "Thank you for purchasing, your order will arrive shortly.";
+                            showAlert("Thank You!", message, Alert.AlertType.INFORMATION);
+                        } else {
+                            // Insufficient payment
+                            showAlert("Insufficient Balance", "The payment amount is insufficient. Please enter a valid amount.", Alert.AlertType.ERROR);
+                        }
+                    } catch (NumberFormatException e) {
+                        showAlert("Invalid Input", "Please enter a valid numeric payment amount.", Alert.AlertType.ERROR);
+                    }
+                });
+            } else if (CODPayment.isSelected()) {
+                handleCODPayment(shippingCost);
+            }
+
+
+
+            // Show an Alert
+            showAlert("Receipt Generated", "Your receipt has been successfully generated. Check the console for details.", Alert.AlertType.INFORMATION);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            showAlert("Error", "An unexpected error occurred: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+
+
+    }
     private void handleCODPayment(double shippingCost) {
         // If COD is selected, show the appropriate confirmation message based on the shipping option
         if (DeliveryShippingOption.isSelected()) {
@@ -1270,26 +1454,63 @@ public class AppController {
         } else if (PickUpShippingOption.isSelected()) {
             showAlert("Thank You!", "Thank you for purchasing, you can pick up your order at our Food Truck.", Alert.AlertType.INFORMATION);
         }
+
+        // Play the sound after COD payment
+        playSoundEffect();
     }
 
     private void handlePayOnlinePayment(double totalPrice) {
-        // If Pay Online is selected, prompt the user to enter the payment amount
         TextInputDialog paymentDialog = new TextInputDialog();
         paymentDialog.setTitle("Payment");
         paymentDialog.setHeaderText("Enter payment amount:");
-        paymentDialog.showAndWait().ifPresent(paymentAmount -> {
-            double payment = Double.parseDouble(paymentAmount);
 
-            if (payment < totalPrice) {
-                showAlert("Insufficient Balance", "The payment amount is insufficient. Please enter a valid amount.", Alert.AlertType.ERROR);
-            } else {
-                double change = payment - totalPrice;
-                String message = (change > 0) ? "Your change is: ₱" + String.format("%.2f", change) :
-                        "Thank you for purchasing, your order will arrive shortly.";
-                showAlert("Thank You!", message, Alert.AlertType.INFORMATION);
+        // Show the dialog and handle the payment
+        paymentDialog.showAndWait().ifPresent(paymentAmount -> {
+            try {
+                double payment = Double.parseDouble(paymentAmount);
+                if (payment < totalPrice) {
+                    // Insufficient payment: Alert the user and keep the dialog open
+                    showAlert("Insufficient Balance", "The payment amount is insufficient. Please enter a valid amount.", Alert.AlertType.ERROR);
+                } else {
+                    double change = payment - totalPrice;
+
+                    // Receipt output
+                    System.out.println("-----------------------------------------------------------------------");
+                    System.out.println("Payment Amount: ₱" + String.format("%.2f", payment));
+                    System.out.println("Change: ₱" + String.format("%.2f", change));
+                    System.out.println("-----------------------------------------------------------------------");
+
+                    // Success alert with change details
+                    String message = (change > 0) ? "Your change is: ₱" + String.format("%.2f", change) :
+                            "Thank you for purchasing, your order will arrive shortly.";
+                    showAlert("Thank You!", message, Alert.AlertType.INFORMATION);
+
+                    // Play the sound after a successful payment
+                    playSoundEffect();
+
+                    // Close the dialog after successful payment
+                    paymentDialog.getDialogPane().getScene().getWindow().hide();
+                }
+            } catch (NumberFormatException e) {
+                // Invalid input: Alert the user and keep the dialog open
+                showAlert("Invalid Input", "Please enter a valid numeric payment amount.", Alert.AlertType.ERROR);
             }
         });
     }
+
+    // Method to play sound effect
+    private void playSoundEffect() {
+        // Replace with the path to your MP3 file
+        String soundFilePath = "file:C:\\Users\\natha\\Downloads\\FREE SOUND EFFECTS_ La Cucaracha Horn.mp3";
+
+        Media sound = new Media(soundFilePath); // Create a Media object
+        MediaPlayer mediaPlayer = new MediaPlayer(sound); // Create a MediaPlayer
+
+        mediaPlayer.setAutoPlay(true); // Start playing the sound automatically
+    }
+
+
+
 
     private void saveTransaction(String userFullName, String userContactNumber, List<FoodItem> orderedItems, double totalPrice, double shippingCost, double handlingFee) {
         // Save the order to the transaction history table in the database
