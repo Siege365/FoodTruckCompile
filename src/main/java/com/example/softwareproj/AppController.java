@@ -1,5 +1,6 @@
 package com.example.softwareproj;
 
+import javafx.animation.ParallelTransition;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,14 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -68,7 +67,10 @@ public class AppController {
     private TextField AccMobileNumber;
 
     @FXML
-    private TextField AccPassword;
+    private PasswordField AccPassword;
+
+    @FXML
+    private PasswordField AccRetypePassword;
 
     @FXML
     private Label AccUsername;
@@ -261,7 +263,7 @@ public class AppController {
     private ImageView back;
 
     @FXML
-    private Button backButton;
+    private AnchorPane backButton;
 
     @FXML
     private Button backButton1;
@@ -543,7 +545,6 @@ public class AppController {
         cart.setVisible(true);
         OrderFooter.setVisible(false);
         orderheader.setVisible(false);
-        OrderTable.getItems().clear();
         totalPriceLabel.setText("Total: ");
     }
 
@@ -574,18 +575,26 @@ public class AppController {
     }
     @FXML
     void toCart(ActionEvent event) {
+        // Hide all other pages or elements
         mainPage.setVisible(false);
+        mainHeader.setVisible(true);
         orderPage.setVisible(false);
-        foodPage.setVisible(false);
+        foodPage.setVisible(true);
         morePage.setVisible(false);
         itemCounter.setVisible(false);
-        cart.setVisible(false);
-        Navigator.setVisible(true);
+        cart.setVisible(true); // Make cart visible before starting the animation
+
+        // Make the Navigator, Cart, and CheckouFooter visible
+        Navigator.setVisible(false);
         Cart.setVisible(true);
         CheckouFooter.setVisible(true);
         OrderFooter.setVisible(false);
         orderheader.setVisible(false);
+
+        AnimationHelper.animateNodesFromRightToLeft(Cart,CheckouFooter);
+
     }
+
 
     //end of navigation
 
@@ -743,7 +752,8 @@ public class AppController {
 
     @FXML
     void toBackMain(ActionEvent event) {
-        Cart.setVisible(false);
+        // Show Cart and then animate it off-screen
+        Cart.setVisible(true); // Make sure Cart is visible before animation starts
         mainPage.setVisible(false);
         orderPage.setVisible(false);
         foodPage.setVisible(true);
@@ -751,10 +761,14 @@ public class AppController {
         itemCounter.setVisible(true);
         cart.setVisible(true);
         Navigator.setVisible(true);
-        CheckouFooter.setVisible(false);
+        CheckouFooter.setVisible(true);
         OrderFooter.setVisible(false);
         orderheader.setVisible(false);
+
+        AnimationHelper.animateNodesFromLeftToRight(Cart,CheckouFooter);
+
     }
+
 
     @FXML
     private void DeleteAllPane(ActionEvent event){
@@ -832,18 +846,16 @@ public class AppController {
         // Update the total price label
         totalPriceLabel.setText(String.format("Total: ₱%.2f", totalPrice));
 
-        // Clear cart items and update cart display
-        cartItems.clear();
-        updateCartDisplay();
-        updateCounters();
-        updateTotalPrice();
-
         // Proceed to the order page
-        toOrder(event);
         FoodItemsSubtotalPaymentDetails.setText("₱"+totalPrice);
+
         // Hide the cart and footer
         Cart.setVisible(false);
         CheckouFooter.setVisible(false);
+        toOrder(event);
+
+        // Call the helper method to animate the nodes
+       AnimationHelper.animateNodesFromRightToLeft(orderPage, orderheader, OrderFooter);
     }
 
 
@@ -864,6 +876,7 @@ public class AppController {
         sideDishpane.setVisible(true);
         Dessertspane.setVisible(true);
         Drinkspane.setVisible(true);
+
     }
 
     @FXML
@@ -873,8 +886,7 @@ public class AppController {
         sideDishpane.setVisible(false);
         Drinkspane.setVisible(false);
         backButton.setVisible(true);
-        foodCategoryLogo.setVisible(false);
-        foodCategorytxt.setVisible(false);
+
     }
 
     @FXML
@@ -884,8 +896,6 @@ public class AppController {
         sideDishpane.setVisible(false);
         Dessertspane.setVisible(false);
         backButton.setVisible(true);
-        foodCategoryLogo.setVisible(false);
-        foodCategorytxt.setVisible(false);
 
     }
 
@@ -896,8 +906,6 @@ public class AppController {
         Drinkspane.setVisible(false);
         Dessertspane.setVisible(false);
         backButton.setVisible(true);
-        foodCategoryLogo.setVisible(false);
-        foodCategorytxt.setVisible(false);
     }
 
     @FXML
@@ -907,8 +915,7 @@ public class AppController {
         Drinkspane.setVisible(false);
         Dessertspane.setVisible(false);
         backButton.setVisible(true);
-        foodCategoryLogo.setVisible(false);
-        foodCategorytxt.setVisible(false);
+
     }
 //end sa food category
 
@@ -1265,6 +1272,35 @@ public class AppController {
     //end sa more page
 
     //start sa orderpage
+
+    @FXML
+    private void GotoHomeOrGotoCart(ActionEvent event) {
+        // Check if OrderTable has data
+        if (OrderTable.getItems().isEmpty()) {
+            toHome(event); // Navigate to Home if table is empty
+        } else {
+            // Ensure all required nodes are visible
+            mainPage.setVisible(false);
+            mainHeader.setVisible(true);
+            foodPage.setVisible(false);
+            morePage.setVisible(false);
+            itemCounter.setVisible(false);
+            Navigator.setVisible(false);
+            Cart.setVisible(true);
+            CheckouFooter.setVisible(true);
+            orderPage.setVisible(true);
+            orderheader.setVisible(true);
+            OrderFooter.setVisible(true);
+
+            // Animate the nodes
+            AnimationHelper.animateNodesFromLeftToRightThatWontPermanentlyHideTheNode(orderPage, orderheader, OrderFooter);
+            AnimationHelper.animateStartFromLeft(CheckouFooter, Cart);
+        }
+    }
+
+
+
+
     @FXML
     void RadioButtonsOrderDetails(ActionEvent event) {
         // Enable all radio buttons
@@ -1444,7 +1480,11 @@ public class AppController {
             System.out.println("An unexpected error occurred: " + e.getMessage());
             showAlert("Error", "An unexpected error occurred: " + e.getMessage(), Alert.AlertType.ERROR);
         }
-
+        cartItems.clear();
+        updateCartDisplay();
+        updateCounters();
+        updateTotalPrice();
+        toHome(event);
 
     }
     private void handleCODPayment(double shippingCost) {
@@ -1455,8 +1495,6 @@ public class AppController {
             showAlert("Thank You!", "Thank you for purchasing, you can pick up your order at our Food Truck.", Alert.AlertType.INFORMATION);
         }
 
-        // Play the sound after COD payment
-        playSoundEffect();
     }
 
     private void handlePayOnlinePayment(double totalPrice) {
@@ -1485,8 +1523,7 @@ public class AppController {
                             "Thank you for purchasing, your order will arrive shortly.";
                     showAlert("Thank You!", message, Alert.AlertType.INFORMATION);
 
-                    // Play the sound after a successful payment
-                    playSoundEffect();
+
 
                     // Close the dialog after successful payment
                     paymentDialog.getDialogPane().getScene().getWindow().hide();
@@ -1498,16 +1535,6 @@ public class AppController {
         });
     }
 
-    // Method to play sound effect
-    private void playSoundEffect() {
-        // Replace with the path to your MP3 file
-        String soundFilePath = "file:C:\\Users\\natha\\Downloads\\FREE SOUND EFFECTS_ La Cucaracha Horn.mp3";
-
-        Media sound = new Media(soundFilePath); // Create a Media object
-        MediaPlayer mediaPlayer = new MediaPlayer(sound); // Create a MediaPlayer
-
-        mediaPlayer.setAutoPlay(true); // Start playing the sound automatically
-    }
 
 
 
