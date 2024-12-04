@@ -72,21 +72,6 @@ public class ReceiptController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    @FXML
-    void toBack(ActionEvent event){
-        PaymentPage.setVisible(true);
-        ReceiptPage.setVisible(false);
-        Receipt.setVisible(false);
-        PaymentMethodtxt.setVisible(true);
-        Print1.setVisible(false);
-        Back.setVisible(false);
-        if(progress > 0.99){
-            progress -= 0.5;
-            Bar.setProgress(progress);
-        }
-        ProgressPoint1.setFill(LIGHTGRAY);
-
-    }
 
     @FXML
     void PrintReceipt(ActionEvent event) {

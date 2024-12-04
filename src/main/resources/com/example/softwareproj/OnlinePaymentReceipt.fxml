@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hmax="0.0" pannable="true" prefHeight="880.0" prefWidth="605.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.ReceiptController">
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hmax="0.0" pannable="true" prefHeight="1020.0" prefWidth="605.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.ReceiptController">
    <content>
       <AnchorPane fx:id="ReceiptMainBody" maxHeight="1040.0" maxWidth="605.0" prefHeight="1040.0" prefWidth="605.0" style="-fx-background-color: white;">
          <children>
@@ -95,11 +95,6 @@
                      </children>
                   </AnchorPane>
                   <Button fx:id="closebtn" layoutX="535.0" mnemonicParsing="false" onAction="#close" prefHeight="79.0" prefWidth="67.0" style="-fx-background-color: Orange; -fx-background-radius: 15;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css" text="X">
-                     <font>
-                        <Font name="System Bold" size="36.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="Back" mnemonicParsing="false" onAction="#toBack" prefHeight="79.0" prefWidth="67.0" style="-fx-background-color: Orange; -fx-background-radius: 15;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css" text="&lt;" visible="false">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
