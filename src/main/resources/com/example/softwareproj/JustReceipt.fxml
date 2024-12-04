@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="900.0" maxWidth="610.0" prefHeight="892.0" prefWidth="605.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.ReceiptController">
+   <children>
+      <AnchorPane fx:id="ReceiptIfnotOnline" maxHeight="820.0" maxWidth="605.0" prefHeight="816.0" prefWidth="605.0" style="-fx-background-color: white;">
+         <children>
+            <TextArea fx:id="ReceiptContent" editable="false" layoutX="40.0" layoutY="282.0" prefHeight="500.0" prefWidth="525.0" styleClass="text-area" stylesheets="@CSS/AppFoodTruck.css" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <font>
+                  <Font name="OCR A Extended" size="14.0" />
+               </font>
+            </TextArea>
+            <ImageView fitHeight="206.0" fitWidth="216.0" layoutX="201.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="198.0">
+               <image>
+                  <Image url="@images/El_pedidos1-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="119.0" layoutY="206.0" prefHeight="76.0" prefWidth="367.0" text="Davao City 8000, Davao del Sur, Philippines&#10;Contact Number: (+63)9156028422&#10;www.elpedidosmexicanos.ohiosigma.ph" textAlignment="CENTER" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="119.0">
+               <font>
+                  <Font name="Courier New Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="closebtn" layoutX="533.0" mnemonicParsing="false" onAction="#close" prefHeight="79.0" prefWidth="67.0" style="-fx-background-color: Orange; -fx-background-radius: 15;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css" text="X">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button alignment="CENTER" layoutX="200.0" layoutY="817.0" mnemonicParsing="false" onAction="#PrintReceipt" prefHeight="35.0" prefWidth="206.0" style="-fx-text-fill: white; -fx-background-radius: 20; -fx-background-color: #EF3A31;" text="Print" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="199.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
