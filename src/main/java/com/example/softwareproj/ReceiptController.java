@@ -24,7 +24,7 @@ public class ReceiptController {
     private AnchorPane PaymentPage;
 
     @FXML
-    private Button Print1,Back;
+    private Button Print1;
 
     @FXML
     private Circle ProgressPoint;
@@ -34,6 +34,9 @@ public class ReceiptController {
 
     @FXML
     private Button closebtn;
+
+    @FXML
+    public Button PayAmountbtn;
 
     @FXML
     private Label Receipt;
@@ -85,7 +88,6 @@ public class ReceiptController {
         Receipt.setVisible(true);
         PaymentMethodtxt.setVisible(false);
         Print1.setVisible(true);
-        Back.setVisible(true);
         if(progress < 0.99){
             progress += 0.5;
             Bar.setProgress(progress);

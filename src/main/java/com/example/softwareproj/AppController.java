@@ -1477,7 +1477,7 @@ public class AppController {
                         userFullName, userContactNumber, deliveryType, "Online Payment",
                         checkoutItems, foodItemsSubtotal, shippingCost, handlingFee, totalPrice
                 );
-
+                receiptController.PayAmountbtn.setText("Pay ₱"+totalPrice);
                 stage.setScene(scene);
                 stage.show();
                 // No success alert for Online Payment
