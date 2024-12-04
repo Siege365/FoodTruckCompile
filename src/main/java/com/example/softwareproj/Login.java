@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import java.io.IOException;
 
+//OrderTable.setItems(clear);
+//        OrderTable.refresh(); for backmain and place order
+
 /**
  *
  * @author Aira

@@ -84,7 +84,6 @@ public class AppController {
     @FXML
     private ImageView AvatarMore;
 
-
     @FXML
     private Button Burrito;
 
@@ -101,7 +100,16 @@ public class AppController {
     private AnchorPane Cart;
 
     @FXML
+    private AnchorPane creditcard;
+
+    @FXML
     private Pane CartHeader;
+
+    @FXML
+    private Button CreditCard;
+
+    @FXML
+    private Button ClearUserCardInfo;
 
     @FXML
     private AnchorPane CheckouFooter;
@@ -235,8 +243,6 @@ public class AppController {
     @FXML
     private Label TotalPaymentDetails;
 
-
-
     @FXML
     private Button TransactionHistory;
 
@@ -244,8 +250,19 @@ public class AppController {
     private Label Userlabel;
 
     @FXML
-    private TextArea OrderDetailsUserAddress;
+    private TextField UserCVC;
 
+    @FXML
+    private DatePicker UserCardExpiryDate;
+
+    @FXML
+    private TextField UserCardName;
+
+    @FXML
+    private TextField UserCardNumber;
+
+    @FXML
+    private TextArea OrderDetailsUserAddress;
 
     @FXML
     private Label Userlabel1;
@@ -260,7 +277,7 @@ public class AppController {
     private ImageView avatarimg;
 
     @FXML
-    private ImageView back;
+    private Button back;
 
     @FXML
     private AnchorPane backButton;
@@ -545,6 +562,7 @@ public class AppController {
         cart.setVisible(true);
         OrderFooter.setVisible(false);
         orderheader.setVisible(false);
+        Navigator.setVisible(true);
         totalPriceLabel.setText("Total: ");
     }
 
@@ -855,6 +873,7 @@ public class AppController {
         toOrder(event);
 
         // Call the helper method to animate the nodes
+        AnimationHelper.animateStartFromRight(Cart,CheckouFooter);
        AnimationHelper.animateNodesFromRightToLeft(orderPage, orderheader, OrderFooter);
     }
 
@@ -1042,16 +1061,15 @@ public class AppController {
         //AvatarMore.
     }
 
-
     @FXML
-    void toAboutUs(ActionEvent event) {
-        AboutUs.setVisible(true);
-        myaccount.setVisible(false);
-        feedback.setVisible(false);
-        transactionhistory.setVisible(false);
-        back.setVisible(true);
-        morepageMain.setVisible(false);
+    void HandleUserCardInformationButton(ActionEvent event) { //sa credit page
+
     }
+    @FXML
+    void ClearUserCardInformation(ActionEvent event) { //sa credit page
+
+    }
+
     @FXML
     void toDeleteAccount(ActionEvent event) {
         // Show confirmation alert to the user
@@ -1145,7 +1163,24 @@ public class AppController {
             }
         }
     }
-
+    @FXML
+    void toAboutUs(ActionEvent event) {
+        AboutUs.setVisible(true);
+        myaccount.setVisible(false);
+        feedback.setVisible(false);
+        transactionhistory.setVisible(false);
+        back.setVisible(true);
+        morepageMain.setVisible(false);
+    }
+    @FXML
+    void toCreditCard(ActionEvent event) {
+        creditcard.setVisible(true);
+        myaccount.setVisible(true);
+        feedback.setVisible(false);
+        back.setVisible(true);
+        AboutUs.setVisible(false);
+        morepageMain.setVisible(false);
+    }
 
     @FXML
     void MyAccount(ActionEvent  event) {
@@ -1164,7 +1199,7 @@ public class AppController {
         back.setVisible(false);
         AboutUs.setVisible(false);
         morepageMain.setVisible(true);
-
+        creditcard.setVisible(false);
     }
 
 
@@ -1373,7 +1408,7 @@ public class AppController {
     }
 
     @FXML
-    private void handleOrderPage(ActionEvent event) {
+    private void handleOrderPage(ActionEvent event) { //Place Order
         try {
             String userFullName = OrderDetailsUserFullname.getText().trim();
             String userContactNumber = OrderDetailsUserContactNumber.getText().trim();

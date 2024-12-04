@@ -87,6 +87,33 @@ public class AnimationHelper {
         // Play all transitions simultaneously
         parallelTransition.play();
     }
+    // Method to animate multiple nodes from left to right (off-screen to on-screen)
+    public static void animateStartFromRight(Node... nodes) {
+        // Create individual TranslateTransitions for each node
+        ParallelTransition parallelTransition = new ParallelTransition();
+
+        for (Node node : nodes) {
+            // Create a TranslateTransition for each node
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(.3), node);
+
+            transition.setFromX(0); // Start from off-screen right
+            transition.setToX(-768);      // End at the on-screen position
+
+            transition.setInterpolator(Interpolator.EASE_OUT); // Apply easing to make the animation smoother
+
+            // Add each transition to the parallel transition
+            parallelTransition.getChildren().add(transition);
+
+            // Ensure the node is visible before starting the transition
+            node.setVisible(true);
+
+            // Optionally set the node to be visible after the transition
+            transition.setOnFinished(e -> node.setVisible(true));  // Ensure the node stays visible after the animation
+        }
+
+        // Play all transitions simultaneously
+        parallelTransition.play();
+    }
     public static void animateNodesFromLeftToRightThatWontPermanentlyHideTheNode(Node... nodes) {
         // Create individual TranslateTransitions for each node
         ParallelTransition parallelTransition = new ParallelTransition();
