@@ -23,9 +23,9 @@ public class TestingRun extends Application {
 
         //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("LoginFood.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("RegisterPage.fxml"));
-       FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("AppFoodTruckCompile.fxml"));
+      FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("AppFoodTruckCompile.fxml"));
         // FXMLLoader = new FXMLLoader(Login.class.getResource("AdminPage.fxml"));
-       // FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("JustReceipt.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("JustReceipt.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("OnlinePaymentReceipt.fxml"));
 
 
@@ -36,7 +36,7 @@ public class TestingRun extends Application {
         primaryStage.getIcons().add(icon);
         // Set stage properties
         primaryStage.setTitle("El Pedidos Mexicanos");
-        primaryStage.setScene(scene);   
+        primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.show();
     }

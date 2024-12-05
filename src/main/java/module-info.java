@@ -11,8 +11,11 @@ module com.example.softwareproj {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
-    requires java.desktop;
     requires javafx.media;
+    requires io;
+    requires javafx.swing;
+    requires kernel;
+    requires layout;
 
     opens com.example.softwareproj to javafx.fxml;
     exports com.example.softwareproj;
