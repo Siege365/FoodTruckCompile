@@ -27,7 +27,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxWidth="768.0" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AppController">
+<BorderPane maxWidth="768.0" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.CustomerSideRelated.AppController">
     <!-- Scrollable content in the center -->
     <center>
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxWidth="768.0" prefHeight="1024.0" prefWidth="768.0" style="-fx-background-color: #EF3A31;" vbarPolicy="NEVER">

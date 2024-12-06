@@ -1,4 +1,4 @@
-package com.example.softwareproj;
+package com.example.softwareproj.DatabaseRelated;
 
 import javax.swing.*;
 import java.sql.Connection;

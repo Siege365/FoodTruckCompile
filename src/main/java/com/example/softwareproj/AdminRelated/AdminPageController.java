@@ -1,5 +1,6 @@
-package com.example.softwareproj;
+package com.example.softwareproj.AdminRelated;
 
+import com.example.softwareproj.DatabaseRelated.DBconnectionFood;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

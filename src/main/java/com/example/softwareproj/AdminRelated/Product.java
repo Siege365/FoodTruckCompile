@@ -1,4 +1,4 @@
-package com.example.softwareproj;
+package com.example.softwareproj.AdminRelated;
 public class Product {
     private String productName;
     private double price;

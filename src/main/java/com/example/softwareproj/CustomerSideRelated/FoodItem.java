@@ -1,4 +1,4 @@
-package com.example.softwareproj;
+package com.example.softwareproj.CustomerSideRelated;
 
 public class FoodItem {
     private String name;

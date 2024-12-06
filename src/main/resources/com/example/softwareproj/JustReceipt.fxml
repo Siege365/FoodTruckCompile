@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="frame" maxHeight="900.0" maxWidth="610.0" onMouseDragged="#frameDrag" onMousePressed="#framePress" prefHeight="892.0" prefWidth="605.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.ReceiptController">
+<AnchorPane fx:id="frame" maxHeight="900.0" maxWidth="610.0" onMouseDragged="#frameDrag" onMousePressed="#framePress" prefHeight="892.0" prefWidth="605.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.CustomerSideRelated.ReceiptController">
    <children>
       <AnchorPane fx:id="ReceiptPage" maxHeight="820.0" maxWidth="605.0" prefHeight="816.0" prefWidth="605.0" style="-fx-background-color: white;">
          <children>

@@ -1,6 +1,7 @@
-package com.example.softwareproj;
+package com.example.softwareproj.CustomerSideRelated;
 
-import javafx.animation.ParallelTransition;
+import com.example.softwareproj.AnimationHelper;
+import com.example.softwareproj.DatabaseRelated.DBconnectionFood;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,9 +36,7 @@ import javafx.collections.ObservableList;
 import javafx.stage.StageStyle;
 
 
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class AppController {
 
