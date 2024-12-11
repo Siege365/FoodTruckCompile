@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ItemPane" prefHeight="275.0" prefWidth="713.0" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.CustomerSideRelated.CartController">
+<AnchorPane fx:id="ItemPane" prefHeight="275.0" prefWidth="713.0" stylesheets="@CSS/AppFoodTruck.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.CartController">
    <children>
       <CheckBox fx:id="ItemCheckbox" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" styleClass="box" stylesheets="@CSS/AppFoodTruck.css">
          <font>

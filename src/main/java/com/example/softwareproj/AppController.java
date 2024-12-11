@@ -1,7 +1,5 @@
-package com.example.softwareproj.CustomerSideRelated;
+package com.example.softwareproj;
 
-import com.example.softwareproj.AnimationHelper;
-import com.example.softwareproj.DatabaseRelated.DBconnectionFood;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -266,12 +265,6 @@ public class AppController {
     private TextArea OrderDetailsUserAddress;
 
     @FXML
-    private Label Userlabel1;
-
-    @FXML
-    private Label Userlabel2;
-
-    @FXML
     private ImageView avatar;
 
     @FXML
@@ -381,6 +374,9 @@ public class AppController {
 
     @FXML
     private AnchorPane transactionhistory;
+
+    @FXML
+    private GridPane dessertsGridpane,maindishGridpane,sidedishGridpane,drinksGridpane;
     @FXML
     private Spinner<Integer> food_spinner, food_spinner2, food_spinner3, food_spinner4,
             food_spinner5, food_spinner6, food_spinner7, food_spinner8,
@@ -403,7 +399,8 @@ public class AppController {
         for (Spinner<Integer> spinner : spinners) {
             spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         }
-
+       //DBconnectionFood.ConnectionDB(); // Establish database connection
+        //DBconnectionFood.updateFoodPage( maindishGridpane,  sidedishGridpane,  drinksGridpane,  dessertsGridpane);
         // Add available items to the spinner map
         availableItems.add(new FoodItem("Taco Al Pastor", 75.0, 1, "com/example/softwareproj/images/TacoPastor.jpg"));
         availableItems.add(new FoodItem("Burrito", 180.0, 1, "com/example/softwareproj/images/Burrito.jpg"));
@@ -540,7 +537,7 @@ public class AppController {
         }
 
     }
-
+//navigator
     @FXML
     void toFood(ActionEvent event) {
         mainPage.setVisible(false);
@@ -989,10 +986,11 @@ public class AppController {
         String fullName = AccFullName.getText();
         String email = AccEmail.getText();
         String password = AccPassword.getText();
+
         String mobileNumber = AccMobileNumber.getText();
         String gender = getSelectedGender();  // Get the selected gender
         String address = AccAddress.getText();
-        Image img = avatarimg.getImage();
+        Image img = avatar.getImage();
 
         // Store the image file path if an image was selected
         String imageFilePath = (img != null && img.getUrl() != null) ? new File(img.getUrl()).getAbsolutePath() : "No Image";
@@ -1509,15 +1507,6 @@ public class AppController {
 
 
 
-
-
-
-
-    private void saveTransaction(String userFullName, String userContactNumber, List<FoodItem> orderedItems, double totalPrice, double shippingCost, double handlingFee) {
-        // Save the order to the transaction history table in the database
-        String query = "INSERT INTO transaction_history (userFullName, userContactNumber, orderedItems, totalPrice, shippingCost, handlingFee) VALUES (?,?,?,?,?,?)";
-        // Execute the query with appropriate parameters
-    }
 
  //sql queries
 

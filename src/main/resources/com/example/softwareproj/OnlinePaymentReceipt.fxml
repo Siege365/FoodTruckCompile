@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="frame" onMouseDragged="#frameDrag" onMousePressed="#framePress" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.CustomerSideRelated.ReceiptController">
+<AnchorPane fx:id="frame" onMouseDragged="#frameDrag" onMousePressed="#framePress" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.ReceiptController">
    <children>
       <AnchorPane fx:id="ReceiptIfOnline" maxHeight="1020.0" maxWidth="605.0" prefHeight="1050.0" prefWidth="605.0" style="-fx-background-color: white;" stylesheets="@CSS/AppFoodTruck.css">
          <children>

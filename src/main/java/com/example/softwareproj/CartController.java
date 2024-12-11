@@ -1,4 +1,4 @@
-package com.example.softwareproj.CustomerSideRelated;
+package com.example.softwareproj;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

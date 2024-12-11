@@ -19,10 +19,4 @@ module com.example.softwareproj {
 
     opens com.example.softwareproj to javafx.fxml;
     exports com.example.softwareproj;
-    exports com.example.softwareproj.AdminRelated;
-    opens com.example.softwareproj.AdminRelated to javafx.fxml;
-    exports com.example.softwareproj.CustomerSideRelated;
-    opens com.example.softwareproj.CustomerSideRelated to javafx.fxml;
-    exports com.example.softwareproj.DatabaseRelated;
-    opens com.example.softwareproj.DatabaseRelated to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.example.softwareproj.CustomerSideRelated;
+package com.example.softwareproj;
 
 public class FoodItem {
     private String name;
@@ -48,5 +48,9 @@ public class FoodItem {
     }
     public double getTotal() {
         return price * quantity;
+    }
+    @Override
+    public String toString() {
+        return name + " - ₱" + price + " x " + quantity;
     }
 }
