@@ -1,4 +1,4 @@
-package com.example.softwareproj;
+package com.example.softwareproj.GettersAndSetters;
 
 public class FoodItem {
     private String name;

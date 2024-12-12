@@ -19,4 +19,6 @@ module com.example.softwareproj {
 
     opens com.example.softwareproj to javafx.fxml;
     exports com.example.softwareproj;
+    exports com.example.softwareproj.GettersAndSetters;
+    opens com.example.softwareproj.GettersAndSetters to javafx.fxml;
 }

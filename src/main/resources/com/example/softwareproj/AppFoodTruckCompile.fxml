@@ -1298,7 +1298,7 @@
                                     <TableColumn prefWidth="97.0" text="Total Amount" />
                                  </columns>
                               </TableView>
-                              <TextArea layoutX="35.0" layoutY="605.0" prefHeight="331.0" prefWidth="696.0" />
+                              <TextArea layoutX="35.0" layoutY="605.0" prefHeight="331.0" prefWidth="696.0" styleClass="text-area" stylesheets="@CSS/AppFoodTruck.css" />
                               <Label layoutX="35.0" layoutY="562.0" prefHeight="36.0" prefWidth="184.0" style="-fx-text-fill: black;" text="Order Details">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
@@ -1426,12 +1426,12 @@
                                     <Font name="System Bold" size="38.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="31.0" layoutY="68.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: BLAck;" text="Type of Feedback" textFill="#464646">
+                              <Label layoutX="31.0" layoutY="68.0" prefHeight="70.0" prefWidth="203.0" style="-fx-text-fill: BLAck;" text="Type of Feedback" textFill="#464646">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="feedbacktxtArea" layoutX="42.0" layoutY="241.0" prefHeight="322.0" prefWidth="691.0" />
+                              <TextArea fx:id="feedbacktxtArea" layoutX="43.0" layoutY="402.0" prefHeight="322.0" prefWidth="691.0" styleClass="text-area" stylesheets="@CSS/AppFoodTruck.css" />
                               <RadioButton fx:id="suggestionradioBtn" layoutX="62.0" layoutY="138.0" mnemonicParsing="false" style="-fx-text-fill: BLAck;" text="Suggestion" textFill="#464646">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
@@ -1442,16 +1442,26 @@
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </RadioButton>
-                              <Label layoutX="42.0" layoutY="171.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: BLAck;" text="Describe your Feedback" textFill="#464646">
+                              <Label layoutX="43.0" layoutY="332.0" prefHeight="70.0" prefWidth="489.0" style="-fx-text-fill: BLAck;" text="Describe your Feedback" textFill="#464646">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="submitFBbtn" layoutX="303.0" layoutY="609.0" mnemonicParsing="false" onAction="#handleSubmitFeedback" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: ef3a31; -fx-text-fill: WHITE;" text="Submit">
+                              <Button fx:id="submitFBbtn" layoutX="304.0" layoutY="770.0" mnemonicParsing="false" onAction="#handleSubmitFeedback" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: ef3a31; -fx-text-fill: WHITE; -fx-background-radius: 20;" text="Submit">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="20.0" />
                                  </font>
                               </Button>
+                              <Label layoutX="302.0" layoutY="196.0" prefHeight="70.0" prefWidth="172.0" style="-fx-text-fill: BLAck;" text="Title Of Concern" textFill="#464646">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="titleOfConcerntf" layoutX="239.0" layoutY="266.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-radius: 20;" styleClass="lineborder" stylesheets="@CSS/AppFoodTruck.css">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
                            </children>
                         </AnchorPane>
                         <Button fx:id="back" layoutY="150.0" mnemonicParsing="false" onAction="#toBack1" prefHeight="68.0" prefWidth="73.0" style="-fx-background-color: transparent;" visible="false">
@@ -1471,12 +1481,12 @@
                                     <ImageView fx:id="AvatarMore" fitHeight="250.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
-                              <Label fx:id="AccUsername1" layoutX="250.0" layoutY="247.0" prefHeight="56.0" prefWidth="280.0" style="-fx-text-fill: black; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="&lt;Username&gt;" textAlignment="CENTER" textFill="#d32121">
+                              <Label fx:id="AccUsername1" alignment="CENTER" layoutX="246.0" layoutY="250.0" prefHeight="56.0" prefWidth="280.0" style="-fx-text-fill: black; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="&lt;Username&gt;" textAlignment="CENTER" textFill="#d32121">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="AccID" layoutX="252.0" layoutY="292.0" prefHeight="56.0" prefWidth="280.0" style="-fx-text-fill: black; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="&lt;UserID&gt;" textAlignment="CENTER" textFill="#d32121">
+                              <Label fx:id="AccID" alignment="CENTER" layoutX="296.0" layoutY="292.0" prefHeight="56.0" prefWidth="180.0" style="-fx-text-fill: black; -fx-alignment: center;" stylesheets="@CSS/MorePage.css" text="&lt;UserID&gt;" textAlignment="CENTER" textFill="#d32121">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>

@@ -1,6 +1,7 @@
 package com.example.softwareproj;
 
 
+import com.example.softwareproj.GettersAndSetters.FoodItem;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;

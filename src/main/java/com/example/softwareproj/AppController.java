@@ -1,9 +1,12 @@
 package com.example.softwareproj;
 
+import com.example.softwareproj.GettersAndSetters.FoodItem;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,12 +15,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -26,15 +27,14 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.StageStyle;
 
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class AppController {
@@ -149,6 +149,9 @@ public class AppController {
 
     @FXML
     private Button Feedback;
+
+    @FXML
+    private TextField titleOfConcerntf;
 
     @FXML
     private Label FoodItemsSubtotalPaymentDetails;
@@ -387,6 +390,7 @@ public class AppController {
 
 
     public void initialize() {
+
         // Initialize all spinners with consistent behavior
         List<Spinner<Integer>> spinners = Arrays.asList(
                 food_spinner, food_spinner2, food_spinner3, food_spinner4, food_spinner5,
@@ -399,8 +403,9 @@ public class AppController {
         for (Spinner<Integer> spinner : spinners) {
             spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         }
-       //DBconnectionFood.ConnectionDB(); // Establish database connection
-        //DBconnectionFood.updateFoodPage( maindishGridpane,  sidedishGridpane,  drinksGridpane,  dessertsGridpane);
+
+        updateFoodPage(maindishGridpane, sidedishGridpane, drinksGridpane, dessertsGridpane);
+
         // Add available items to the spinner map
         availableItems.add(new FoodItem("Taco Al Pastor", 75.0, 1, "com/example/softwareproj/images/TacoPastor.jpg"));
         availableItems.add(new FoodItem("Burrito", 180.0, 1, "com/example/softwareproj/images/Burrito.jpg"));
@@ -948,36 +953,38 @@ public class AppController {
             feedbackType = "Suggestion";
         }
 
+        // Validate that feedback type is selected
+        if (feedbackType.isEmpty()) {
+            showAlert("Validation Error", "Please select a feedback type.", Alert.AlertType.WARNING);
+            return;
+        }
+
         // Retrieve the feedback description from the TextArea
         String feedbackDescription = feedbacktxtArea.getText();
 
         // Validate that feedback description is not empty
-        if (feedbackDescription.isEmpty() || feedbackType.isEmpty()) {
-            showAlert("Validation Error", "Please select a feedback type and provide a description.", Alert.AlertType.WARNING);
+        if (feedbackDescription.isEmpty()) {
+            showAlert("Validation Error", "Please provide a feedback description.", Alert.AlertType.WARNING);
             return;
         }
 
-        // SQL query to insert feedback into the database
-        String query = "INSERT INTO feedback (feedback_type, feedback_description) VALUES (?, ?)";
+        // Retrieve the username and account ID from the labels (make sure they are not null)
+        String username = AccUsername1.getText();
+        String userId = AccID.getText();
+        String title = titleOfConcerntf.getText();
 
-        try (Connection connection = DBconnectionFood.ConnectionDB();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-
-            // Set the parameters for the query
-            statement.setString(1, feedbackType);
-            statement.setString(2, feedbackDescription);
-
-            // Execute the query
-            int rowsAffected = statement.executeUpdate();
-            if (rowsAffected > 0) {
-                showAlert("Success", "Feedback submitted successfully.", Alert.AlertType.INFORMATION);
-            } else {
-                showAlert("Error", "Failed to submit feedback.", Alert.AlertType.ERROR);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Error", "An error occurred while submitting feedback.", Alert.AlertType.ERROR);
+        if (username == null || username.isEmpty() || userId == null || userId.isEmpty()|| title.isEmpty()) {
+            showAlert("Validation Error", "Username or Account ID is missing.", Alert.AlertType.WARNING);
+            return;
         }
+
+        // Call the submitFeedback method
+        DBconnectionFood.submitFeedback(userId, username, feedbackType, title,feedbackDescription);
+
+        feedbacktxtArea.clear();
+        titleOfConcerntf.clear();
+        questionradionBtn.setSelected(false);
+        suggestionradioBtn.setSelected(false);
     }
 
     @FXML
@@ -986,7 +993,7 @@ public class AppController {
         String fullName = AccFullName.getText();
         String email = AccEmail.getText();
         String password = AccPassword.getText();
-
+        String retypePassword = AccRetypePassword.getText();
         String mobileNumber = AccMobileNumber.getText();
         String gender = getSelectedGender();  // Get the selected gender
         String address = AccAddress.getText();
@@ -994,8 +1001,11 @@ public class AppController {
 
         // Store the image file path if an image was selected
         String imageFilePath = (img != null && img.getUrl() != null) ? new File(img.getUrl()).getAbsolutePath() : "No Image";
-
-        saveOrUpdateUserInfo(username, fullName, email, password, mobileNumber, gender, address, imageFilePath);
+        if (!password.equals(retypePassword)){
+            showAlert("Validation Error", "Passwords do not match.", Alert.AlertType.WARNING);
+            return;
+        }
+        saveOrUpdateUserInfo(username, fullName, email, password, mobileNumber, gender, address, imageFilePath,"","","","");
     }
 
     // Get the selected gender from the RadioButtons
@@ -1010,16 +1020,15 @@ public class AppController {
         return null;
     }
 
-    // Updated saveOrUpdateUserInfo to accept imageFilePath as String
-    private void saveOrUpdateUserInfo(String username, String fullName, String email, String password, String mobileNumber, String gender, String address, String imageFilePath) {
+    private void saveOrUpdateUserInfo(String username, String fullName, String email, String password, String mobileNumber, String gender, String address, String imageFilePath, String accountCardName, String accountCardNumber, String accountCardExpiryDate, String accountCardCVC) {
         // Validate that required fields are not empty
         if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || mobileNumber.isEmpty() || gender == null || address.isEmpty()) {
             showAlert("Validation Error", "Please fill in all the required fields.", Alert.AlertType.WARNING);
             return; // Stop execution if fields are empty
         }
 
-        String query = "INSERT INTO accountdetails (Username, Full_Name, Email, Password, Mobile_Number, Gender, Account_Address, Account_Avatar) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) " +
+        String query = "INSERT INTO accountdetails (Username, Full_Name, Email, Password, Mobile_Number, Gender, Account_Address, Account_Avatar, Account_Cardname, Account_Cardnumber, Account_CardExpiryDate, Account_CardCVC) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
                 "ON DUPLICATE KEY UPDATE " +
                 "Full_Name = VALUES(Full_Name), " +
                 "Email = VALUES(Email), " +
@@ -1027,8 +1036,15 @@ public class AppController {
                 "Mobile_Number = VALUES(Mobile_Number), " +
                 "Gender = VALUES(Gender), " +
                 "Account_Address = VALUES(Account_Address), " +
-                "Account_Avatar = VALUES(Account_Avatar);";
+                "Account_Avatar = VALUES(Account_Avatar), " +
+                "Account_Cardname = VALUES(Account_Cardname), " +
+                "Account_Cardnumber = VALUES(Account_Cardnumber), " +
+                "Account_CardExpiryDate = VALUES(Account_CardExpiryDate), " +
+                "Account_CardCVC = VALUES(Account_CardCVC);";
 
+
+        LocalDate cardDate = UserCardExpiryDate.getValue();
+        String cardExpiryDate = (cardDate != null) ? cardDate.toString() : null;
         try (Connection connection = DBconnectionFood.ConnectionDB();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -1040,7 +1056,12 @@ public class AppController {
             statement.setString(5, mobileNumber);
             statement.setString(6, gender);
             statement.setString(7, address);
-            statement.setString(8, imageFilePath); // Save the image file path as String
+            statement.setString(8, imageFilePath);
+            statement.setString(9, accountCardName);
+            statement.setString(10, accountCardNumber);
+            statement.setString(11, cardExpiryDate);
+            statement.setString(12, accountCardCVC);
+
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -1057,16 +1078,63 @@ public class AppController {
         }
         OrderDetailsUserContactNumber.setText(mobileNumber);
         OrderDetailsUserAddress.setText(address);
-        //AvatarMore.
+        AvatarMore.setImage(avatar.getImage());
     }
 
     @FXML
-    void HandleUserCardInformationButton(ActionEvent event) { //sa credit page
+    void HandleUserCardInformationButton(ActionEvent event) { // For credit page
+        String cardName = UserCardName.getText();
+        String cardNumber = UserCardNumber.getText();
+        LocalDate cardDate = UserCardExpiryDate.getValue(); // Get the selected date from the date picker
+        String cardCVC = UserCVC.getText();
 
+        // Validate inputs
+        if (cardName.isEmpty() || cardNumber.isEmpty() || cardDate == null || cardCVC.isEmpty()) {
+            showAlert("Validation Error", "Please fill in all the required fields.", Alert.AlertType.WARNING);
+            return; // Stop execution if fields are empty
+        }
+
+        String query = "UPDATE accountdetails SET " +
+                "Account_Cardname = ?, " +
+                "Account_Cardnumber = ?, " +
+                "Account_CardExpiryDate = ?, " +
+                "Account_CardCVC = ? " +
+                "WHERE Account_ID = ?";
+
+        try (Connection connection = DBconnectionFood.ConnectionDB();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            // Set parameters for the query
+            statement.setString(1, cardName);
+            statement.setString(2, cardNumber);
+            statement.setString(3, cardDate.toString()); // Convert LocalDate to String
+            statement.setString(4, cardCVC);
+
+            // Provide the Account_ID value (ensure you retrieve it from your application)
+            int accountId = Integer.parseInt(AccID.getText()); // Assuming AccID is a TextField or similar
+            statement.setInt(5, accountId);
+
+            // Execute the query
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                showAlert("Success", "Card details updated successfully.", Alert.AlertType.INFORMATION);
+            } else {
+                showAlert("Error", "Failed to update card details.", Alert.AlertType.ERROR);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Error", "An error occurred while updating the card details.", Alert.AlertType.ERROR);
+        } catch (NumberFormatException e) {
+            showAlert("Validation Error", "Invalid Account ID.", Alert.AlertType.WARNING);
+        }
     }
+
     @FXML
     void ClearUserCardInformation(ActionEvent event) { //sa credit page
-
+        UserCardName.clear();
+        UserCardNumber.clear();
+        UserCVC.clear();
+        UserCardExpiryDate.setValue(null);
     }
 
     @FXML
@@ -1509,5 +1577,164 @@ public class AppController {
 
 
  //sql queries
+     public void updateFoodPage(GridPane maindishGridpane, GridPane sidedishGridpane, GridPane drinksGridpane, GridPane dessertsGridpane) {
+         // Clear previous items
+         maindishGridpane.getChildren().clear();
+         sidedishGridpane.getChildren().clear();
+         drinksGridpane.getChildren().clear();
+         dessertsGridpane.getChildren().clear();
 
-}
+         // Styling and spacing for GridPane
+         setupGridPane(maindishGridpane);
+         setupGridPane(sidedishGridpane);
+         setupGridPane(drinksGridpane);
+         setupGridPane(dessertsGridpane);
+
+         String query = "SELECT ProductName, Category, Price, ProductImg FROM products"; // Adjust to match your database
+         int spinnerIdCounter = 0; // Starting ID for spinners
+         final int COLUMNS = 2; // Number of columns in the grid
+
+         try (Connection connection = DBconnectionFood.ConnectionDB();
+              PreparedStatement statement = connection.prepareStatement(query);
+              ResultSet rs = statement.executeQuery()) {
+
+             int mainIndex = 0, sideIndex = 0, drinkIndex = 0, dessertIndex = 0; // Track positions in each category
+
+             while (rs.next()) {
+                 String foodName = rs.getString("ProductName");
+                 String category = rs.getString("Category");
+                 int price = rs.getInt("Price");
+                 String imagePath = rs.getString("ProductImg");
+
+                 // Create a food pane and bind it with the cart
+                 Pane foodPane = createFoodPane(foodName, price, spinnerIdCounter, imagePath);
+
+                 // Add to the appropriate GridPane
+                 switch (category) {
+                     case "Main Dish" -> addToGridPane(maindishGridpane, foodPane, mainIndex++, COLUMNS);
+                     case "Side Dish" -> addToGridPane(sidedishGridpane, foodPane, sideIndex++, COLUMNS);
+                     case "Drinks" -> addToGridPane(drinksGridpane, foodPane, drinkIndex++, COLUMNS);
+                     case "Desserts" -> addToGridPane(dessertsGridpane, foodPane, dessertIndex++, COLUMNS);
+                     default -> System.out.println("Unknown category: " + category);
+                 }
+
+                 spinnerIdCounter++; // Increment spinner ID counter
+             }
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
+
+        private void setupGridPane(GridPane gridPane) {
+            gridPane.setHgap(10); // Horizontal gap between items
+            gridPane.setVgap(10); // Vertical gap between items
+            gridPane.setPadding(new Insets(10)); // Padding around the grid
+
+            // Column constraints
+            ColumnConstraints column1 = new ColumnConstraints();
+            column1.setPercentWidth(50); // Set first column width to 50%
+            ColumnConstraints column2 = new ColumnConstraints();
+            column2.setPercentWidth(50); // Set second column width to 50%
+            gridPane.getColumnConstraints().addAll(column1, column2);
+        }
+
+        private static void addToGridPane(GridPane gridPane, Pane pane, int index, int columns) {
+            int row = index / columns; // Calculate row based on index
+            int col = index % columns; // Calculate column based on index
+            gridPane.add(pane, col, row); // Add the pane at the specified position
+        }
+
+        private Pane createFoodPane(String foodName, int price, int spinnerIdCounter, String imagePath) {
+            Pane foodPane = new Pane();
+            foodPane.setPrefSize(355, 385);
+            foodPane.setStyle("-fx-background-color: white; -fx-background-radius: 30;");
+
+            // Declare image variable for food image
+            Image foodImageObject = null;
+
+            // Load the image from the resources folder based on the relative path stored in the database
+            try {
+                if (imagePath != null && !imagePath.isEmpty()) {
+                    URL imageUrl = getClass().getResource("/" + imagePath); // Load from resources folder
+                    if (imageUrl != null) {
+                        foodImageObject = new Image(imageUrl.toExternalForm()); // Assign the image to the variable
+                    } else {
+                        System.err.println("Image not found: " + imagePath);
+                    }
+                } else {
+                    System.err.println("Invalid image path: " + imagePath);
+                }
+            } catch (Exception e) {
+                System.err.println("Error loading image: " + e.getMessage());
+            }
+
+            // Set the image to ImageView if it's not null
+            if (foodImageObject != null) {
+                ImageView foodImage = new ImageView(foodImageObject);
+                foodImage.setFitHeight(226);
+                foodImage.setFitWidth(346);
+                foodImage.setLayoutX(8);
+                foodImage.setLayoutY(11);
+                foodImage.setPreserveRatio(true);
+                foodPane.getChildren().add(foodImage);
+            }
+
+            Label nameLabel = new Label(foodName);
+            nameLabel.setLayoutX(68);
+            nameLabel.setLayoutY(227);
+            nameLabel.setPrefSize(300, 53);
+            nameLabel.setStyle("-fx-text-fill: black;");
+            nameLabel.setFont(new javafx.scene.text.Font(36));
+            nameLabel.setAlignment(Pos.CENTER_LEFT);
+            nameLabel.setTextAlignment(TextAlignment.RIGHT);
+
+            Label priceLabel = new Label("₱" + price);
+            priceLabel.setLayoutX(26);
+            priceLabel.setLayoutY(319);
+            priceLabel.setPrefSize(140, 58);
+            priceLabel.setStyle("-fx-text-fill: #EF3A31;");
+            priceLabel.setFont(new javafx.scene.text.Font(36));
+
+            Spinner<Integer> quantitySpinner = new Spinner<>();
+            quantitySpinner.setId("food_spinner" + spinnerIdCounter);
+            quantitySpinner.setLayoutX(125);
+            quantitySpinner.setLayoutY(334);
+            quantitySpinner.setPrefSize(115, 43);
+            quantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
+
+            // Add to the spinner map
+            spinnerMap.put(foodName, quantitySpinner);
+
+            Button addToCartButton = new Button();
+            addToCartButton.setLayoutX(239);
+            addToCartButton.setLayoutY(326);
+            addToCartButton.setPrefSize(81, 48);
+            addToCartButton.setStyle("-fx-background-color: transparent;");
+
+            ImageView buttonImageView = null;
+            try {
+                URL buttonImageUrl = DBconnectionFood.class.getResource("/com/example/softwareproj/images/AddToCartbtnImg.png");
+                if (buttonImageUrl != null) {
+                    buttonImageView = new ImageView(new Image(buttonImageUrl.toExternalForm()));
+                    buttonImageView.setFitHeight(54);
+                    buttonImageView.setFitWidth(87);
+                    addToCartButton.setGraphic(buttonImageView);
+                } else {
+                    System.err.println("Button image not found.");
+                }
+            } catch (Exception e) {
+                System.err.println("Error loading button image: " + e.getMessage());
+            }
+
+            // Add item to cart when button is clicked
+            addToCartButton.setOnAction(e -> {
+                FoodItem selectedItem = new FoodItem(foodName, price, quantitySpinner.getValue(), imagePath);
+                addItemToCart(selectedItem);
+            });
+
+            foodPane.getChildren().addAll(nameLabel, priceLabel, quantitySpinner, addToCartButton);
+            return foodPane;
+        }
+
+
+    }

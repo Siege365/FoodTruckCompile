@@ -1,5 +1,7 @@
 package com.example.softwareproj;
 
+import com.example.softwareproj.GettersAndSetters.FeedBack;
+import com.example.softwareproj.GettersAndSetters.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -65,7 +67,25 @@ public class AdminPageController implements Initializable {
     private AnchorPane feedback_form;
 
     @FXML
-    private TableView<?> feedback_tableView;
+    private TableView<FeedBack> feedback_tableView;
+
+    @FXML
+    private TableColumn<FeedBack, String> feedback_Description;
+
+    @FXML
+    private TableColumn<FeedBack, Integer> feedback_cusID;
+
+    @FXML
+    private TableColumn<FeedBack, String> feedback_cusName;
+
+    @FXML
+    private TableColumn<FeedBack, String> feedback_titleofConcern;
+
+    @FXML
+    private TableColumn<FeedBack, String> feedback_typeOFfeedback;
+
+    @FXML
+    private TextArea feedbackContent;
 
     @FXML
     private Button inventory_addBtn;
@@ -131,7 +151,7 @@ public class AdminPageController implements Initializable {
     private Label username;
     private File selectedImageFile; // Store the selected image file path
 
-    private static void showAlert(String title, String message, Alert.AlertType alertType) {
+    private  void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setContentText(message);
@@ -142,7 +162,8 @@ public class AdminPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBconnectionFood.ConnectionDB(); // Ensure DB connection is established
         loadDashboardData();
-        loadInventoryData(); // Load initial data into the TableView
+        loadInventoryData();
+        loadFeedbackData();
         ProductStockSpnr.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
         ProductCategoryCB.setItems(FXCollections.observableArrayList("Main Dish", "Side Dish", "Drinks", "Desserts"));
 
@@ -153,6 +174,13 @@ public class AdminPageController implements Initializable {
         inventory_category.setCellValueFactory(new PropertyValueFactory<>("category"));
         inventory_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         inventory_productID.setCellValueFactory(new PropertyValueFactory<>("productId"));
+
+        feedback_cusID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        feedback_cusName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        feedback_typeOFfeedback.setCellValueFactory(new PropertyValueFactory<>("typeOfFeedback"));
+        feedback_titleofConcern.setCellValueFactory(new PropertyValueFactory<>("titleOfConcern"));
+        feedback_Description.setCellValueFactory(new PropertyValueFactory<>("description"));
+
 
     }
 
@@ -298,13 +326,12 @@ public class AdminPageController implements Initializable {
                         // Debugging: Print the image path to the console
                         System.out.println("Image path: " + imagePath);
 
-                        // Create File object based on the image path
-                        File imageFile = new File(imagePath);
+                        // Use getClass().getResource() to load the image from the classpath
+                        URL imageUrl = getClass().getResource("/" + imagePath); // Ensure the path starts with a slash
 
-                        // Check if the file exists, then set the image
-                        if (imageFile.exists()) {
-                            selectedImageFile = imageFile; // Store the selected image file
-                            Image image = new Image(imageFile.toURI().toString());
+                        // Check if the image is found
+                        if (imageUrl != null) {
+                            Image image = new Image(imageUrl.toString());
                             inventory_imageView.setImage(image);
                         } else {
                             showAlert("Image Error", "Image not found: " + imagePath, Alert.AlertType.WARNING);
@@ -376,7 +403,9 @@ public class AdminPageController implements Initializable {
         String prodPrice = ProductPricetf.getText();
 
         // If no image selected, use the default "No Image" value
-        String imageFilePath = (selectedImageFile != null) ? selectedImageFile.getAbsolutePath() : "No Image";
+        String imageFilePath = (selectedImageFile != null)
+                ? getRelativePath(selectedImageFile) // Convert to relative path
+                : "No Image";
 
         saveOrUpdateProduct(prodId, prodName, prodCategory, prodStock, prodPrice, imageFilePath);
         resetProductFields();
@@ -388,7 +417,6 @@ public class AdminPageController implements Initializable {
         return currentProductId++;
     }
 
-
     @FXML
     void importProductImg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -397,19 +425,29 @@ public class AdminPageController implements Initializable {
 
         // If an image is selected, display it in the ImageView
         if (selectedImageFile != null) {
-            Image image = new Image(selectedImageFile.toURI().toString());
-            inventory_imageView.setImage(image);
+            String imagePath = getRelativePath(selectedImageFile);
 
-            double size = 120;  // Use a square size for the avatar
-            inventory_imageView.setFitWidth(size);
-            inventory_imageView.setFitHeight(size);
+            // Use getClass().getResource() to load the image from the resources folder
+            URL imageUrl = getClass().getResource("/" + imagePath); // Ensure the path starts with a slash
 
-            // Optional: Add a border to the circular image
-            inventory_imageView.setStyle(
-                    "-fx-border-color: black;" +
-                            "-fx-border-width: 2;" +
-                            "-fx-padding: 0 0 0 5;"
-            );
+            // Check if the image is found
+            if (imageUrl != null) {
+                Image image = new Image(imageUrl.toString());
+                inventory_imageView.setImage(image);
+
+                double size = 120;  // Use a square size for the avatar
+                inventory_imageView.setFitWidth(size);
+                inventory_imageView.setFitHeight(size);
+
+                // Optional: Add a border to the circular image
+                inventory_imageView.setStyle(
+                        "-fx-border-color: black;" +
+                                "-fx-border-width: 2;" +
+                                "-fx-padding: 0 0 0 5;"
+                );
+            } else {
+                showAlert("Error", "Image not found in resources.", Alert.AlertType.ERROR);
+            }
         } else {
             // Create and display an alert if no image is selected
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -419,6 +457,64 @@ public class AdminPageController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    private String getRelativePath(File file) {
+        // Assuming the images are stored in "src/main/resources/images/"
+        // This method returns the path relative to the resources folder
+        String baseDir = new File("src/main/resources").getAbsolutePath();
+        String filePath = file.getAbsolutePath();
+
+        if (filePath.startsWith(baseDir)) {
+            String relativePath = filePath.substring(baseDir.length() + 1); // +1 to remove the slash after "resources"
+            relativePath = relativePath.replace("\\", "/"); // Ensure forward slashes
+            return relativePath;
+        } else {
+            return "No Image";
+        }
+    }
+//end of inventory
+
+    //start sa feedback page
+    @FXML
+    void populateFeedback(MouseEvent event) {
+        if (event.getClickCount() == 2) { // Check for double-click
+            FeedBack selectedFeedback = feedback_tableView.getSelectionModel().getSelectedItem();
+
+            if (selectedFeedback != null) {
+                feedbackContent.setText(selectedFeedback.getFeedbackDescription());
+
+
+            }
+        }
+    }
+
+    public void loadFeedbackData() {
+        ObservableList<FeedBack> feedBacks = FXCollections.observableArrayList();
+        String query = "SELECT * FROM feedback";
+
+        try (Connection connection = DBconnectionFood.ConnectionDB();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int cusID = resultSet.getInt("Account_ID");
+                String username = resultSet.getString("Username");
+                String typeOfFeedback = resultSet.getString("TypeOfFeedback");
+                String typeOfConcern = resultSet.getString("TitleOfConcern");
+                String feedbackContent = resultSet.getString("FeedbackContent");
+
+                // Create new FeedBack object and add it to the list
+                feedBacks.add(new FeedBack(cusID, username, typeOfFeedback, typeOfConcern, feedbackContent));
+            }
+
+            feedback_tableView.setItems(feedBacks); // Update TableView with the new data
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Database Error", "An error occurred while fetching feedback data.", Alert.AlertType.ERROR);
+        }
+    }
+
+    //end of feedback page
 
     //sql queries
     public void saveOrUpdateProduct(int prodId, String prodName, String prodCategory, int prodStock, String prodPrice, String imageFilePath) {

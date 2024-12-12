@@ -1,4 +1,4 @@
-package com.example.softwareproj;
+package com.example.softwareproj.GettersAndSetters;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
