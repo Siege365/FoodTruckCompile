@@ -31,7 +31,6 @@
     -fx-background-color: transparent;
 }
 .table-view{
-    -fx-background-color: transparent;
     -fx-padding: 0;
     -fx-border-color: linear-gradient(to bottom right, #F8DC93, #FF5733);
     -fx-border-radius: 5px;

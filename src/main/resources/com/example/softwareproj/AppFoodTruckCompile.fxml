@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -71,7 +72,7 @@
                                       </Label>
                                   </children>
                               </Pane>
-                              <TableView fx:id="mainOrderStatus" layoutX="56.0" layoutY="460.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css">
+                              <TableView fx:id="mainOrderStatus" layoutX="56.0" layoutY="460.0" prefHeight="200.0" prefWidth="652.0" style="-fx-background-radius: 5;" styleClass="inner-shadow">
                                   <columns>
                                       <TableColumn prefWidth="75.0" text="Order ID" />
                                       <TableColumn prefWidth="75.0" text="C2" />
@@ -83,6 +84,10 @@
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
+                           <stylesheets>
+                              <URL value="@CSS/AppFoodTruck.css" />
+                              <URL value="@CSS/AdminPageCSS.css" />
+                           </stylesheets>
                               </TableView>
                               <Pane fx:id="mainBestSeller" layoutX="56.0" layoutY="710.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css" />
                               <Pane fx:id="mainAds" layoutX="56.0" layoutY="1070.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css" />
@@ -121,7 +126,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <TableView fx:id="OrderTable" layoutX="56.0" layoutY="360.0" prefHeight="319.0" prefWidth="662.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
+                        <TableView fx:id="OrderTable" layoutX="56.0" layoutY="360.0" prefHeight="319.0" prefWidth="662.0" style="-fx-background-radius: 5;" styleClass="drop-shadow">
                            <columns>
                               <TableColumn fx:id="Order_Product" prefWidth="250.0" text="PRODUCT NAME" />
                               <TableColumn fx:id="Order_Price" prefWidth="100.0" text="PRICE ₱" />
@@ -131,6 +136,10 @@
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
+                           <stylesheets>
+                              <URL value="@CSS/AppFoodTruck.css" />
+                              <URL value="@CSS/AdminPageCSS.css" />
+                           </stylesheets>
                         </TableView>
                         <Pane layoutX="62.0" layoutY="710.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css">
                            <children>
@@ -1288,7 +1297,7 @@
                                     <Font name="System Bold" size="42.0" />
                                  </font>
                               </Label>
-                              <TableView layoutX="35.0" layoutY="110.0" prefHeight="378.0" prefWidth="696.0">
+                              <TableView layoutX="35.0" layoutY="110.0" prefHeight="378.0" prefWidth="696.0" style="-fx-background-radius: 5;" stylesheets="@CSS/AdminPageCSS.css">
                                  <columns>
                                     <TableColumn prefWidth="75.0" text="Order ID" />
                                     <TableColumn prefWidth="75.0" text="Column X" />
@@ -1297,6 +1306,9 @@
                                     <TableColumn prefWidth="75.0" text="Quantity" />
                                     <TableColumn prefWidth="97.0" text="Total Amount" />
                                  </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                               <TextArea layoutX="35.0" layoutY="605.0" prefHeight="331.0" prefWidth="696.0" styleClass="text-area" stylesheets="@CSS/AppFoodTruck.css" />
                               <Label layoutX="35.0" layoutY="562.0" prefHeight="36.0" prefWidth="184.0" style="-fx-text-fill: black;" text="Order Details">
