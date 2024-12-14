@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AdminPageController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.AdminPageController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -53,7 +52,7 @@
                               <Button fx:id="feedback_btn" layoutX="6.0" layoutY="396.0" mnemonicParsing="false" onAction="#toFeedback" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@CSS/AdminPageCSS.css" text="FEEDBACK" />
                               <Button fx:id="logout_btn" layoutX="6.0" layoutY="552.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="38.0" style="-fx-background-color: transparent;" styleClass="logout" stylesheets="@CSS/AdminPageCSS.css" />
                               <Button fx:id="dashboard_btn" layoutX="6.0" layoutY="233.0" mnemonicParsing="false" onAction="#toDashboard" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@CSS/AdminPageCSS.css" text="DASHBOARD" />
-                              <Button layoutX="14.0" layoutY="539.0" mnemonicParsing="false" onAction="#toSignout" style="-fx-background-color: transparent;" text="Signout">
+                              <Button layoutX="-4.0" layoutY="751.0" mnemonicParsing="false" onAction="#toSignout" style="-fx-background-color: transparent;" text="Signout">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -73,16 +72,16 @@
                <center>
                   <AnchorPane fx:id="dashboard" prefHeight="546.0" prefWidth="810.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="9.399999618530273" layoutY="8.59999942779541" visible="false">
+                        <AnchorPane fx:id="dashboard_form" layoutX="9.0" layoutY="9.0" prefHeight="581.0" prefWidth="1006.0" visible="false">
                            <children>
-                              <AnchorPane layoutX="3.0" layoutY="13.0" prefHeight="553.0" prefWidth="851.0" stylesheets="@CSS/AdminPageCSS.css">
+                              <AnchorPane layoutX="13.0" layoutY="94.0" prefHeight="554.0" prefWidth="979.0" stylesheets="@CSS/AdminPageCSS.css">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Pane layoutX="437.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="517.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -105,7 +104,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                     </Pane>
-                                    <Pane layoutX="437.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="517.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -128,7 +127,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                     </Pane>
-                                    <Pane layoutX="14.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="58.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -151,7 +150,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                     </Pane>
-                                    <Pane layoutX="14.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="58.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -180,14 +179,14 @@
                         </AnchorPane>
                         <AnchorPane fx:id="inventory_form" layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="877.6" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="278.0" prefWidth="850.0" stylesheets="@CSS/AdminPageCSS.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                              <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="483.0" prefWidth="998.0" stylesheets="@CSS/AdminPageCSS.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="inventory_tableView" layoutX="17.0" layoutY="12.0" onMouseClicked="#populateProductInfo" prefHeight="254.0" prefWidth="814.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <TableView fx:id="inventory_tableView" layoutX="10.0" layoutY="12.0" onMouseClicked="#populateProductInfo" prefHeight="457.0" prefWidth="979.0" stylesheets="@CSS/AdminPageCSS.css">
                                       <columns>
                                           <TableColumn fx:id="inventory_productID" editable="false" prefWidth="75.0" text="Product ID" />
                                         <TableColumn fx:id="inventory_productName" editable="false" prefWidth="167.99998474121094" text="Product Name" />
@@ -210,31 +209,31 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="23.0" layoutY="26.0" text="Product Name:">
+                                    <Label layoutX="100.0" layoutY="26.0" text="Product Name:">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="ProductNametf" layoutX="126.0" layoutY="24.0" prefHeight="26.0" prefWidth="168.0" />
-                                    <Label layoutX="56.0" layoutY="71.0" text="Category:">
+                                    <TextField fx:id="ProductNametf" layoutX="203.0" layoutY="24.0" prefHeight="26.0" prefWidth="168.0" />
+                                    <Label layoutX="133.0" layoutY="71.0" text="Category:">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="ProductCategoryCB" layoutX="126.0" layoutY="69.0" prefWidth="168.0" promptText="Choose Category" visibleRowCount="5" />
-                                    <Label layoutX="406.0" layoutY="28.0" text="Stock:">
+                                    <ComboBox fx:id="ProductCategoryCB" layoutX="203.0" layoutY="69.0" prefWidth="168.0" promptText="Choose Category" visibleRowCount="5" />
+                                    <Label layoutX="522.0" layoutY="28.0" text="Stock:">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="ProductStockSpnr" layoutX="454.0" layoutY="25.0" />
-                                    <Label layoutX="406.0" layoutY="71.0" text="Price:">
+                                    <Spinner fx:id="ProductStockSpnr" layoutX="570.0" layoutY="25.0" />
+                                    <Label layoutX="522.0" layoutY="71.0" text="Price:">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="ProductPricetf" layoutX="454.0" layoutY="69.0" promptText="₱ 0.0" />
-                                    <AnchorPane layoutX="714.0" layoutY="20.0" prefHeight="120.0" prefWidth="120.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <TextField fx:id="ProductPricetf" layoutX="570.0" layoutY="69.0" promptText="₱ 0.0" />
+                                    <AnchorPane layoutX="830.0" layoutY="20.0" prefHeight="120.0" prefWidth="120.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <styleClass>
                                           <String fx:value="white-bg" />
                                           <String fx:value="shadow" />
@@ -243,12 +242,12 @@
                                           <ImageView fx:id="inventory_imageView" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" />
                                        </children>
                                     </AnchorPane>
-                                    <Button fx:id="inventory_importBtn" layoutX="723.0" layoutY="148.0" mnemonicParsing="false" onAction="#importProductImg" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 15;" styleClass="btn" stylesheets="@CSS/AdminPageCSS.css" text="IMPORT">
+                                    <Button fx:id="inventory_importBtn" layoutX="839.0" layoutY="148.0" mnemonicParsing="false" onAction="#importProductImg" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 15;" styleClass="btn" stylesheets="@CSS/AdminPageCSS.css" text="IMPORT">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Button>
-                                    <HBox layoutX="95.0" layoutY="197.0" spacing="50.0">
+                                    <HBox layoutX="148.0" layoutY="197.0" spacing="50.0">
                                        <children>
                                           <Button fx:id="inventory_addBtn" mnemonicParsing="false" onAction="#saveProduct" prefHeight="41.0" prefWidth="112.0" style="-fx-background-radius: 15;" styleClass="btn" stylesheets="@CSS/AdminPageCSS.css" text="Add">
                                              <font>
@@ -274,12 +273,11 @@
                                     </HBox>
                                  </children>
                               </AnchorPane>
-                              <Separator layoutX="14.0" layoutY="299.0" prefHeight="3.0" prefWidth="850.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="customer_form" layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="877.6" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="customer_form" layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="1006.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="566.0" prefWidth="849.0" stylesheets="@CSS/AdminPageCSS.css">
+                              <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="772.0" prefWidth="1003.0" stylesheets="@CSS/AdminPageCSS.css">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="white-bg" />
@@ -291,9 +289,11 @@
                                           <Font name="Impact" size="24.0" />
                                        </font>
                                     </Label>
-                                    <TableView fx:id="customer_tableView" layoutX="14.0" layoutY="72.0" prefHeight="367.0" prefWidth="822.0">
+                                    <TableView fx:id="customer_tableView" layoutX="6.0" layoutY="60.0" prefHeight="395.0" prefWidth="992.0">
                                       <columns>
+                                          <TableColumn prefWidth="170.3999843597412" text="Order ID" />
                                         <TableColumn prefWidth="170.3999843597412" text="Customer Name" />
+                                          <TableColumn prefWidth="170.3999843597412" text="Contact Number" />
                                         <TableColumn prefWidth="158.4000244140625" text="Product Name" />
                                           <TableColumn prefWidth="115.20001220703125" text="Date" />
                                           <TableColumn prefWidth="100.79995727539062" text="Quantity" />
@@ -305,15 +305,22 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <Button layoutX="240.0" layoutY="468.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@CSS/AdminPageCSS.css" text="UPDATE" />
-                                    <ComboBox layoutX="465.0" layoutY="468.0" prefHeight="41.0" prefWidth="150.0" promptText="Status" styleClass="btn" stylesheets="@CSS/AdminPageCSS.css" />
+                                    <Button layoutX="851.0" layoutY="540.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@CSS/AdminPageCSS.css" text="UPDATE" />
+                                    <ComboBox layoutX="823.0" layoutY="469.0" prefHeight="41.0" prefWidth="150.0" promptText="STATUS" stylesheets="@CSS/AdminPageCSS.css" />
+                                    <TextArea layoutX="8.0" layoutY="466.0" prefHeight="298.0" prefWidth="791.0" stylesheets="@CSS/AdminPageCSS.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="radius" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </TextArea>
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="feedback_form" layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="877.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="feedback_form" layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="877.6" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="577.0" prefWidth="850.0" stylesheets="@CSS/AdminPageCSS.css">
+                              <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="771.0" prefWidth="1000.0" stylesheets="@CSS/AdminPageCSS.css">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
@@ -325,19 +332,18 @@
                                           <Font name="Impact" size="24.0" />
                                        </font>
                                     </Label>
-                                    <TableView fx:id="feedback_tableView" layoutX="14.0" layoutY="72.0" onMouseClicked="#populateFeedback" prefHeight="280.0" prefWidth="822.0">
+                                    <TableView fx:id="feedback_tableView" layoutX="14.0" layoutY="72.0" prefHeight="344.0" prefWidth="974.0">
                                       <columns>
-                                        <TableColumn fx:id="feedback_cusID" prefWidth="75.0" text="Customer ID" />
-                                        <TableColumn fx:id="feedback_cusName" prefWidth="75.0" text="Customer Name" />
-                                          <TableColumn fx:id="feedback_typeOFfeedback" prefWidth="75.0" text="Type of Feedback" />
-                                          <TableColumn fx:id="feedback_titleofConcern" prefWidth="75.0" text="Title of Concern" />
-                                          <TableColumn fx:id="feedback_Description" prefWidth="75.0" text="Description" visible="false" />
+                                        <TableColumn prefWidth="75.0" text="Customer ID" />
+                                        <TableColumn prefWidth="75.0" text="Customer Name" />
+                                          <TableColumn prefWidth="75.0" text="Type of Feedback" />
+                                          <TableColumn prefWidth="75.0" text="Title of Concern" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <TextArea fx:id="feedbackContent" layoutX="14.0" layoutY="367.0" prefHeight="200.0" prefWidth="822.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <TextArea layoutX="14.0" layoutY="427.0" prefHeight="334.0" prefWidth="974.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <styleClass>
                                           <String fx:value="white-bg" />
                                           <String fx:value="radius" />
