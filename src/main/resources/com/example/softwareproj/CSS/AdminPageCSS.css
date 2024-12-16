@@ -50,9 +50,10 @@
 }
 .btn{
     -fx-background-color: linear-gradient(to bottom right, #FF5733, #FF5733);
+    -fx-font-weight: bold;
     -fx-cursor: hand;
     -fx-text-fill: #000;
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
 }
 .btn:hover{
     -fx-background-color:linear-gradient(to bottom right, #F8DC93, #FF5733)

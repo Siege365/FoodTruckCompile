@@ -1,5 +1,6 @@
 package com.example.softwareproj;
 
+import com.example.softwareproj.GettersAndSetters.CustomerOrder;
 import com.example.softwareproj.GettersAndSetters.FoodItem;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,9 +22,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-
 
 import java.io.File;
 import java.io.IOException;
@@ -33,9 +34,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.StageStyle;
 
-
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AppController {
 
@@ -331,7 +332,77 @@ public class AppController {
     private Pane mainHeader,orderheader;
 
     @FXML
-    private TableView<?> mainOrderStatus;
+    private TableColumn<CustomerOrder, Integer> mainOrderID;
+
+    @FXML
+    private TableView<CustomerOrder> mainOrderTable;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> mainCustomerName;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> mainContactNumber;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> mainOrderType;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> mainAddress;
+
+
+    @FXML
+    private TableColumn<CustomerOrder, String> mainDate;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> mainPaymentType;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> mainStatus;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> mainTotal;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> mainTotalProducts;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionAddress;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionContactNumber;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionCustomerName;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionDate;
+
+    @FXML
+    private TableView<CustomerOrder> transactionHistoryTable;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> transactionOrderID;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionOrderType;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionPaymentType;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionFoodItems;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> transactionStatus;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> transactionTotal;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> transactionTotalProducts;
+
+    @FXML
+    private TextArea transactionContent;
 
     @FXML
     private AnchorPane mainPage;
@@ -380,6 +451,7 @@ public class AppController {
 
     @FXML
     private GridPane dessertsGridpane,maindishGridpane,sidedishGridpane,drinksGridpane;
+
     @FXML
     private Spinner<Integer> food_spinner, food_spinner2, food_spinner3, food_spinner4,
             food_spinner5, food_spinner6, food_spinner7, food_spinner8,
@@ -388,9 +460,47 @@ public class AppController {
             food_spinner17, food_spinner18, food_spinner19, food_spinner20,
             food_spinner21, food_spinner22, food_spinner23, food_spinner24;
 
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void getUserData(String username) {
+        Userlabel.setText("Hello, " + username + "!");
+        AccUsername.setText(username);
+        AccUsername1.setText(username);
+        Connection con = DBconnectionFood.ConnectionDB();
+        String sql = "SELECT Email, FullName, UserID FROM register WHERE username = ?";
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, username);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    AccID.setText(rs.getString("UserID"));
+                    AccFullName.setText(rs.getString("FullName"));
+                    AccEmail.setText(rs.getString("Email"));
+                    OrderDetailsUserFullname.setText(rs.getString("FullName"));
+                    populateMainOrderOverview();
+                } else {
+                    showAlert("No Data", "No record found for the given username.", Alert.AlertType.INFORMATION);
+                }
+            }
+        } catch (SQLException e) {
+            showAlert("Database Error", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();  // Close connection
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     public void initialize() {
-
         // Initialize all spinners with consistent behavior
         List<Spinner<Integer>> spinners = Arrays.asList(
                 food_spinner, food_spinner2, food_spinner3, food_spinner4, food_spinner5,
@@ -403,7 +513,6 @@ public class AppController {
         for (Spinner<Integer> spinner : spinners) {
             spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         }
-
         updateFoodPage(maindishGridpane, sidedishGridpane, drinksGridpane, dessertsGridpane);
 
         // Add available items to the spinner map
@@ -469,6 +578,28 @@ public class AppController {
                 new SimpleDoubleProperty(cellData.getValue().getTotal()).asObject()
         );
 
+        mainOrderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+        mainCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        mainContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+        mainOrderType.setCellValueFactory(new PropertyValueFactory<>("customerOrderType"));
+        mainPaymentType.setCellValueFactory(new PropertyValueFactory<>("customerPaymentType"));
+        mainDate.setCellValueFactory(new PropertyValueFactory<>("customerOrderDate"));
+        mainAddress.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        mainTotalProducts.setCellValueFactory(new PropertyValueFactory<>("amountOfProducts"));
+        mainTotal.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
+        mainStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+
+        transactionOrderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+        transactionCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        transactionContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+        transactionOrderType.setCellValueFactory(new PropertyValueFactory<>("customerOrderType"));
+        transactionPaymentType.setCellValueFactory(new PropertyValueFactory<>("customerPaymentType"));
+        transactionDate.setCellValueFactory(new PropertyValueFactory<>("customerOrderDate"));
+        transactionAddress.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        transactionTotalProducts.setCellValueFactory(new PropertyValueFactory<>("amountOfProducts"));
+        transactionFoodItems.setCellValueFactory(new PropertyValueFactory<>("foodItem"));
+        transactionTotal.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
+        transactionStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
         // Create ToggleGroups
         ToggleGroup ShippingOption = new ToggleGroup();
         ToggleGroup PaymentMethods = new ToggleGroup();
@@ -497,51 +628,9 @@ public class AppController {
                 PayOnlinePayment.setDisable(true);
             }
         });
-    }
-//start sa mga table shits
-        private void updateOrderTable() { // Method to update the OrderTable when cart data changes
-
-            OrderTable.refresh();  // Refresh the table to reflect changes in the cart
-        }
-//end sa mga table shits
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    @FXML
-    public void getUserData(String username) {
-        Userlabel.setText("Hello, " + username + "!");
-        AccUsername.setText(username);
-        AccUsername1.setText(username);
-        Connection con = DBconnectionFood.ConnectionDB();
-        String sql = "SELECT Email, FullName, UserID FROM register WHERE username = ?";
-        try (PreparedStatement pst = con.prepareStatement(sql)) {
-            pst.setString(1, username);
-            try (ResultSet rs = pst.executeQuery()) {
-                if (rs.next()) {
-                    AccID.setText(rs.getString("UserID"));
-                    AccFullName.setText(rs.getString("FullName"));
-                    AccEmail.setText(rs.getString("Email"));
-                    OrderDetailsUserFullname.setText(rs.getString("FullName"));
-                } else {
-                    showAlert("No Data", "No record found for the given username.", Alert.AlertType.INFORMATION);
-                }
-            }
-        } catch (SQLException e) {
-            showAlert("Database Error", e.getMessage(), Alert.AlertType.ERROR);
-            e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) con.close();  // Close connection
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
     }
+
 //navigator
     @FXML
     void toFood(ActionEvent event) {
@@ -556,7 +645,7 @@ public class AppController {
     }
 
     @FXML
-    void toHome(ActionEvent event) {
+    public void toHome(ActionEvent event) {
         mainPage.setVisible(true);
         orderPage.setVisible(false);
         foodPage.setVisible(false);
@@ -615,8 +704,6 @@ public class AppController {
         AnimationHelper.animateNodesFromRightToLeft(Cart,CheckouFooter);
 
     }
-
-
     //end of navigation
 
 
@@ -795,7 +882,7 @@ public class AppController {
     private void DeleteAllPane(ActionEvent event){
         cartItems.clear();
         paneContainer.getChildren().clear();
-        updateOrderTable();
+        OrderTable.refresh();
         updateCounters();
         updateTotalPrice();
     }
@@ -879,8 +966,6 @@ public class AppController {
         AnimationHelper.animateStartFromRight(Cart,CheckouFooter);
        AnimationHelper.animateNodesFromRightToLeft(orderPage, orderheader, OrderFooter);
     }
-
-
 //end of cart
 
 
@@ -987,8 +1072,10 @@ public class AppController {
         suggestionradioBtn.setSelected(false);
     }
 
+
     @FXML
     private void handleEditInformationButton() {
+        int id = Integer.parseInt(AccID.getText());
         String username = AccUsername.getText();  // Get the current username
         String fullName = AccFullName.getText();
         String email = AccEmail.getText();
@@ -999,14 +1086,87 @@ public class AppController {
         String address = AccAddress.getText();
         Image img = avatar.getImage();
 
-        // Store the image file path if an image was selected
-        String imageFilePath = (img != null && img.getUrl() != null) ? new File(img.getUrl()).getAbsolutePath() : "No Image";
-        if (!password.equals(retypePassword)){
+        // If no image selected, use the default "No Image" value
+        String imageFilePath = (selectedImageFile != null)
+                ? getRelativePath(selectedImageFile) // Convert to relative path
+                : "No Image";
+
+        if (!password.equals(retypePassword)) {
             showAlert("Validation Error", "Passwords do not match.", Alert.AlertType.WARNING);
             return;
         }
-        saveOrUpdateUserInfo(username, fullName, email, password, mobileNumber, gender, address, imageFilePath,"","","","");
+
+        // Call the method to save or update user info
+        DBconnectionFood.saveOrUpdateUserInfo(id,username, fullName, email, password, mobileNumber, gender, address, imageFilePath);
+
+        // Update UI components
+        OrderDetailsUserContactNumber.setText(mobileNumber);
+        OrderDetailsUserAddress.setText(address);
+        AvatarMore.setImage(avatar.getImage());
     }
+
+
+
+    private String getRelativePath(File file) {
+        // Assuming the images are stored in "src/main/resources/images/"
+        // This method returns the path relative to the resources folder
+        String baseDir = new File("src/main/resources").getAbsolutePath();
+        String filePath = file.getAbsolutePath();
+
+        if (filePath.startsWith(baseDir)) {
+            String relativePath = filePath.substring(baseDir.length() + 1); // +1 to remove the slash after "resources"
+            relativePath = relativePath.replace("\\", "/"); // Ensure forward slashes
+            return relativePath;
+        } else {
+            return "No Image";
+        }
+    }
+
+    private File selectedImageFile; // Store the selected image file path
+
+    @FXML
+    void ImportAvatar(MouseEvent event) {
+        // Open a file chooser to select an image
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg"));
+        selectedImageFile = fileChooser.showOpenDialog(null); // Assign to the class-level variable
+
+        // If an image is selected, display it in the ImageView
+        if (selectedImageFile != null && selectedImageFile.exists()) {
+            try {
+                // Use the absolute file path to create an Image object
+                Image image = new Image(selectedImageFile.toURI().toString());
+
+                // Set the image to the avatar ImageView
+                avatar.setImage(image);
+
+                // Optional: Set the ImageView size and apply a circular clip (if needed)
+                double size = 230;  // Example size for the avatar
+                avatar.setFitWidth(size);
+                avatar.setFitHeight(size);
+
+                // Apply a circular clip with adjusted center and radius
+                double centerX = size / 2;  // Center X
+                double centerY = size / 2;  // Center Y
+                double radius = size / 2;   // Radius
+                Circle clip = new Circle(centerX, centerY, radius);
+                avatar.setClip(clip);
+
+                // Optional: Add a border to the circular image
+                avatar.setStyle("-fx-border-color: black; -fx-border-width: 2;");
+            } catch (Exception e) {
+                showAlert("Error", "Unable to load the image.", Alert.AlertType.ERROR);
+            }
+        } else {
+            // If no image is selected or the file doesn't exist, show an alert
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No Image Selected");
+            alert.setHeaderText(null);
+            alert.setContentText("No image was selected. Please choose an image to upload.");
+            alert.showAndWait();
+        }
+    }
+
 
     // Get the selected gender from the RadioButtons
     private String getSelectedGender() {
@@ -1020,69 +1180,9 @@ public class AppController {
         return null;
     }
 
-    private void saveOrUpdateUserInfo(String username, String fullName, String email, String password, String mobileNumber, String gender, String address, String imageFilePath, String accountCardName, String accountCardNumber, String accountCardExpiryDate, String accountCardCVC) {
-        // Validate that required fields are not empty
-        if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || mobileNumber.isEmpty() || gender == null || address.isEmpty()) {
-            showAlert("Validation Error", "Please fill in all the required fields.", Alert.AlertType.WARNING);
-            return; // Stop execution if fields are empty
-        }
-
-        String query = "INSERT INTO accountdetails (Username, Full_Name, Email, Password, Mobile_Number, Gender, Account_Address, Account_Avatar, Account_Cardname, Account_Cardnumber, Account_CardExpiryDate, Account_CardCVC) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
-                "ON DUPLICATE KEY UPDATE " +
-                "Full_Name = VALUES(Full_Name), " +
-                "Email = VALUES(Email), " +
-                "Password = VALUES(Password), " +
-                "Mobile_Number = VALUES(Mobile_Number), " +
-                "Gender = VALUES(Gender), " +
-                "Account_Address = VALUES(Account_Address), " +
-                "Account_Avatar = VALUES(Account_Avatar), " +
-                "Account_Cardname = VALUES(Account_Cardname), " +
-                "Account_Cardnumber = VALUES(Account_Cardnumber), " +
-                "Account_CardExpiryDate = VALUES(Account_CardExpiryDate), " +
-                "Account_CardCVC = VALUES(Account_CardCVC);";
-
-
-        LocalDate cardDate = UserCardExpiryDate.getValue();
-        String cardExpiryDate = (cardDate != null) ? cardDate.toString() : null;
-        try (Connection connection = DBconnectionFood.ConnectionDB();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-
-            // Set parameters for the query
-            statement.setString(1, username);
-            statement.setString(2, fullName);
-            statement.setString(3, email);
-            statement.setString(4, password);
-            statement.setString(5, mobileNumber);
-            statement.setString(6, gender);
-            statement.setString(7, address);
-            statement.setString(8, imageFilePath);
-            statement.setString(9, accountCardName);
-            statement.setString(10, accountCardNumber);
-            statement.setString(11, cardExpiryDate);
-            statement.setString(12, accountCardCVC);
-
-
-            int rowsAffected = statement.executeUpdate();
-            if (rowsAffected > 0) {
-                // Show success alert if the information is saved/updated successfully
-                showAlert("Success", "Information saved/updated successfully.", Alert.AlertType.INFORMATION);
-            } else {
-                // Show error alert if the information wasn't saved
-                showAlert("Error", "Error: Information not saved.", Alert.AlertType.ERROR);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Show error alert if there's an exception
-            showAlert("Error", "An error occurred while saving/updating information.", Alert.AlertType.ERROR);
-        }
-        OrderDetailsUserContactNumber.setText(mobileNumber);
-        OrderDetailsUserAddress.setText(address);
-        AvatarMore.setImage(avatar.getImage());
-    }
 
     @FXML
-    void HandleUserCardInformationButton(ActionEvent event) { // For credit page
+    void HandleUserCardInformationButton(ActionEvent event) {
         String cardName = UserCardName.getText();
         String cardNumber = UserCardNumber.getText();
         LocalDate cardDate = UserCardExpiryDate.getValue(); // Get the selected date from the date picker
@@ -1094,39 +1194,9 @@ public class AppController {
             return; // Stop execution if fields are empty
         }
 
-        String query = "UPDATE accountdetails SET " +
-                "Account_Cardname = ?, " +
-                "Account_Cardnumber = ?, " +
-                "Account_CardExpiryDate = ?, " +
-                "Account_CardCVC = ? " +
-                "WHERE Account_ID = ?";
-
-        try (Connection connection = DBconnectionFood.ConnectionDB();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-
-            // Set parameters for the query
-            statement.setString(1, cardName);
-            statement.setString(2, cardNumber);
-            statement.setString(3, cardDate.toString()); // Convert LocalDate to String
-            statement.setString(4, cardCVC);
-
-            // Provide the Account_ID value (ensure you retrieve it from your application)
-            int accountId = Integer.parseInt(AccID.getText()); // Assuming AccID is a TextField or similar
-            statement.setInt(5, accountId);
-
-            // Execute the query
-            int rowsAffected = statement.executeUpdate();
-            if (rowsAffected > 0) {
-                showAlert("Success", "Card details updated successfully.", Alert.AlertType.INFORMATION);
-            } else {
-                showAlert("Error", "Failed to update card details.", Alert.AlertType.ERROR);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Error", "An error occurred while updating the card details.", Alert.AlertType.ERROR);
-        } catch (NumberFormatException e) {
-            showAlert("Validation Error", "Invalid Account ID.", Alert.AlertType.WARNING);
-        }
+        // Call the method to save or update the card information
+        int accountId = Integer.parseInt(AccID.getText()); // Assuming AccID is a TextField or similar
+        DBconnectionFood.saveOrUpdateCardInfo(accountId, cardName, cardNumber, cardDate, cardCVC);
     }
 
     @FXML
@@ -1139,59 +1209,52 @@ public class AppController {
 
     @FXML
     void toDeleteAccount(ActionEvent event) {
-        // Show confirmation alert to the user
+        // Retrieve username from label
+        String username = AccUsername1.getText();
+
+        // Ask for confirmation before deleting the account
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Account");
         alert.setHeaderText("Are you sure you want to delete your account?");
-        alert.setContentText("This action cannot be undone.");
+        alert.setContentText("This action is irreversible.");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // User confirmed account deletion
-
-            // Retrieve username from label (ensure it's correctly initialized)
-            String username = Userlabel.getText();
-
-            // Establish the database connection using try-with-resources
-            try (Connection con = DBconnectionFood.ConnectionDB()) {
-                if (con != null) {
-                    // Prepare and execute the delete queries using separate PreparedStatements
-                    String sql1 = "DELETE FROM accountdetails WHERE Username = ?";
-                    String sql2 = "DELETE FROM register WHERE Username = ?";
-
-                    // Delete from accountdetails
-                    try (PreparedStatement pst1 = con.prepareStatement(sql1)) {
-                        pst1.setString(1, username);
-                        int rowsAffected1 = pst1.executeUpdate();
-
-                        // Delete from register
-                        try (PreparedStatement pst2 = con.prepareStatement(sql2)) {
-                            pst2.setString(1, username);
-                            int rowsAffected2 = pst2.executeUpdate();
-
-                            // Check if both deletions were successful
-                            if (rowsAffected1 > 0 && rowsAffected2 > 0) {
-                                // Deletion was successful
-                                showAlert("Success", "Your account has been successfully deleted.", Alert.AlertType.INFORMATION);
-                                // Perform logout or any other necessary actions
-                                toLogout();
-                            } else {
-                                // If no rows were affected, the account wasn't found in one of the tables
-                                showAlert("Error", "Account not found or could not be deleted.", Alert.AlertType.ERROR);
-                            }
-                        }
-                    }
-                } else {
-                    // Handle case where database connection failed
-                    showAlert("Error", "Failed to connect to the database.", Alert.AlertType.ERROR);
-                }
-            } catch (SQLException e) {
-                // Handle SQL exceptions
-                showAlert("Database Error", e.getMessage(), Alert.AlertType.ERROR);
-                e.printStackTrace(); // Print stack trace for debugging
+            // Call the method to delete the account from database
+            boolean accountDeleted = DBconnectionFood.deleteAccountFromDatabase(username);
+            if (accountDeleted) {
+                logout();
+            } else {
+                showAlert("Error", "Failed to delete account.", Alert.AlertType.ERROR);
             }
         }
     }
+
+    void logout() {
+        try {
+            // Load the login page
+            Parent root = FXMLLoader.load(getClass().getResource("LoginFood.fxml"));
+            Stage currentStage = (Stage) logoutbutton.getScene().getWindow();
+
+            // Set the scene in the current stage
+            Scene scene = new Scene(root);
+            currentStage.setScene(scene);
+
+            // Set the application icon
+            Image icon = new Image(getClass().getResourceAsStream("images/El_pedidos1-removebg-preview.png"));
+            currentStage.getIcons().add(icon);
+
+            // Set the title for the login window
+            currentStage.setTitle("El Pedidos Mexicanos");
+
+            // Show the login window in the same stage
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load login page: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
 
     @FXML
     void toLogout() {
@@ -1204,32 +1267,33 @@ public class AppController {
         // Show the alert and wait for user response
         Optional<ButtonType> result = alert.showAndWait();
 
-        // If the user confirms, proceed with logout
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // Close the current stage using the event source
             Stage currentStage = (Stage) logoutbutton.getScene().getWindow();
-            currentStage.close();
 
             try {
                 // Load the login page
                 Parent root = FXMLLoader.load(getClass().getResource("LoginFood.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setResizable(false);
+
+                // Set the scene in the current stage
+                Scene scene = new Scene(root);
+                currentStage.setScene(scene);
 
                 // Set the application icon
                 Image icon = new Image(getClass().getResourceAsStream("images/El_pedidos1-removebg-preview.png"));
-                stage.getIcons().add(icon);
+                currentStage.getIcons().add(icon);
 
-                // Set the title and display the login page
-                stage.setTitle("El Pedidos Mexicanos");
-                stage.show();
+                // Set the title for the login window
+                currentStage.setTitle("El Pedidos Mexicanos");
+
+                // Show the login window in the same stage
+                currentStage.show();
             } catch (IOException e) {
-                // Handle potential IOExceptions
                 e.printStackTrace();
+                showAlert("Error", "Failed to load login page: " + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
     }
+
     @FXML
     void toAboutUs(ActionEvent event) {
         AboutUs.setVisible(true);
@@ -1267,6 +1331,7 @@ public class AppController {
         AboutUs.setVisible(false);
         morepageMain.setVisible(true);
         creditcard.setVisible(false);
+        transactionContent.clear();
     }
 
 
@@ -1290,45 +1355,7 @@ public class AppController {
         morepageMain.setVisible(false);
 
     }
-    @FXML
-    void ImportAvatar(MouseEvent event) {
-        // Open a file chooser to select an image
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg"));
-        File selectedImageFile = fileChooser.showOpenDialog(null);
 
-        // If an image is selected, display it in the ImageView
-        if (selectedImageFile != null) {
-            Image image = new Image(selectedImageFile.toURI().toString());
-            avatar.setImage(image);
-
-            // Set the ImageView size to be a square for proper circular effect
-            double size = 230;  // Use a square size for the avatar
-            avatar.setFitWidth(size);
-            avatar.setFitHeight(size);
-
-            // Apply a circular clip with adjusted center and radius
-            double centerX = size / 2;  // Center X (115 for 230 size)
-            double centerY = size / 2;  // Center Y (115 for 230 size)
-            double radius = size / 2;   // Radius (115 for 230 size)
-            Circle clip = new Circle(centerX, centerY, radius);
-            avatar.setClip(clip);
-
-            // Optional: Add a border to the circular image
-            avatar.setStyle(
-                    "-fx-border-color: black;" +
-                            "-fx-border-width: 2;" +
-                            "-fx-padding: 0 0 0 5;"
-            );
-        } else {
-            // Create and display an alert if no image is selected
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("No Image Selected");
-            alert.setHeaderText(null);
-            alert.setContentText("No image was selected. Please choose an image to upload.");
-            alert.showAndWait();
-        }
-    }
     @FXML
     void RadioButtons(ActionEvent event) {
         // Create a ToggleGroup
@@ -1400,9 +1427,6 @@ public class AppController {
 
         }
     }
-
-
-
 
     @FXML
     void RadioButtonsOrderDetails(ActionEvent event) {
@@ -1481,6 +1505,8 @@ public class AppController {
             // Validate User Details
             String userFullName = OrderDetailsUserFullname.getText().trim();
             String userContactNumber = OrderDetailsUserContactNumber.getText().trim();
+            String userAddress = OrderDetailsUserAddress.getText().trim();
+            int amountOfProducts = Integer.parseInt(itemCounter.getText());
             if (userFullName.isEmpty() || userContactNumber.isEmpty()) {
                 throw new IllegalArgumentException("Please complete all user details.");
             }
@@ -1503,63 +1529,67 @@ public class AppController {
             double handlingFee = getHandlingFee();
             double totalPrice = foodItemsSubtotal + shippingCost + handlingFee;
 
+            String OrderItems = checkoutItems.stream()
+                    .map(item -> String.format("%s x%d - ₱%.2f",
+                            item.getName(), item.getQuantity(), item.getTotal()))
+                    .collect(Collectors.joining("\n")); // Join each food item with a line break
             // Determine Payment Method
+            String paymentType;
             FXMLLoader loader;
             Scene scene;
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED); // No window decorations
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setResizable(false);
             Image icon = new Image(getClass().getResourceAsStream("images/El_pedidos1-removebg-preview.png"));
             stage.getIcons().add(icon);
 
             if (CODPayment.isSelected()) {
-                // Cash on Delivery
+                paymentType = "Cash on Delivery";
                 loader = new FXMLLoader(getClass().getResource("JustReceipt.fxml"));
                 scene = new Scene(loader.load());
                 stage.setTitle("El Pedidos - COD Receipt");
-
-                // Pass data to the receipt controller
-                ReceiptController receiptController = loader.getController();
-                receiptController.setReceiptDetails(
-                        userFullName, userContactNumber, deliveryType, "Cash on Delivery",
-                        checkoutItems, foodItemsSubtotal, shippingCost, handlingFee, totalPrice
-                );
-
-                stage.setScene(scene);
-                stage.show();
-
-                // Show success alert for COD
-                showAlert("Success", "Your order has been placed successfully! Please print your receipt as proof for order validation and claiming.", Alert.AlertType.INFORMATION);
             } else if (PayOnlinePayment.isSelected()) {
-                // Online Payment
+                paymentType = "Online Payment";
                 loader = new FXMLLoader(getClass().getResource("OnlinePaymentReceipt.fxml"));
                 scene = new Scene(loader.load());
                 stage.setTitle("El Pedidos - Online Payment Receipt");
-
-                // Pass data to the receipt controller
-                ReceiptController receiptController = loader.getController();
-                receiptController.setReceiptDetails(
-                        userFullName, userContactNumber, deliveryType, "Online Payment",
-                        checkoutItems, foodItemsSubtotal, shippingCost, handlingFee, totalPrice
-                );
-                receiptController.PayAmountbtn.setText("Pay ₱"+totalPrice);
-                stage.setScene(scene);
-                stage.show();
-                // No success alert for Online Payment
             } else {
                 throw new IllegalArgumentException("Please select a payment method.");
             }
+
+            // Insert order into database
+            DBconnectionFood.insertOrderIntoDatabase(
+                    userFullName, userContactNumber, userAddress, deliveryType, paymentType,
+                    amountOfProducts, totalPrice, OrderItems
+            );
+
+            // Pass data to the receipt controller
+            ReceiptController receiptController = loader.getController();
+            receiptController.setReceiptDetails(
+                    userFullName, userContactNumber, userAddress, amountOfProducts, deliveryType, paymentType,
+                    checkoutItems, foodItemsSubtotal, shippingCost, handlingFee, totalPrice
+            );
+            if (PayOnlinePayment.isSelected()) {
+                receiptController.PayAmountbtn.setText("Pay ₱" + totalPrice);
+            }
+            stage.setScene(scene);
+            stage.show();
+
+            // Position the window
+            Screen screen = Screen.getPrimary();
+            Rectangle2D bounds = screen.getVisualBounds();
+            stage.setX(bounds.getMaxX() - scene.getWidth() - 10);
+            stage.setY(bounds.getMinY() + 10);
 
             // Clear cart and update UI
             cartItems.clear();
             updateCartDisplay();
             updateCounters();
             updateTotalPrice();
-            OrderTable.getItems().clear(); // Clear the table
+            OrderTable.getItems().clear();
             OrderTable.refresh();
 
-            // Navigate to Home after placing the order
-            toHome(event);
+            showAlert("Success", "Your order has been placed successfully! Please print your receipt as proof for order validation and claiming.", Alert.AlertType.INFORMATION);
 
         } catch (IllegalArgumentException e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
@@ -1570,14 +1600,58 @@ public class AppController {
             showAlert("Error", "An unexpected error occurred: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
+        refreshTable();
+        toHome(event);
+    }
+
+    //tables
+    void refreshTable(){
+        populateMainOrderOverview(); // Re-fetch and update the tables with new data from the database
+        mainOrderTable.refresh();
+        transactionHistoryTable.refresh();
+    }
+
+    @FXML
+    void populateOrderDetails(MouseEvent event) {
+        if (event.getClickCount() == 2) { // Check for double-click
+            CustomerOrder orders = transactionHistoryTable.getSelectionModel().getSelectedItem();
+
+            if (orders != null) {
+                // Create a border around the receipt
+                String border = "************************************\n";
+                StringBuilder receiptText = new StringBuilder();
+
+                // Add the border and customer details section
+                receiptText.append(border)
+                        .append("       TRANSACTION RECEIPT\n")
+                        .append(border)
+                        .append("Customer Name: ").append(orders.getCustomerName()).append("\n")
+                        .append("Contact Number: ").append(orders.getCustomerNumber()).append("\n")
+                        .append("Address: ").append(orders.getCustomerAddress()).append("\n")
+                        .append("Order Type: ").append(orders.getCustomerOrderType()).append("\n")
+                        .append("Payment Type: ").append(orders.getCustomerPaymentType()).append("\n")
+                        .append("Order Date: ").append(orders.getCustomerOrderDate()).append("\n")
+                        .append(border);
+
+                // Items section
+                receiptText.append("Items (").append(orders.getAmountOfProducts()).append("):\n");
+                receiptText.append(orders.getFoodItems()).append("\n");
+                receiptText.append(border);
+
+                // Total section
+                receiptText.append(String.format("TOTAL AMOUNT: ₱%.2f (Including Shipping Cost & Handling Fee)\n",
+                                (double) orders.getTotalAmount()))
+                        .append(border);
+
+                // Display receipt in transactionContent
+                transactionContent.setText(receiptText.toString());
+            }
+        }
     }
 
 
-
-
-
- //sql queries
-     public void updateFoodPage(GridPane maindishGridpane, GridPane sidedishGridpane, GridPane drinksGridpane, GridPane dessertsGridpane) {
+    //sql queries
+    public void updateFoodPage(GridPane maindishGridpane, GridPane sidedishGridpane, GridPane drinksGridpane, GridPane dessertsGridpane) {
          // Clear previous items
          maindishGridpane.getChildren().clear();
          sidedishGridpane.getChildren().clear();
@@ -1736,5 +1810,108 @@ public class AppController {
             return foodPane;
         }
 
+    @FXML
+    public void checkAndPopulateAccountDetails(String username) {
+        Connection con = DBconnectionFood.ConnectionDB();
+        String sql = "SELECT * FROM accountdetails WHERE Username = ?";
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, username); // Set the username of the logged-in user
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                // If the account exists and has data, populate the text fields
+                populateAccountDetails(rs);
+                System.out.println("Account Details Populated");
+            }
+        } catch (SQLException e) {
+            showAlert("Database Error", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void populateAccountDetails(ResultSet rs) throws SQLException {
+        // Order details
+        OrderDetailsUserContactNumber.setText(rs.getString("Mobile_Number"));
+        OrderDetailsUserAddress.setText(rs.getString("Account_Address"));
+
+        // More page
+        String avatarPath = rs.getString("Account_Avatar");
+        if (avatarPath != null && !avatarPath.isEmpty()) {
+            System.out.println("Image Path: " + avatarPath);  // Debug the avatar path
+            URL imageUrl = getClass().getResource("/com/example/softwareproj/images/" + avatarPath);
+            System.out.println("Resolved URL: " + imageUrl);  // Debug the resolved URL
+
+            if (imageUrl != null) {
+                Image avatarImage = new Image(imageUrl.toExternalForm());
+                avatarimg.setImage(avatarImage);
+                avatar.setImage(avatarImage);
+            } else {
+                showAlert("Error", "Avatar image not found.", Alert.AlertType.ERROR);
+                setDefaultAvatarImage();  // Set default avatar image if not found
+            }
+
+        } else {
+            // If no avatar path is available, set a default image
+            setDefaultAvatarImage(); // Set a default avatar image
+        }
+
+        AccPassword.setText(rs.getString("Password"));
+        AccMobileNumber.setText(rs.getString("Mobile_Number"));
+
+        // Gender selection (assuming "Gender" is stored as an integer or boolean)
+        String gender = rs.getString("Gender"); // Replace with appropriate data type if necessary
+        if ("Male".equalsIgnoreCase(gender)) {
+            AccGenderM.setSelected(true);
+        } else if ("Female".equalsIgnoreCase(gender)) {
+            AccGenderF.setSelected(true);
+        } else {
+            AccGenderO.setSelected(true);
+        }
+        AccAddress.setText(rs.getString("Account_Address"));
+        UserCardName.setText(rs.getString("Account_Cardname"));
+        UserCardNumber.setText(rs.getString("Account_Cardnumber"));
+        UserCardExpiryDate.setValue(rs.getDate("Account_CardExpiryDate").toLocalDate());
+        UserCVC.setText(rs.getString("Account_CardCVC"));
+    }
+
+    // Method to set a default avatar image
+    private void setDefaultAvatarImage() {
+        // Correctly specify the path to the resource relative to the root of the classpath
+        Image defaultAvatarImage = new Image(getClass().getResource("/com/example/softwareproj/images/defaultavatar.png").toExternalForm());
+        AvatarMore.setImage(defaultAvatarImage);
+        avatar.setImage(defaultAvatarImage);
 
     }
+    public void populateMainOrderOverview() {
+        String customerName = AccFullName.getText();
+        if (customerName == null || customerName.isEmpty()) {
+            showAlert("Error", "Customer name cannot be empty.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+            // Fetch customer orders from the database
+            ObservableList<CustomerOrder> cusOrders = DBconnectionFood.getCustomerOrders(customerName);
+            // Set the list in the TableView
+            transactionHistoryTable.setItems(cusOrders);
+            mainOrderTable.setItems(cusOrders);
+
+        } catch (SQLException e) {
+            showAlert("Database Error", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+}

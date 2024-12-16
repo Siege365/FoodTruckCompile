@@ -103,8 +103,7 @@ public class LoginFoodController {
                     // Get the controller instance
                     AppController app = loader.getController();
                     app.getUserData(username);
-
-                   //app.checkAndPopulateAccountDetails(username);
+                    app.checkAndPopulateAccountDetails(username);
                     loadNewScene(event, root);
                 } else {
                     // Handle case where no account exists

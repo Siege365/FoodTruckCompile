@@ -11,6 +11,8 @@ import com.itextpdf.layout.element.Image;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +22,10 @@ import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.io.*;
@@ -89,7 +95,33 @@ public class ReceiptController {
     private double yOffset = 0;
 
 
-
+    @FXML
+    public void getUserCardData(String Username) {
+        Connection con = DBconnectionFood.ConnectionDB();
+        String sql = "SELECT Account_Cardname, Account_Cardnumber, Account_CardExpiryDate, Account_CardCVC FROM accountdetails WHERE Username = ?";
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, Username);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    UserNameCard.setText(rs.getString("Account_Cardname"));
+                    UserCardNumber.setText(rs.getString("Account_Cardnumber"));
+                    UserCardExpiryDate.setValue(rs.getDate("Account_CardExpiryDate").toLocalDate());
+                    UserCVC.setText(rs.getString("Account_CardCVC"));
+                } else {
+                    showAlert("No Data", "No record found for the given username.", Alert.AlertType.INFORMATION);
+                }
+            }
+        } catch (SQLException e) {
+            showAlert("Database Error", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();  // Close connection
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -114,9 +146,9 @@ public class ReceiptController {
 
     @FXML
     void PrintReceipt(ActionEvent event) {
-        saveAsPDF();
+        saveAsPDF(event);
     }
-    private void saveAsPDF() {
+    private void saveAsPDF(ActionEvent event) {
         // Show file chooser for saving the PDF
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save PDF");
@@ -151,11 +183,18 @@ public class ReceiptController {
                 // Delete the temporary image file
                 tempImageFile.delete();
 
-                System.out.println("PDF saved successfully.");
+                showAlert("Success","PDF saved successfully.",Alert.AlertType.INFORMATION);
+
+
             } catch (IOException e) {
                 System.err.println("Failed to save PDF: " + e.getMessage());
             }
+
         }
+        Node source = (Node) event.getSource(); // Get the source of the event
+        Stage stage = (Stage) source.getScene().getWindow(); // Get the current stage
+        stage.close(); // Close the stage
+
     }
 
     @FXML
@@ -178,25 +217,37 @@ public class ReceiptController {
         stage.close(); // Close the stage
     }
     public void setReceiptDetails(
-            String fullName, String contactNumber, String deliveryType, String paymentType,
-            List<FoodItem> items, double subtotal, double shippingCost, double handlingFee, double totalPrice) {
-        // Update receipt fields
-        ReceiptContent.setText(
-                "Customer Name: " + fullName + "\n" +
-                        "Contact Number: " + contactNumber + "\n" +
-                        "Delivery Type: " + deliveryType + "\n" +
-                        "Payment Type: " + paymentType + "\n\n" +
-                        "Items:\n" +
-                        items.stream()
-                                .map(item -> item.getName() + " x" + item.getQuantity() + " - ₱" + String.format("%.2f", item.getTotal()))
-                                .collect(Collectors.joining("\n")) +
-                        "\n\n" +
-                        "Subtotal: ₱" + String.format("%.2f", subtotal) + "\n" +
-                        "Shipping Cost: ₱" + String.format("%.2f", shippingCost) + "\n" +
-                        "Handling Fee: ₱" + String.format("%.2f", handlingFee) + "\n" +
-                        "Total: ₱" + String.format("%.2f", totalPrice)
-        );
+            String fullName, String contactNumber, String address, int totalProducts, String deliveryType,
+            String paymentType, List<FoodItem> items, double subtotal, double shippingCost, double handlingFee, double totalPrice) {
+
+        // Create formatted receipt text
+        StringBuilder receiptText = new StringBuilder();
+
+        // Customer details section
+        receiptText.append("Customer Name: ").append(fullName).append("\n")
+                .append("Contact Number: ").append(contactNumber).append("\n")
+                .append("Address: ").append(address).append("\n")
+                .append("Order Type: ").append(deliveryType).append("\n")
+                .append("Payment Type: ").append(paymentType).append("\n\n");
+
+        // Items section
+        receiptText.append("Items (").append(totalProducts).append("):\n");
+        for (FoodItem item : items) {
+            receiptText.append(String.format("%-20s x%-2d - ₱%.2f\n",
+                    item.getName(), item.getQuantity(), item.getTotal()));
+        }
+
+        // Summary section
+        receiptText.append("\n")
+                .append(String.format("Subtotal:      ₱%.2f\n", subtotal))
+                .append(String.format("Shipping Cost: ₱%.2f\n", shippingCost))
+                .append(String.format("Handling Fee:  ₱%.2f\n", handlingFee))
+                .append(String.format("Total:         ₱%.2f", totalPrice));
+
+        // Set text to ReceiptContent (your TextArea or Label)
+        ReceiptContent.setText(receiptText.toString());
     }
+
 
 
 }

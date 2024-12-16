@@ -1,5 +1,6 @@
 package com.example.softwareproj;
 
+import com.example.softwareproj.GettersAndSetters.CustomerOrder;
 import com.example.softwareproj.GettersAndSetters.FeedBack;
 import com.example.softwareproj.GettersAndSetters.Product;
 import javafx.collections.FXCollections;
@@ -46,7 +47,46 @@ public class AdminPageController implements Initializable {
     private AnchorPane customer_form;
 
     @FXML
-    private TableView<?> customer_tableView;
+    private TableView<CustomerOrder> customer_tableView;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerAddress;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerContactNumber;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerDate;
+
+    @FXML
+    private TextArea customerDisplayCustomerOrder;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerName;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> customerOrderID;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerOrderType;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerPaymentType;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerStatus;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> customerTotalAmount;
+
+    @FXML
+    private TableColumn<CustomerOrder, Integer> customerTotalProducts;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> customerOrderItems;
+
+    @FXML
+    private ComboBox<String> customerUpdateStatus;
 
     @FXML
     private Button customers_btn;
@@ -164,10 +204,12 @@ public class AdminPageController implements Initializable {
         loadDashboardData();
         loadInventoryData();
         loadFeedbackData();
+        loadCustomerOrders();
         ProductStockSpnr.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
         ProductCategoryCB.setItems(FXCollections.observableArrayList("Main Dish", "Side Dish", "Drinks", "Desserts"));
+        customerUpdateStatus.setItems(FXCollections.observableArrayList("Preparing","Cooking","Ready for Pickup", "Ready for Delivery", "On Delivery","Out for Delivery","Completed"));
 
-        // TableView setup
+        // TableView setup dapat kada "" same og variable name sa getters and setters nimo
         inventory_productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
         inventory_price.setCellValueFactory(new PropertyValueFactory<>("price"));
         inventory_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -181,7 +223,17 @@ public class AdminPageController implements Initializable {
         feedback_titleofConcern.setCellValueFactory(new PropertyValueFactory<>("titleOfConcern"));
         feedback_Description.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-
+        customerOrderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+        customerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerContactNumber.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
+        customerOrderType.setCellValueFactory(new PropertyValueFactory<>("customerOrderType"));
+        customerPaymentType.setCellValueFactory(new PropertyValueFactory<>("customerPaymentType"));
+        customerDate.setCellValueFactory(new PropertyValueFactory<>("customerOrderDate"));
+        customerTotalProducts.setCellValueFactory(new PropertyValueFactory<>("amountOfProducts"));
+        customerTotalAmount.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
+        customerStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+        customerAddress.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        customerOrderItems.setCellValueFactory(new PropertyValueFactory<>("foodItems"));
     }
 
     // Side navigator
@@ -260,15 +312,10 @@ public class AdminPageController implements Initializable {
 
     // Dashboard data load
     public void loadDashboardData() {
-        int totalCustomers = DBconnectionFood.getTotalCustomers();
-        double todaysIncome = DBconnectionFood.getTodaysIncome();
-        double totalIncome = DBconnectionFood.getTotalIncome();
-        int soldProducts = DBconnectionFood.getSoldProducts();
-
-        totalCustomersLabel.setText(String.valueOf(totalCustomers));
-        todaysIncomeLabel.setText("₱" + String.format("%.2f", todaysIncome));
-        totalIncomeLabel.setText("₱" + String.format("%.2f", totalIncome));
-        soldProductsLabel.setText(String.valueOf(soldProducts));
+        totalCustomersLabel.setText(String.valueOf(DBconnectionFood.getTotalOrders()));
+        todaysIncomeLabel.setText("₱" + String.format("%.2f", DBconnectionFood.getTodaysIncome()));
+        totalIncomeLabel.setText("₱" + String.format("%.2f", DBconnectionFood.getTotalIncome()));
+        soldProductsLabel.setText(String.valueOf(DBconnectionFood.getSoldProducts()));
     }
 
     public void loadInventoryData() {
@@ -371,26 +418,19 @@ public class AdminPageController implements Initializable {
             return; // User canceled the deletion
         }
 
-        // Step 3: Delete from the database
-        String query = "DELETE FROM products WHERE ProductName = ?";
-        try (Connection connection = DBconnectionFood.ConnectionDB();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, selectedProduct.getProductName());
-            int rowsAffected = statement.executeUpdate();
+        // Step 3: Call the method in DBconnectionFood to delete the product
+        boolean isDeleted = DBconnectionFood.deleteProduct(selectedProduct.getProductName());
 
-            if (rowsAffected > 0) {
-                showAlert("Success", "Product deleted successfully.", Alert.AlertType.INFORMATION);
-            } else {
-                showAlert("Error", "Product could not be deleted. Please try again.", Alert.AlertType.ERROR);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Database Error", "An error occurred while deleting the product.", Alert.AlertType.ERROR);
+        if (isDeleted) {
+            showAlert("Success", "Product deleted successfully.", Alert.AlertType.INFORMATION);
+        } else {
+            showAlert("Error", "Product could not be deleted. Please try again.", Alert.AlertType.ERROR);
         }
 
         // Step 4: Refresh the TableView
         loadInventoryData();
     }
+
 
     @FXML
     public void saveProduct(ActionEvent event) {
@@ -407,14 +447,26 @@ public class AdminPageController implements Initializable {
                 ? getRelativePath(selectedImageFile) // Convert to relative path
                 : "No Image";
 
-        saveOrUpdateProduct(prodId, prodName, prodCategory, prodStock, prodPrice, imageFilePath);
+        DBconnectionFood.saveOrUpdateProduct(prodId, prodName, prodCategory, prodStock, prodPrice, imageFilePath);
         resetProductFields();
         loadInventoryData();
     }
-
     private static int currentProductId = 25; // Start from 25
     private static int generateProductId() {
         return currentProductId++;
+    }
+
+    @FXML
+    private void resetProductFields() {
+        // Unselect the current selected item in the TableView
+        inventory_tableView.getSelectionModel().clearSelection();
+
+        // Clear all the input fields
+        ProductNametf.clear();
+        ProductCategoryCB.setValue(null);
+        ProductStockSpnr.getValueFactory().setValue(1);
+        ProductPricetf.clear();
+        inventory_imageView.setImage(null);
     }
 
     @FXML
@@ -474,6 +526,79 @@ public class AdminPageController implements Initializable {
     }
 //end of inventory
 
+//starts sa customer page
+    @FXML
+    void UpdateStatus(ActionEvent event) {
+        CustomerOrder selectedOrder = customer_tableView.getSelectionModel().getSelectedItem();
+        if (selectedOrder != null) {
+
+            String statusUpdate = customerUpdateStatus.getSelectionModel().getSelectedItem(); // Combobox
+            if (statusUpdate == null) {
+                showAlert("No Status Selected", "Please state a status to update the order.", Alert.AlertType.WARNING);
+                return;
+            }
+
+            // Update the status in the database
+            DBconnectionFood.updateCustomerOrderStatus(selectedOrder, statusUpdate);
+
+            // Update the value in the TableView
+            selectedOrder.setOrderStatus(statusUpdate);
+            showAlert("Update Successful", "Order Status Updated", Alert.AlertType.INFORMATION);
+            customer_tableView.refresh(); // Refresh the TableView to show updated values
+
+            // Load and update dashboard data
+            loadDashboardData(); // Refresh the dashboard data to show the most recent information
+        }
+    }
+
+    @FXML
+    void populateCustomerOrders(MouseEvent event) {
+        if (event.getClickCount() == 2) { // Check for double-click
+            CustomerOrder selectedOrder = customer_tableView.getSelectionModel().getSelectedItem();
+
+            if (selectedOrder != null) {
+                // Create a border around the receipt
+                String border = "************************************\n";
+                StringBuilder receiptText = new StringBuilder();
+
+                // Add the border and customer details section
+                receiptText.append(border)
+                        .append("       TRANSACTION RECEIPT\n")
+                        .append(border)
+                        .append("Customer Name: ").append(selectedOrder.getCustomerName()).append("\n")
+                        .append("Contact Number: ").append(selectedOrder.getCustomerNumber()).append("\n")
+                        .append("Address: ").append(selectedOrder.getCustomerAddress()).append("\n")
+                        .append("Order Type: ").append(selectedOrder.getCustomerOrderType()).append("\n")
+                        .append("Payment Type: ").append(selectedOrder.getCustomerPaymentType()).append("\n")
+                        .append("Order Date: ").append(selectedOrder.getCustomerOrderDate()).append("\n")
+                        .append(border);
+
+                // Items section
+                receiptText.append("Items (").append(selectedOrder.getAmountOfProducts()).append("):\n");
+                receiptText.append(selectedOrder.getFoodItems()).append("\n");
+                receiptText.append(border);
+
+                // Total section
+                receiptText.append(String.format("TOTAL AMOUNT: ₱%.2f (Including Shipping Cost & Handling Fee)\n",
+                                (double) selectedOrder.getTotalAmount()))
+                        .append(border);
+
+                // Display receipt in transactionContent
+                customerDisplayCustomerOrder.setText(receiptText.toString());
+            }
+        }
+    }
+    void loadCustomerOrders() {
+        // Fetch the feedback data from DBconnectionFood
+        ObservableList<CustomerOrder> selectedOrder = DBconnectionFood.loadCustomerOrderData();
+        if (selectedOrder.isEmpty()) {
+            showAlert("Database Error", "An error occurred while fetching feedback data.", Alert.AlertType.ERROR);
+        }
+        // Set the feedback data to the TableView
+        customer_tableView.setItems(selectedOrder);
+    }
+
+    //end sa customer page
     //start sa feedback page
     @FXML
     void populateFeedback(MouseEvent event) {
@@ -489,108 +614,15 @@ public class AdminPageController implements Initializable {
     }
 
     public void loadFeedbackData() {
-        ObservableList<FeedBack> feedBacks = FXCollections.observableArrayList();
-        String query = "SELECT * FROM feedback";
-
-        try (Connection connection = DBconnectionFood.ConnectionDB();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            while (resultSet.next()) {
-                int cusID = resultSet.getInt("Account_ID");
-                String username = resultSet.getString("Username");
-                String typeOfFeedback = resultSet.getString("TypeOfFeedback");
-                String typeOfConcern = resultSet.getString("TitleOfConcern");
-                String feedbackContent = resultSet.getString("FeedbackContent");
-
-                // Create new FeedBack object and add it to the list
-                feedBacks.add(new FeedBack(cusID, username, typeOfFeedback, typeOfConcern, feedbackContent));
-            }
-
-            feedback_tableView.setItems(feedBacks); // Update TableView with the new data
-        } catch (SQLException e) {
-            e.printStackTrace();
+        // Fetch the feedback data from DBconnectionFood
+        ObservableList<FeedBack> feedBacks = DBconnectionFood.loadFeedbackData();
+        if (feedBacks.isEmpty()) {
             showAlert("Database Error", "An error occurred while fetching feedback data.", Alert.AlertType.ERROR);
         }
+        // Set the feedback data to the TableView
+        feedback_tableView.setItems(feedBacks);
     }
 
     //end of feedback page
-
-    //sql queries
-    public void saveOrUpdateProduct(int prodId, String prodName, String prodCategory, int prodStock, String prodPrice, String imageFilePath) {
-        if (prodName.isEmpty() || prodCategory == null  || prodPrice.isEmpty()) {
-            showAlert("Validation Error", "Please fill in all the required fields.", Alert.AlertType.WARNING);
-            return;
-        }
-
-        double parsedPrice;
-        try {
-            parsedPrice = Double.parseDouble(prodPrice);
-        } catch (NumberFormatException e) {
-            showAlert("Input Error", "Please enter a valid numeric value for price.", Alert.AlertType.WARNING);
-            return;
-        }
-
-        String status = (prodStock == 0) ? "Unavailable" : (prodStock <= 10) ? "Available (Low Stock)" : "Available";
-
-        try (Connection connection = DBconnectionFood.ConnectionDB()) {
-            if (isNewProduct(prodId, connection)) { // Check if the product is new
-                String insertQuery = "INSERT INTO products (ProductID, ProductName, Category, Price, Stock, Productimg, Status) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
-                try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-                    statement.setInt(1, prodId);
-                    statement.setString(2, prodName);
-                    statement.setString(3, prodCategory);
-                    statement.setDouble(4, parsedPrice);
-                    statement.setInt(5, prodStock);
-                    statement.setString(6, imageFilePath); // Set the file path (or "No Image")
-                    statement.setString(7, status);
-                    statement.executeUpdate();
-                    showAlert("Success", "Product added successfully.", Alert.AlertType.INFORMATION);
-                }
-            } else {
-                String updateQuery = "UPDATE products SET ProductName = ?, Category = ?, Price = ?, Stock = ?, Productimg = ?, Status = ? " +
-                        "WHERE ProductID = ?";
-                try (PreparedStatement statement = connection.prepareStatement(updateQuery)) {
-                    statement.setString(1, prodName);
-                    statement.setString(2, prodCategory);
-                    statement.setDouble(3, parsedPrice);
-                    statement.setInt(4, prodStock);
-                    statement.setString(5, imageFilePath); // Use the file path for update
-                    statement.setString(6, status);
-                    statement.setInt(7, prodId);
-                    statement.executeUpdate();
-                    showAlert("Success", "Product updated successfully.", Alert.AlertType.INFORMATION);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Database Error", "An error occurred while saving/updating the product. Please check your connection.", Alert.AlertType.ERROR);
-        }
-    }
-
-    private boolean isNewProduct(int prodId, Connection connection) throws SQLException {
-        String checkQuery = "SELECT COUNT(*) FROM products WHERE ProductID = ?";
-        try (PreparedStatement statement = connection.prepareStatement(checkQuery)) {
-            statement.setInt(1, prodId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next() && resultSet.getInt(1) == 0;
-            }
-        }
-    }
-
-    @FXML
-    private void resetProductFields() {
-        // Unselect the current selected item in the TableView
-        inventory_tableView.getSelectionModel().clearSelection();
-
-        // Clear all the input fields
-        ProductNametf.clear();
-        ProductCategoryCB.setValue(null);
-        ProductStockSpnr.getValueFactory().setValue(1);
-        ProductPricetf.clear();
-        inventory_imageView.setImage(null);
-    }
-
 
 }

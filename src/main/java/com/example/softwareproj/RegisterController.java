@@ -46,10 +46,6 @@ public class RegisterController {
     private TextField usertf;
 
 
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-
     @FXML
     void toLogin(ActionEvent event) {
         Connection con = DBconnectionFood.ConnectionDB();
