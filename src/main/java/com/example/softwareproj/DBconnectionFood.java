@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.sql.*;
 
+import static java.sql.DriverManager.getConnection;
+
 
 public class DBconnectionFood {
     private static Connection con = null; // Static connection for reuse
@@ -23,7 +25,7 @@ public class DBconnectionFood {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Connect to the MySQL database
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/foodtruck1", "Admin", "Putbol");
+            con = getConnection("jdbc:mysql://localhost:3306/foodtruck", "Admin", "Putbol");
             System.out.println("Connection Succeeded");
             return con; // Return the connection object
         } catch (Exception e) {
@@ -541,6 +543,34 @@ public class DBconnectionFood {
             showAlert("Database Error", "Unable to cancel the order: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+    public static boolean isStockAvailable(String productName, int quantity) throws SQLException {
+        // Modify the query to select based on product name instead of product ID
+        String query = "SELECT Stock FROM products WHERE ProductName = ?";
+        try (Connection conn = ConnectionDB();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, productName);  // Set product name as parameter
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                int currentStock = rs.getInt("Stock");
+                return currentStock >= quantity;  // Check if the stock is sufficient
+            }
+        }
+        return false;
+    }
+
+    public static void updateProductStock(String productName, int orderedQuantity) throws SQLException {
+        // Modify the query to update based on product name instead of product ID
+        String query = "UPDATE products SET Stock = Stock - ? WHERE ProductName = ?";
+        try (Connection conn = ConnectionDB();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, orderedQuantity);  // Set the ordered quantity
+            stmt.setString(2, productName);   // Set the product name as parameter
+            stmt.executeUpdate();
+        }
+    }
+
 
     //within diri ipang butang ang customer related
 

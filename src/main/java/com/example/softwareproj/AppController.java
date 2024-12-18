@@ -1529,11 +1529,12 @@ public class AppController {
             String userContactNumber = OrderDetailsUserContactNumber.getText().trim();
             String userAddress = OrderDetailsUserAddress.getText().trim();
             int amountOfProducts = 0;
-            // Loop through each row in the table to get the quantity
+
+            // Loop through each row in the table to calculate quantity
             for (FoodItem item : quantity) {
-                // Assuming YourItemType has a getQuantity() method to get the quantity of each item
                 amountOfProducts += item.getQuantity();
             }
+
             int typeOfItems = Integer.parseInt(itemCounter.getText());
             if (userFullName.isEmpty() || userContactNumber.isEmpty()) {
                 throw new IllegalArgumentException("Please complete all user details.");
@@ -1547,20 +1548,21 @@ public class AppController {
                 deliveryType = "Pickup";
             } else {
                 throw new IllegalArgumentException("Please select a delivery method.");
-            };
+            }
 
             // Calculate Total Price
             double foodItemsSubtotal = checkoutItems.stream()
                     .mapToDouble(FoodItem::getTotal)
                     .sum();
-            double shippingCost = deliveryType.equals("Delivery") ? getShippingCost() : 0; // No shipping cost for pickup
+            double shippingCost = deliveryType.equals("Delivery") ? getShippingCost() : 0;
             double handlingFee = getHandlingFee();
             double totalPrice = foodItemsSubtotal + shippingCost + handlingFee;
 
             String OrderItems = checkoutItems.stream()
                     .map(item -> String.format("%s x%d - ₱%.2f",
                             item.getName(), item.getQuantity(), item.getTotal()))
-                    .collect(Collectors.joining("\n")); // Join each food item with a line break
+                    .collect(Collectors.joining("\n"));
+
             // Determine Payment Method
             String paymentType;
             FXMLLoader loader;
@@ -1585,16 +1587,31 @@ public class AppController {
                 throw new IllegalArgumentException("Please select a payment method.");
             }
 
+            // Validate Stock Before Placing Order
+            for (FoodItem item : checkoutItems) {
+                String productName = item.getName();
+                if (!DBconnectionFood.isStockAvailable(productName, item.getQuantity())) {
+                    throw new IllegalArgumentException("Insufficient stock for item: " + productName);
+                }
+            }
+
             // Insert order into database
             DBconnectionFood.insertOrderIntoDatabase(
                     userFullName, userContactNumber, userAddress, deliveryType, paymentType,
-                    amountOfProducts ,totalPrice, OrderItems
+                    amountOfProducts, totalPrice, OrderItems
             );
+
+            // Update stock for each item in the order
+            for (FoodItem item : checkoutItems) {
+                String productName = item.getName();
+                int orderedQuantity = item.getQuantity();
+                DBconnectionFood.updateProductStock(productName, orderedQuantity);
+            }
 
             // Pass data to the receipt controller
             ReceiptController receiptController = loader.getController();
             receiptController.setReceiptDetails(
-                    userFullName, userContactNumber, userAddress, amountOfProducts,typeOfItems,deliveryType, paymentType,
+                    userFullName, userContactNumber, userAddress, amountOfProducts, typeOfItems, deliveryType, paymentType,
                     checkoutItems, foodItemsSubtotal, shippingCost, handlingFee, totalPrice
             );
             if (PayOnlinePayment.isSelected()) {
@@ -1630,6 +1647,8 @@ public class AppController {
             e.printStackTrace();
         }
     }
+
+
 
     //tables
     void refreshTable(){
