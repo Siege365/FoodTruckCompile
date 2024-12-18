@@ -25,7 +25,7 @@ public class DBconnectionFood {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Connect to the MySQL database
-            con = getConnection("jdbc:mysql://localhost:3306/foodtruck", "Admin", "Putbol");
+            con = getConnection("jdbc:mysql://localhost:3306/foodtruck1", "Admin", "Putbol");
             System.out.println("Connection Succeeded");
             return con; // Return the connection object
         } catch (Exception e) {
@@ -233,12 +233,15 @@ public class DBconnectionFood {
                 String date = resultSet.getString("OrderDate");
                 int totalProducts = resultSet.getInt("AmountofProducts");
                 String items = resultSet.getString("FoodItems");
+                Double subtotal = resultSet.getDouble("SubTotal");
+                Double shipping = resultSet.getDouble("ShippingCost");
+                Double handling = resultSet.getDouble("HandlingFee");
                 int totalAmount = resultSet.getInt("TotalAmount");
                 String status = resultSet.getString("Status");
 
 
                 // Create new FeedBack object and add it to the list
-                selectedOrder.add(new CustomerOrder(orderID, customerName, contactNumber, address, orderType,paymentType,date,totalProducts,items,totalAmount,status));
+                selectedOrder.add(new CustomerOrder(orderID, customerName, contactNumber, address, orderType,paymentType,date,totalProducts,items,subtotal,shipping,handling,totalAmount,status));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -452,11 +455,11 @@ public class DBconnectionFood {
 
     //MO ORDER ANG CUSTOMER
     public static void insertOrderIntoDatabase(String customerName, String contactNumber, String address,
-                                               String orderType, String paymentType, int totalProducts,
+                                               String orderType, String paymentType, int totalProducts, double subTotal, double shippingCost, double handlingFee,
                                                double totalAmount, String Items) {
         String query = "INSERT INTO customerorder (CustomerName, CustomerNumber, CustomerAddress, OrderType, " +
-                "PaymentType, OrderDate, AmountofProducts, FoodItems, TotalAmount, Status) " +
-                "VALUES (?, ?, ?, ?, ?, CURDATE(), ?, ?, ?, ?)";
+                    "PaymentType, OrderDate, AmountofProducts, FoodItems, SubTotal ,ShippingCost,HandlingFee,TotalAmount,Status) " +
+                "VALUES (?, ?, ?, ?, ?, CURDATE(), ?, ?, ?,?,?,?, ?)";
 
         try (Connection conn = ConnectionDB();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -467,17 +470,14 @@ public class DBconnectionFood {
             pstmt.setString(3, address);
             pstmt.setString(4, orderType);
             pstmt.setString(5, paymentType);
-
-            // Total products count
-            pstmt.setInt(6, totalProducts);
-
+            pstmt.setInt(6, totalProducts);      // Total products count
             pstmt.setString(7, Items);
-
-            // Total amount
-            pstmt.setDouble(8, totalAmount);
-
+            pstmt.setDouble(8, subTotal);
+            pstmt.setDouble(9, shippingCost);
+            pstmt.setDouble(10, handlingFee);
+            pstmt.setDouble(11, totalAmount);
             // Default status
-            pstmt.setString(9, "Pending");
+            pstmt.setString(12, "Pending");
 
             // Execute the query
             int rowsAffected = pstmt.executeUpdate();
@@ -514,6 +514,9 @@ public class DBconnectionFood {
                         rs.getString("OrderDate"),
                         rs.getInt("AmountofProducts"),
                         rs.getString("FoodItems"),
+                        rs.getDouble("SubTotal"),
+                        rs.getDouble("ShippingCost"),
+                        rs.getDouble("HandlingFee"),
                         rs.getInt("TotalAmount"),
                         rs.getString("Status")
                 );

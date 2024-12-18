@@ -10,13 +10,16 @@ public class CustomerOrder {
     private String customerOrderDate;
     private int amountOfProducts;
     private String foodItems;
+    private double subTotal;
+    private double shippingCost;
+    private double handlingFee;
     private int totalAmount;
     private String orderStatus;
 
     // Constructor
     public CustomerOrder(int orderID, String customerName, String customerNumber, String customerAddress,
                          String customerOrderType, String customerPaymentType, String customerOrderDate,
-                         int amountOfProducts,String foodItems ,int totalAmount, String orderStatus) {
+                         int amountOfProducts,String foodItems ,double subTotal,double shippingCost,double handlingFee,int totalAmount, String orderStatus) {
         this.orderID = orderID;
         this.customerName = customerName;
         this.customerNumber = customerNumber;
@@ -26,6 +29,9 @@ public class CustomerOrder {
         this.customerOrderDate = customerOrderDate;
         this.amountOfProducts = amountOfProducts;
         this.foodItems = foodItems;
+        this.subTotal = subTotal;
+        this.shippingCost = shippingCost;
+        this.handlingFee = handlingFee;
         this.totalAmount = totalAmount;
         this.orderStatus = orderStatus;
     }
@@ -101,6 +107,30 @@ public class CustomerOrder {
 
     public void setFoodItems(String foodItems) {
         this.foodItems = foodItems;
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public double getShippingCost() {
+        return shippingCost;
+    }
+
+    public void setShippingCost(double shippingCost) {
+        this.shippingCost = shippingCost;
+    }
+
+    public double getHandlingFee() {
+        return handlingFee;
+    }
+
+    public void setHandlingFee(double handlingFee) {
+        this.handlingFee = handlingFee;
     }
 
     public int getTotalAmount() {

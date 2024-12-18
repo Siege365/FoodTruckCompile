@@ -211,6 +211,7 @@ public class ReceiptController {
         }
         ProgressPoint1.setFill(DODGERBLUE);
         showAlert("Success", "Your order has been placed successfully! Please print your receipt as proof for order validation and claiming.", Alert.AlertType.INFORMATION);
+
     }
     @FXML
     void close(ActionEvent event) {

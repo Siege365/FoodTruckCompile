@@ -72,16 +72,16 @@
                <center>
                   <AnchorPane fx:id="dashboard" prefHeight="546.0" prefWidth="810.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="9.0" layoutY="9.0" prefHeight="581.0" prefWidth="1006.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="9.0" layoutY="9.0" prefHeight="779.0" prefWidth="1006.0">
                            <children>
-                              <AnchorPane layoutX="13.0" layoutY="94.0" prefHeight="554.0" prefWidth="979.0" stylesheets="@CSS/AdminPageCSS.css">
+                              <AnchorPane layoutX="13.0" layoutY="94.0" prefHeight="554.0" prefWidth="979.0" stylesheets="@CSS/AdminPageCSS.css" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="25.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Pane layoutX="517.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="517.0" layoutY="91.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -104,7 +104,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                     </Pane>
-                                    <Pane layoutX="517.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="517.0" layoutY="390.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -127,7 +127,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                     </Pane>
-                                    <Pane layoutX="58.0" layoutY="297.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="58.0" layoutY="390.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -150,14 +150,14 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                     </Pane>
-                                    <Pane layoutX="58.0" layoutY="37.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <Pane layoutX="58.0" layoutY="91.0" prefHeight="234.0" prefWidth="400.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <children>
                                           <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="11.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@images/users.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="178.0" layoutY="177.0" text="Number of Customer Orders">
+                                          <Label layoutX="178.0" layoutY="177.0" stylesheets="@CSS/AppFoodTruck.css" text="Number of Customer Orders">
                                              <font>
                                                 <Font name="Impact" size="18.0" />
                                              </font>

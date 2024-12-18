@@ -1,7 +1,6 @@
 package com.example.softwareproj.GettersAndSetters;
 
 public class FoodItem {
-    private int productId;
     private String name;
     private double price;
     private int quantity;

@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
@@ -52,6 +53,9 @@ public class AppController {
 
     @FXML
     private Label AccID;
+
+    @FXML
+    private ImageView ads1,ads2;
 
     @FXML
     private TextField AccFullName;
@@ -364,6 +368,15 @@ public class AppController {
     private TableColumn<CustomerOrder, Integer> mainTotal;
 
     @FXML
+    private TableColumn<CustomerOrder, Double> mainSubtotal;
+
+    @FXML
+    private TableColumn<CustomerOrder, Double> mainShippingCost;
+
+    @FXML
+    private TableColumn<CustomerOrder, Double> mainHandlingFee;
+
+    @FXML
     private TableColumn<CustomerOrder, Integer> mainTotalProducts;
 
     @FXML
@@ -401,6 +414,15 @@ public class AppController {
 
     @FXML
     private TableColumn<CustomerOrder, Integer> transactionTotalProducts;
+
+    @FXML
+    private TableColumn<CustomerOrder, Double> transactionSubtotal;
+
+    @FXML
+    private TableColumn<CustomerOrder, Double> transactionShippingCost;
+
+    @FXML
+    private TableColumn<CustomerOrder, Double> transactionHandlingFee;
 
     @FXML
     private TextArea transactionContent;
@@ -466,6 +488,17 @@ public class AppController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    @FXML
+    void curvedImageview(){
+        Rectangle clip = new Rectangle();
+        clip.setWidth(648); // Match the width of the ImageView
+        clip.setHeight(301); // Match the height of the ImageView
+        clip.setArcWidth(30); // Corner arc width
+        clip.setArcHeight(30); // Corner arc height
+
+        ads1.setClip(clip);
+        ads2.setClip(clip);
     }
 
     @FXML
@@ -589,6 +622,9 @@ public class AppController {
         mainTotalProducts.setCellValueFactory(new PropertyValueFactory<>("amountOfProducts"));
         mainTotal.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         mainStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+        mainSubtotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
+        mainShippingCost.setCellValueFactory(new PropertyValueFactory<>("shippingCost"));
+        mainHandlingFee.setCellValueFactory(new PropertyValueFactory<>("handlingFee"));
 
         transactionOrderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
         transactionCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
@@ -601,6 +637,10 @@ public class AppController {
         transactionFoodItems.setCellValueFactory(new PropertyValueFactory<>("foodItem"));
         transactionTotal.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         transactionStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+        transactionSubtotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
+        transactionShippingCost.setCellValueFactory(new PropertyValueFactory<>("shippingCost"));
+        transactionHandlingFee.setCellValueFactory(new PropertyValueFactory<>("handlingFee"));
+
         // Create ToggleGroups
         ToggleGroup ShippingOption = new ToggleGroup();
         ToggleGroup PaymentMethods = new ToggleGroup();
@@ -1578,10 +1618,13 @@ public class AppController {
                 loader = new FXMLLoader(getClass().getResource("JustReceipt.fxml"));
                 scene = new Scene(loader.load());
                 stage.setTitle("El Pedidos - COD Receipt");
+                showAlert("Success", "Your order has been placed successfully! Please print your receipt as proof for order validation and claiming.", Alert.AlertType.INFORMATION);
             } else if (PayOnlinePayment.isSelected()) {
                 paymentType = "Online Payment";
                 loader = new FXMLLoader(getClass().getResource("OnlinePaymentReceipt.fxml"));
                 scene = new Scene(loader.load());
+                ReceiptController receiptController = loader.getController();
+                receiptController.getUserCardData(AccUsername.getText());
                 stage.setTitle("El Pedidos - Online Payment Receipt");
             } else {
                 throw new IllegalArgumentException("Please select a payment method.");
@@ -1598,7 +1641,7 @@ public class AppController {
             // Insert order into database
             DBconnectionFood.insertOrderIntoDatabase(
                     userFullName, userContactNumber, userAddress, deliveryType, paymentType,
-                    amountOfProducts, totalPrice, OrderItems
+                    amountOfProducts, foodItemsSubtotal,shippingCost,handlingFee,totalPrice, OrderItems
             );
 
             // Update stock for each item in the order
@@ -1633,7 +1676,6 @@ public class AppController {
             updateTotalPrice();
             OrderTable.getItems().clear();
             OrderTable.refresh();
-            showAlert("Success", "Your order has been placed successfully! Please print your receipt as proof for order validation and claiming.", Alert.AlertType.INFORMATION);
             refreshTable();
             toHome(event);
 
@@ -1684,11 +1726,14 @@ public class AppController {
                 int itemCount = foodItems.length;  // Count number of items
                 receiptText.append("Items (").append(itemCount).append("):\n");
                 receiptText.append(orders.getFoodItems()).append("\n");
+                receiptText.append("Total Quantity Ordered: ").append(orders.getAmountOfProducts()).append("\n");
                 receiptText.append(border);
 
                 // Total section
-                receiptText.append(String.format("TOTAL AMOUNT: ₱%.2f (Including Shipping Cost & Handling Fee)\n",
-                                (double) orders.getTotalAmount()))
+                receiptText.append(String.format("Subtotal: ₱%.2f\n",orders.getSubTotal()))
+                        .append(String.format("Shipping Cost: ₱%.2f\n", orders.getShippingCost()))
+                        .append(String.format("Handling Fee: ₱%.2f\n",  orders.getHandlingFee()))
+                        .append(String.format("Total Amount: ₱%.2f \n",(double) orders.getTotalAmount()))
                         .append(border);
 
                 // Display receipt in transactionContent
@@ -1806,7 +1851,7 @@ public class AppController {
             nameLabel.setLayoutY(227);
             nameLabel.setPrefSize(300, 53);
             nameLabel.setStyle("-fx-text-fill: black;");
-            nameLabel.setFont(new Font(36));
+            nameLabel.setFont(new Font(32));
             nameLabel.setAlignment(Pos.CENTER_LEFT);
             nameLabel.setTextAlignment(TextAlignment.RIGHT);
 
@@ -1897,22 +1942,20 @@ public class AppController {
         // More page
         String avatarPath = rs.getString("Account_Avatar");
         if (avatarPath != null && !avatarPath.isEmpty()) {
-            System.out.println("Image Path: " + avatarPath);  // Debug the avatar path
-            URL imageUrl = getClass().getResource("/com/example/softwareproj/images/" + avatarPath);
-            System.out.println("Resolved URL: " + imageUrl);  // Debug the resolved URL
-
+            System.out.println("Image Path: " + avatarPath); // Debug avatar path
+            URL imageUrl = getClass().getResource("/" + avatarPath); // Ensure the path starts with a slash
             if (imageUrl != null) {
-                Image avatarImage = new Image(imageUrl.toExternalForm());
-                avatarimg.setImage(avatarImage);
+                // Load and set the avatar image
+                Image avatarImage = new Image(imageUrl.toString());
                 avatar.setImage(avatarImage);
+                AvatarMore.setImage(avatarImage);
             } else {
-                showAlert("Error", "Avatar image not found.", Alert.AlertType.ERROR);
-                setDefaultAvatarImage();  // Set default avatar image if not found
+                // If the image isn't found, show an alert and set a default avatar
+                showAlert("Error", "Avatar image not found. Setting default avatar.", Alert.AlertType.ERROR);
+                setDefaultAvatarImage();
             }
-
         } else {
-            // If no avatar path is available, set a default image
-            setDefaultAvatarImage(); // Set a default avatar image
+            setDefaultAvatarImage();
         }
 
         AccPassword.setText(rs.getString("Password"));
@@ -1936,12 +1979,16 @@ public class AppController {
 
     // Method to set a default avatar image
     private void setDefaultAvatarImage() {
-        // Correctly specify the path to the resource relative to the root of the classpath
-        Image defaultAvatarImage = new Image(getClass().getResource("/com/example/softwareproj/images/defaultavatar.png").toExternalForm());
-        AvatarMore.setImage(defaultAvatarImage);
-        avatar.setImage(defaultAvatarImage);
-
+        URL defaultAvatarUrl = getClass().getResource("/com/example/softwareproj/images/defaultavatar.png");
+        if (defaultAvatarUrl != null) {
+            Image defaultAvatarImage = new Image(defaultAvatarUrl.toExternalForm());
+            AvatarMore.setImage(defaultAvatarImage);
+            avatar.setImage(defaultAvatarImage);
+        } else {
+            showAlert("Error", "Default avatar image not found.", Alert.AlertType.ERROR);
+        }
     }
+
     public void populateMainOrderOverview() {
         String customerName = AccFullName.getText();
         if (customerName == null || customerName.isEmpty()) {

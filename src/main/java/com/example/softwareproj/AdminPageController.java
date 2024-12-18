@@ -577,11 +577,14 @@ public class AdminPageController implements Initializable {
                 int itemCount = foodItems.length;  // Count number of items
                 receiptText.append("Items (").append(itemCount).append("):\n");
                 receiptText.append(selectedOrder.getFoodItems()).append("\n");
+                receiptText.append("Total Quantity Ordered: ").append(selectedOrder.getAmountOfProducts()).append("\n");
                 receiptText.append(border);
 
                 // Total section
-                receiptText.append(String.format("TOTAL AMOUNT: ₱%.2f (Including Shipping Cost & Handling Fee)\n",
-                                (double) selectedOrder.getTotalAmount()))
+                receiptText.append(String.format("Subtotal: ₱%.2f\n",selectedOrder.getSubTotal()))
+                        .append(String.format("Shipping Cost: ₱%.2f\n", selectedOrder.getShippingCost()))
+                        .append(String.format("Handling Fee: ₱%.2f\n",  selectedOrder.getHandlingFee()))
+                        .append(String.format("Total Amount: ₱%.2f \n",(double) selectedOrder.getTotalAmount()))
                         .append(border);
 
                 // Display receipt in transactionContent

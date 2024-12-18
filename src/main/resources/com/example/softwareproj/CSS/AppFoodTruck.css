@@ -73,6 +73,18 @@
     -fx-border-width: 1;          /* Optional: Border thickness */
     -fx-padding: 10;              /* Adjust padding for better appearance */
 }
+/* Load the font using @font-face */
+@font-face {
+    font-family: 'Leckerli One'; /* Internal name to reference in -fx-font-family */
+    src: url('/com/example/softwareproj/Fonts/Leckerli_One/LeckerliOne-Regular.ttf'); /* Correct the path */
+}
+
+/* Apply the font to a style class */
+.custom-font {
+    -fx-font-family: 'Leckerli One'; /* Reference the font-family defined in @font-face */
+    -fx-font-size: 20px; /* Set font size */
+    -fx-text-fill: black; /* Ensure valid color (CSS standard doesn't support '#pink') */
+}
 
 
 
