@@ -13,7 +13,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="frame" onMouseDragged="#frameDrag" onMousePressed="#framePress" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softwareproj.ReceiptController">
    <children>
       <AnchorPane fx:id="ReceiptIfOnline" maxHeight="1020.0" maxWidth="605.0" prefHeight="1050.0" prefWidth="605.0" style="-fx-background-color: white;" stylesheets="@CSS/AppFoodTruck.css">
@@ -92,7 +91,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button fx:id="closebtn" layoutX="535.0" mnemonicParsing="false" onAction="#close" prefHeight="79.0" prefWidth="67.0" style="-fx-background-color: Orange; -fx-background-radius: 15;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css" text="X">
+            <Button fx:id="closebtn" layoutX="535.0" mnemonicParsing="false" onAction="#close" prefHeight="79.0" prefWidth="67.0" style="-fx-background-color: Orange; -fx-background-radius: 15;" styleClass="drop-shadow" stylesheets="@CSS/AppFoodTruck.css" text="X" visible="false">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
