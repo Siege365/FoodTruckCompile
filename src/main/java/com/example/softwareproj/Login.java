@@ -17,7 +17,6 @@ public class Login extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("LoginFood.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setResizable(false);

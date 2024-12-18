@@ -312,12 +312,15 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font></Button>
                                     <ComboBox fx:id="customerUpdateStatus" layoutX="823.0" layoutY="516.0" prefHeight="41.0" prefWidth="150.0" promptText="Status" style="-fx-background-radius: 15;" styleClass="btn" stylesheets="@CSS/AdminPageCSS.css" />
-                                    <TextArea fx:id="customerDisplayCustomerOrder" layoutX="8.0" layoutY="473.0" prefHeight="290.0" prefWidth="791.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <TextArea fx:id="customerDisplayCustomerOrder" editable="false" layoutX="8.0" layoutY="473.0" prefHeight="290.0" prefWidth="791.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <styleClass>
                                           <String fx:value="white-bg" />
                                           <String fx:value="radius" />
                                           <String fx:value="shadow" />
                                        </styleClass>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
                                     </TextArea>
                                  </children>
                               </AnchorPane>
@@ -349,12 +352,15 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <TextArea fx:id="feedbackContent" layoutX="14.0" layoutY="427.0" prefHeight="334.0" prefWidth="974.0" stylesheets="@CSS/AdminPageCSS.css">
+                                    <TextArea fx:id="feedbackContent" editable="false" layoutX="14.0" layoutY="427.0" prefHeight="334.0" prefWidth="974.0" stylesheets="@CSS/AdminPageCSS.css">
                                        <styleClass>
                                           <String fx:value="white-bg" />
                                           <String fx:value="radius" />
                                           <String fx:value="shadow" />
                                        </styleClass>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
                                     </TextArea>
                                  </children>
                               </AnchorPane>

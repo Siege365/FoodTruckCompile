@@ -59,5 +59,6 @@
             </Button>
          </children>
       </AnchorPane>
+      <TextField fx:id="passwordtfShowPass" layoutX="211.0" layoutY="650.0" prefHeight="41.0" prefWidth="342.0" promptText="Password" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css" />
    </children>
 </AnchorPane>

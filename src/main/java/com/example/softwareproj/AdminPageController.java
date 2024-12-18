@@ -573,8 +573,9 @@ public class AdminPageController implements Initializable {
                         .append("Order Date: ").append(selectedOrder.getCustomerOrderDate()).append("\n")
                         .append(border);
 
-                // Items section
-                receiptText.append("Items (").append(selectedOrder.getAmountOfProducts()).append("):\n");
+                String[] foodItems = selectedOrder.getFoodItems().split("\n");  // Split food items by newline
+                int itemCount = foodItems.length;  // Count number of items
+                receiptText.append("Items (").append(itemCount).append("):\n");
                 receiptText.append(selectedOrder.getFoodItems()).append("\n");
                 receiptText.append(border);
 
@@ -588,6 +589,7 @@ public class AdminPageController implements Initializable {
             }
         }
     }
+
     void loadCustomerOrders() {
         // Fetch the feedback data from DBconnectionFood
         ObservableList<CustomerOrder> selectedOrder = DBconnectionFood.loadCustomerOrderData();

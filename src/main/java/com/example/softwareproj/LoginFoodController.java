@@ -29,6 +29,18 @@ public class LoginFoodController {
     private TextField usertf;
 
     @FXML
+    private TextField passwordtfShowPass;
+
+    @FXML
+    void initialize() {
+        // Ensure the TextField mirrors the PasswordField initially
+        passwordtfShowPass.setManaged(false);
+        passwordtfShowPass.setVisible(false);
+
+        passwordtf.textProperty().bindBidirectional(passwordtfShowPass.textProperty());
+    }
+
+    @FXML
     void close(ActionEvent event) {System.exit(0);}
 
     @FXML
@@ -38,13 +50,21 @@ public class LoginFoodController {
     @FXML
     void showPassword(ActionEvent event) {
         if (showpass.isSelected()) {
-            passwordtf.setPromptText(passwordtf.getText());
-            passwordtf.setText("");
-            passwordtf.setDisable(true);
+            // Show the password as plain text
+            passwordtfShowPass.setText(passwordtf.getText());
+            passwordtfShowPass.setVisible(true);
+            passwordtfShowPass.setManaged(true);
+
+            passwordtf.setVisible(false);
+            passwordtf.setManaged(false);
         } else {
-            passwordtf.setText(passwordtf.getPromptText());
-            passwordtf.setPromptText("");
-            passwordtf.setDisable(false);
+            // Hide the password and show the PasswordField
+            passwordtf.setText(passwordtfShowPass.getText());
+            passwordtf.setVisible(true);
+            passwordtf.setManaged(true);
+
+            passwordtfShowPass.setVisible(false);
+            passwordtfShowPass.setManaged(false);
         }
     }
     @FXML

@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -789,7 +790,7 @@ public class AppController {
         deleteButton.setLayoutY(20);
         deleteButton.setPrefSize(94, 47);
         deleteButton.setStyle("-fx-background-color: #EF3A31; -fx-background-radius: 15;");
-        deleteButton.setTextFill(javafx.scene.paint.Color.web("#f8dc93"));
+        deleteButton.setTextFill(Color.web("#f8dc93"));
         deleteButton.setFont(new Font("System Bold", 13));
         deleteButton.setOnAction(e -> {
             cartItems.remove(item);
@@ -1027,6 +1028,26 @@ public class AppController {
 //end sa food category
 
 //start sa more page
+    @FXML
+    void cancelOrder(ActionEvent event) {
+        // Get the selected order
+        CustomerOrder selectedOrder = transactionHistoryTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOrder != null) {
+            String orderStatus = selectedOrder.getOrderStatus();
+            if ("Pending".equals(orderStatus)) {
+                DBconnectionFood.cancelCustomerOrder(selectedOrder);
+                showAlert("Success", "Order has been cancelled successfully.", Alert.AlertType.INFORMATION);
+            } else {
+                showAlert("Cancel Order", "Order cannot be cancelled because it is not pending.", Alert.AlertType.WARNING);
+            }
+            // Refresh the data in the tables
+            populateMainOrderOverview();
+        } else {
+            showAlert("Cancel Order", "No order selected. Please select an order to cancel.", Alert.AlertType.WARNING);
+        }
+    }
+
 
     @FXML
     private void handleSubmitFeedback() {
@@ -1501,12 +1522,19 @@ public class AppController {
 
     @FXML
     private void handleOrderPage(ActionEvent event) {
+        ObservableList<FoodItem> quantity = OrderTable.getItems();
         try {
             // Validate User Details
             String userFullName = OrderDetailsUserFullname.getText().trim();
             String userContactNumber = OrderDetailsUserContactNumber.getText().trim();
             String userAddress = OrderDetailsUserAddress.getText().trim();
-            int amountOfProducts = Integer.parseInt(itemCounter.getText());
+            int amountOfProducts = 0;
+            // Loop through each row in the table to get the quantity
+            for (FoodItem item : quantity) {
+                // Assuming YourItemType has a getQuantity() method to get the quantity of each item
+                amountOfProducts += item.getQuantity();
+            }
+            int typeOfItems = Integer.parseInt(itemCounter.getText());
             if (userFullName.isEmpty() || userContactNumber.isEmpty()) {
                 throw new IllegalArgumentException("Please complete all user details.");
             }
@@ -1519,7 +1547,7 @@ public class AppController {
                 deliveryType = "Pickup";
             } else {
                 throw new IllegalArgumentException("Please select a delivery method.");
-            }
+            };
 
             // Calculate Total Price
             double foodItemsSubtotal = checkoutItems.stream()
@@ -1560,13 +1588,13 @@ public class AppController {
             // Insert order into database
             DBconnectionFood.insertOrderIntoDatabase(
                     userFullName, userContactNumber, userAddress, deliveryType, paymentType,
-                    amountOfProducts, totalPrice, OrderItems
+                    amountOfProducts ,totalPrice, OrderItems
             );
 
             // Pass data to the receipt controller
             ReceiptController receiptController = loader.getController();
             receiptController.setReceiptDetails(
-                    userFullName, userContactNumber, userAddress, amountOfProducts, deliveryType, paymentType,
+                    userFullName, userContactNumber, userAddress, amountOfProducts,typeOfItems,deliveryType, paymentType,
                     checkoutItems, foodItemsSubtotal, shippingCost, handlingFee, totalPrice
             );
             if (PayOnlinePayment.isSelected()) {
@@ -1588,8 +1616,9 @@ public class AppController {
             updateTotalPrice();
             OrderTable.getItems().clear();
             OrderTable.refresh();
-
             showAlert("Success", "Your order has been placed successfully! Please print your receipt as proof for order validation and claiming.", Alert.AlertType.INFORMATION);
+            refreshTable();
+            toHome(event);
 
         } catch (IllegalArgumentException e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
@@ -1600,8 +1629,6 @@ public class AppController {
             showAlert("Error", "An unexpected error occurred: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
-        refreshTable();
-        toHome(event);
     }
 
     //tables
@@ -1634,7 +1661,9 @@ public class AppController {
                         .append(border);
 
                 // Items section
-                receiptText.append("Items (").append(orders.getAmountOfProducts()).append("):\n");
+                String[] foodItems = orders.getFoodItems().split("\n");  // Split food items by newline
+                int itemCount = foodItems.length;  // Count number of items
+                receiptText.append("Items (").append(itemCount).append("):\n");
                 receiptText.append(orders.getFoodItems()).append("\n");
                 receiptText.append(border);
 
@@ -1664,7 +1693,7 @@ public class AppController {
          setupGridPane(drinksGridpane);
          setupGridPane(dessertsGridpane);
 
-         String query = "SELECT ProductName, Category, Price, ProductImg FROM products"; // Adjust to match your database
+         String query = "SELECT ProductName, Category, Price, ProductImg FROM products WHERE Status != 'Unavailable'"; // Adjust to match your database
          int spinnerIdCounter = 0; // Starting ID for spinners
          final int COLUMNS = 2; // Number of columns in the grid
 
@@ -1758,7 +1787,7 @@ public class AppController {
             nameLabel.setLayoutY(227);
             nameLabel.setPrefSize(300, 53);
             nameLabel.setStyle("-fx-text-fill: black;");
-            nameLabel.setFont(new javafx.scene.text.Font(36));
+            nameLabel.setFont(new Font(36));
             nameLabel.setAlignment(Pos.CENTER_LEFT);
             nameLabel.setTextAlignment(TextAlignment.RIGHT);
 
@@ -1767,7 +1796,7 @@ public class AppController {
             priceLabel.setLayoutY(319);
             priceLabel.setPrefSize(140, 58);
             priceLabel.setStyle("-fx-text-fill: #EF3A31;");
-            priceLabel.setFont(new javafx.scene.text.Font(36));
+            priceLabel.setFont(new Font(36));
 
             Spinner<Integer> quantitySpinner = new Spinner<>();
             quantitySpinner.setId("food_spinner" + spinnerIdCounter);

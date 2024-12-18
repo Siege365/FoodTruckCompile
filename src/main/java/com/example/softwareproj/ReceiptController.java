@@ -26,8 +26,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.io.*;
 
 import static javafx.scene.paint.Color.*;
@@ -217,7 +218,7 @@ public class ReceiptController {
         stage.close(); // Close the stage
     }
     public void setReceiptDetails(
-            String fullName, String contactNumber, String address, int totalProducts, String deliveryType,
+            String fullName, String contactNumber, String address, int totalProducts, int typeofItems ,String deliveryType,
             String paymentType, List<FoodItem> items, double subtotal, double shippingCost, double handlingFee, double totalPrice) {
 
         // Create formatted receipt text
@@ -228,14 +229,18 @@ public class ReceiptController {
                 .append("Contact Number: ").append(contactNumber).append("\n")
                 .append("Address: ").append(address).append("\n")
                 .append("Order Type: ").append(deliveryType).append("\n")
-                .append("Payment Type: ").append(paymentType).append("\n\n");
+                .append("Payment Type: ").append(paymentType).append("\n")
+                .append("Date: ").append(LocalDate.now()).append("\n");
+
 
         // Items section
-        receiptText.append("Items (").append(totalProducts).append("):\n");
+        receiptText.append("\n");
+        receiptText.append("Items (").append(typeofItems).append("):\n");
         for (FoodItem item : items) {
             receiptText.append(String.format("%-20s x%-2d - ₱%.2f\n",
                     item.getName(), item.getQuantity(), item.getTotal()));
         }
+        receiptText.append("Total Quantity Ordered: ").append(totalProducts).append("\n");
 
         // Summary section
         receiptText.append("\n")

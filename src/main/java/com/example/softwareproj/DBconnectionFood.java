@@ -93,7 +93,7 @@ public class DBconnectionFood {
 
     // Get the total number of sold products
     public static int getSoldProducts() {
-        String query = "SELECT SUM(Quantity) FROM order_details";
+        String query = "SELECT SUM(AmountofProducts) FROM customerorder WHERE Status = 'Completed'";
         try (Connection con = ConnectionDB();  // Connection opened here
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -521,6 +521,27 @@ public class DBconnectionFood {
         }
         return cusOrders;
     }
+
+    public static void cancelCustomerOrder(CustomerOrder order) {
+        String query = "DELETE customerorder WHERE OrderID = ?";
+
+        try (Connection con = ConnectionDB();
+             PreparedStatement pst = con.prepareStatement(query)) {
+
+            pst.setInt(1, order.getOrderID());
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Order ID " + order.getOrderID() + " has been cancelled.");
+            } else {
+                System.out.println("Failed to cancel order. No matching order found.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Database Error", "Unable to cancel the order: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
     //within diri ipang butang ang customer related
 
     public static void main(String[] args) {

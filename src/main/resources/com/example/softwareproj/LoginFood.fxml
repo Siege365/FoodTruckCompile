@@ -43,5 +43,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
+      <TextField fx:id="passwordtfShowPass" layoutX="219.0" layoutY="615.0" prefHeight="41.0" prefWidth="331.0" promptText="Password" styleClass="transparent-text-field" stylesheets="@CSS/RegisterPageCss.css" />
    </children>
 </AnchorPane>
