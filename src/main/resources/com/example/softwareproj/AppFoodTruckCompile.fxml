@@ -96,17 +96,22 @@
                               <URL value="@CSS/AdminPageCSS.css" />
                            </stylesheets>
                               </TableView>
-                              <Pane fx:id="mainBestSeller" layoutX="56.0" layoutY="710.0" mouseTransparent="true" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css">
+                        <StackPane layoutX="52.0" layoutY="710.0" onMouseClicked="#handleSpecialComboClick">
                            <children>
-                              <ImageView fx:id="ads1" fitHeight="302.0" fitWidth="650.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@images/Red%20and%20Yellow%20Burger%20Food%20Video%20Promo.gif" />
-                                 </image>
-                              </ImageView>
-                           </children></Pane>
+                                    <Pane fx:id="mainBestSeller" mouseTransparent="true" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css">
+                                 <children>
+                                    <ImageView fx:id="ads1" fitHeight="303.0" fitWidth="650.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@images/Red%20and%20Yellow%20Burger%20Food%20Video%20Promo.gif" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </StackPane>
                               <Pane fx:id="mainAds" layoutX="56.0" layoutY="1070.0" prefHeight="303.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" styleClass="inner-shadow" stylesheets="@CSS/AppFoodTruck.css">
                            <children>
-                              <ImageView fx:id="ads2" fitHeight="302.0" fitWidth="650.0" pickOnBounds="true">
+                              <ImageView fx:id="ads2" fitHeight="302.0" fitWidth="650.0" onMouseClicked="#handleUltimateComboClick" pickOnBounds="true">
                                  <image>
                                     <Image url="@images/Red%20Yellow%20Modern%20Bold%20Fast%20Food%20Discount%20Promotion%20Video.gif" />
                                  </image>
@@ -1788,7 +1793,7 @@
                         <Font name="Impact" size="23.0" />
                      </font>
                   </Button>
-                  <Label fx:id="totalPriceLabel" layoutX="410.0" layoutY="38.0" prefHeight="58.0" prefWidth="151.0" style="-fx-text-fill: black;" text="Total:">
+                  <Label fx:id="totalPriceLabel" layoutX="405.0" layoutY="38.0" prefHeight="58.0" prefWidth="160.0" style="-fx-text-fill: black;" text="Total:">
                      <font>
                         <Font name="Impact" size="24.0" />
                      </font>

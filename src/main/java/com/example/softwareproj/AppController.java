@@ -672,6 +672,49 @@ public class AppController {
 
     }
 
+    @FXML
+    void handleSpecialComboClick(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            // Define Special Combo: Burrito, Churros, Mechilada (1 each)
+            addComboToCart("Burrito", 1);
+            addComboToCart("Churros", 1);
+            addComboToCart("Mechilada", 1);
+        }
+    }
+
+    @FXML
+    void handleUltimateComboClick(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            // Define Ultimate Combo: Burrito, Nachos, Chicharrones, Desserts, Drinks (1 each)
+            addComboToCart("Burrito", 1);
+            addComboToCart("Nachos", 1);
+            addComboToCart("Chicharrones", 1);
+            addComboToCart("Hot Choco Brownies", 1);
+            addComboToCart("Mechilada", 1);
+            addComboToCart("Chia Lime", 1);
+            addComboToCart("Strawberry Lime", 1);
+        }
+    }
+
+
+    // Helper method to add combo items to the cart
+    private void addComboToCart(String itemName, int quantity) {
+        FoodItem item = availableItems.stream()
+                .filter(food -> food.getName().equalsIgnoreCase(itemName))
+                .findFirst()
+                .orElse(null);
+
+        if (item != null) {
+            // Clone the item to avoid modifying the original availableItems list
+            FoodItem comboItem = new FoodItem(item.getName(), item.getPrice(), quantity, item.getImagePath());
+            addItemToCart(comboItem); // Use your existing addItemToCart method
+        } else {
+            System.err.println("Item not found: " + itemName);
+        }
+    }
+
+
+
 //navigator
     @FXML
     void toFood(ActionEvent event) {
